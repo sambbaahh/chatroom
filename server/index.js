@@ -16,7 +16,7 @@ const server = net.createServer((client) => {
   });
 
   client.on("close", () => {
-    console.log("pöö");
+    console.log("client closed connection");
     // Remove closed client connection
     const index = clientConnections.indexOf(client);
     if (index !== -1) {

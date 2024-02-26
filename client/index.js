@@ -10,8 +10,8 @@ const client = net.createConnection(
   () => {
     process.stdin.on("data", (data) => {
       //console.log(Buffer.from(data).toString());
-      if(Buffer.from(data).toString() === "close"){
-        client.end()
+      if (Buffer.from(data).toString().trim() === "close") {
+        client.destroy();
       } else {
         client.write(data);
       }
