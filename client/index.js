@@ -1,28 +1,25 @@
 import net from "net";
-let socketConnections = [];
+const PORT = 3000;
+const HOST = "127.0.0.1";
+//get random free port
+const LOCAL_PORT = 0;
 
-//create tcp server
-const server = net.createServer((socket) => {
-  socketConnections.push(socket);
-
-  socket.on("data", (data) => {
-    socketConnections.forEach((connection) => {
-      if (socket !== connection) {
-        connection.write(data);
+//connect to server
+const client = net.createConnection(
+  { port: PORT, host: HOST, localPort: LOCAL_PORT },
+  () => {
+    process.stdin.on("data", (data) => {
+      //console.log(Buffer.from(data).toString());
+      if(Buffer.from(data).toString() === "close"){
+        client.end()
+      } else {
+        client.write(data);
       }
     });
-  });
+  }
+);
 
-  socket.on("close", () => {
-    // Remove closed socket connection
-    const index = socketConnections.indexOf(socket);
-    if (index !== -1) {
-      socketConnections.splice(index, 1);
-    }
-  });
-});
-
-//listen port 3000
-server.listen(3000, () => {
-  console.log("Server started");
+client.on("data", (data) => {
+  console.log("client received data:");
+  console.log(Buffer.from(data).toString());
 });

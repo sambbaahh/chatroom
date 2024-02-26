@@ -1,26 +1,34 @@
 import net from "net";
-let socketConnections = [];
+let clientConnections = [];
 
 //create tcp server
-const server = net.createServer((socket) => {
-  socketConnections.push(socket);
+const server = net.createServer((client) => {
+  clientConnections.push(client);
+  console.log("new connection: " + client.remoteAddress + ":" + client.remotePort)
 
-  socket.on("data", (data) => {
-    socketConnections.forEach((connection) => {
-      if (socket !== connection) {
+  client.on("data", (data) => {
+    console.log("data received");
+    clientConnections.forEach((connection) => {
+      if (client !== connection) {
         connection.write(data);
       }
     });
   });
 
-  socket.on("close", () => {
-    // Remove closed socket connection
-    const index = socketConnections.indexOf(socket);
+  client.on("close", () => {
+    console.log("pöö");
+    // Remove closed client connection
+    const index = clientConnections.indexOf(client);
     if (index !== -1) {
-      socketConnections.splice(index, 1);
+      clientConnections.splice(index, 1);
     }
   });
+
+  client.on('error', (err) => {
+    console.log('Connection error:', err.message);
+  });
 });
+
 
 //listen port 3000
 server.listen(3000, () => {
