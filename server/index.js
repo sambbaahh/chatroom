@@ -15,6 +15,16 @@ wss.on("connection", (ws) => {
   ws.on("error", console.error);
   ws.id = uuidv4();
 
+  ws.send(
+    JSON.stringify(
+      Array.from(rooms, ([key, value]) => ({
+        id: key,
+        name: value.name,
+        clientCount: value.clients.length,
+      }))
+    )
+  );
+
   ws.on("message", function message(message) {
     const data = JSON.parse(message);
 
