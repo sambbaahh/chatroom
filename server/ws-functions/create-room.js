@@ -4,14 +4,14 @@ const createRoom = (data, ws, rooms) => {
   if (rooms.size === 0) {
     rooms.set(newRoomId, {
       name: data.roomName,
-      clients: [ws],
+      users: [ws],
       messages: [],
     });
   } else {
     newRoomId = Math.max(...rooms.keys()) + 1;
     rooms.set(newRoomId, {
       name: data.roomName,
-      clients: [ws],
+      users: [ws],
       messages: [],
     });
   }

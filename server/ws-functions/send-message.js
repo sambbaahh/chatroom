@@ -7,9 +7,9 @@ const sendMessage = (data, ws, rooms) => {
     };
     joinedRoom.messages.push(newMessage);
 
-    joinedRoom.clients.forEach(
-      (client) =>
-        client !== ws && client.send(JSON.stringify(newMessage).toString())
+    joinedRoom.users.forEach(
+      (user) =>
+      user !== ws && user.send(JSON.stringify(newMessage).toString())
     );
   } catch (error) {
     console.log(error);

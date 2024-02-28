@@ -3,11 +3,12 @@ import { v4 as uuidv4 } from "uuid";
 import createRoom from "./ws-functions/create-room.js";
 import joinRoom from "./ws-functions/join-room.js";
 import sendMessage from "./ws-functions/send-message.js";
+import leaveRoom from "./ws-functions/leave-room.js";
 
-const NEW = "new";
-const JOIN = "join";
-const MESSAGE = "message";
-const LEAVE = "leave";
+const NEW = "new-room";
+const JOIN = "join-room";
+const MESSAGE = "new-message";
+const LEAVE = "leave-room";
 
 const wss = new WebSocketServer({ port: 3000 });
 const rooms = new Map();
@@ -21,7 +22,7 @@ wss.on("connection", (ws) => {
       Array.from(rooms, ([key, value]) => ({
         id: key,
         name: value.name,
-        clientCount: value.clients.length,
+        userCount: value.users.length,
       }))
     )
   );
@@ -47,6 +48,11 @@ wss.on("connection", (ws) => {
         break;
     }
   });
+
+  ws.on("error", (error) => {
+    console.log("Error happened");
+    console.log(error);
+  })
 });
 
 wss.on("close", (ws) => {
