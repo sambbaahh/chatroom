@@ -1,7 +1,11 @@
 <main>
   <div class="chat-window">
-    <h1>Pöö !</h1>
-    <p-button label="pöö"></p-button>
-    <input type="text" placeholder="Enter your nickname"/>
+    <i class="pi pi-comments" style="font-size: 3rem"></i>
+    <h2>Welcome to the ChatRoom!</h2>
+    <form>
+      <label for="username">Please enter your username:</label>
+      <input pInputText type="text" id="username" minlength="3" required />
+      <button pButton label="Enter ChatRoom"></button>
+    </form>
   </div>
 </main>
