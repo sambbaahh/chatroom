@@ -1,0 +1,7 @@
+<i class="pi pi-comments" style="font-size: 3rem"></i>
+<h2>Welcome to the ChatRoom!</h2>
+<form (ngSubmit)="onSubmit()">
+  <label for="username">Please enter your username:</label>
+  <input pInputText [formControl]="username" type="text" id="username" minlength="3" required />
+  <button pButton label="Enter ChatRoom" type="submit"></button>
+</form>

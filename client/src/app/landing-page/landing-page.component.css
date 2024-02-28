@@ -1,0 +1,30 @@
+:host {
+  width: 100%;
+  height: 100%;
+  display: inherit;
+  flex-direction: inherit;
+  justify-content: inherit;
+  align-items: inherit;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+input {
+  width: 25%;
+}
+button {
+  width: 22.5%;
+}
+h2 {
+  margin: 1rem;
+}
+h4 {
+  margin: 0.5rem;
+}
