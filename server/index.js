@@ -4,9 +4,10 @@ import createRoom from "./ws-functions/create-room.js";
 import joinRoom from "./ws-functions/join-room.js";
 import sendMessage from "./ws-functions/send-message.js";
 
-const NEW_ROOM = "new-room";
+const NEW = "new";
 const JOIN = "join";
 const MESSAGE = "message";
+const LEAVE = "leave";
 
 const wss = new WebSocketServer({ port: 3000 });
 const rooms = new Map();
@@ -29,7 +30,7 @@ wss.on("connection", (ws) => {
     const data = JSON.parse(message);
 
     switch (data.type) {
-      case NEW_ROOM:
+      case NEW:
         createRoom(data, ws, rooms);
         break;
       case JOIN:
@@ -38,8 +39,16 @@ wss.on("connection", (ws) => {
       case MESSAGE:
         sendMessage(data, ws, rooms);
         break;
-
+      case LEAVE:
+        leaveRoom(ws, rooms)
+        break;
       default:
+        console.log("Case not found");
+        break;
     }
   });
 });
+
+wss.on("close", (ws) => {
+
+})
