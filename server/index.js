@@ -1,5 +1,8 @@
 import { WebSocketServer } from "ws";
 import { v4 as uuidv4 } from "uuid";
+import createRoom from "./ws-functions/create-room.js";
+import joinRoom from "./ws-functions/join-room.js";
+import sendMessage from "./ws-functions/send-message.js";
 
 const NEW_ROOM = "new-room";
 const JOIN = "join";
