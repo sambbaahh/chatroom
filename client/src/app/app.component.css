@@ -1,0 +1,11 @@
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100svh;
+}
+
+.chat-window {
+  display: flex;
+  flex-direction: column;
+}
