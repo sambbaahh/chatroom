@@ -2,36 +2,44 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { WebsocketService } from '../../services/websocket.service';
 import { Observable, Subscription } from 'rxjs';
+import { ButtonModule } from 'primeng/button';
+
+interface Room {
+  id: number;
+  name: string;
+  userCount: number;
+}
 
 @Component({
   selector: 'app-lobby',
   standalone: true,
-  imports: [],
+  imports: [ButtonModule],
   templateUrl: './lobby.component.html',
   styleUrl: './lobby.component.css',
 })
 export class LobbyComponent {
   username: string = '';
+  rooms: Room[] = [];
 
   constructor(
     private router: Router,
     private webSocketService: WebsocketService
   ) {
     this.username = localStorage.getItem('username') as string;
-    webSocketService.sendMessage('miau');
   }
 
   ngOnInit() {
     this.webSocketService.getMessages().subscribe({
-      next: (message) => {
-        console.log(message);
+      next: (paramRooms: any) => {
+        this.rooms = [...paramRooms];
       },
       error: (err) => {
         console.error('WebSocket error:', err);
       },
-      complete: () => {
-        console.log('WebSocket connection closed.');
-      },
     });
+  }
+
+  onNavigateToRoom() {
+    this.router.navigate(['chat/1']);
   }
 }
