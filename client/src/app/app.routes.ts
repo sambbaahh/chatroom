@@ -6,14 +6,17 @@ import { ChatComponent } from './chat/chat.component';
 export const routes: Routes = [
   {
     path: '',
+    title: "ChatRoom",
     component: LandingPageComponent,
   },
   {
     path: 'lobby',
+    title: "ChatRoom - Lobby",
     component: LobbyComponent,
   },
   {
     path: 'chat/:id',
+    title: "ChatRoom - Chat",
     component: ChatComponent,
   },
   {

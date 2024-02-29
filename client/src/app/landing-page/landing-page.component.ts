@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
-import { FormControl, Validators } from '@angular/forms';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'landing-page',
@@ -14,7 +14,10 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 export class LandingPageComponent {
   username: string = '';
 
+  constructor(private router: Router) {}
+
   onSubmit(): void {
-    console.log(this.username);
+    localStorage.setItem('username', this.username);
+    this.router.navigate(['/lobby']);
   }
 }
