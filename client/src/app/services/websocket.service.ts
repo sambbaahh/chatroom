@@ -5,7 +5,7 @@ import { WebSocketSubject, webSocket } from 'rxjs/webSocket';
   providedIn: 'root',
 })
 export class WebsocketService {
-  private url: string = 'localhost:3000';
+  private url: string = 'ws://localhost:3000';
   private subject$: WebSocketSubject<unknown>;
 
   constructor() {
@@ -13,10 +13,10 @@ export class WebsocketService {
   }
 
   sendMessage(message: string) {
-    this.subject$.next('pöö');
+    this.subject$.next(message);
   }
 
   getMessages() {
-    this.subject$.asObservable();
+    return this.subject$.asObservable();
   }
 }
