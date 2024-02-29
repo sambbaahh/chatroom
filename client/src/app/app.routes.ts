@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
-import { LandingPageComponent } from './landing-page/landing-page.component';
-import { LobbyComponent } from './lobby/lobby.component';
-import { ChatComponent } from './chat/chat.component';
+import { LandingPageComponent } from './components/landing-page/landing-page.component';
+import { LobbyComponent } from './components/lobby/lobby.component';
+import { ChatComponent } from './components/chat/chat.component';
 
 export const routes: Routes = [
   {
