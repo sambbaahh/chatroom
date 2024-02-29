@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @Component({
@@ -12,9 +12,9 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
   styleUrl: './landing-page.component.css',
 })
 export class LandingPageComponent {
-  username = new FormControl('');
+  username: string = '';
 
   onSubmit(): void {
-    console.log(this.username.value);
+    console.log(this.username);
   }
 }
