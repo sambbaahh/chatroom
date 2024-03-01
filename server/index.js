@@ -25,6 +25,7 @@ wss.on("connection", (ws) => {
 
   ws.on("message", function message(message) {
     const data = JSON.parse(message);
+    console.log(data);
 
     switch (data.type) {
       case NEW:

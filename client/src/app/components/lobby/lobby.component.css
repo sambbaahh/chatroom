@@ -11,6 +11,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-block: 0.25rem;
 }
 
 ::ng-deep .p-divider, ::ng-deep .p-divider::before {
@@ -39,10 +40,9 @@
 }
 
 .room-left-side {
-  width: 75%;
+  width: 50%;
   display: flex;
   align-items: center;
-  gap: 2.5%;
 }
 
 .user-count {
@@ -52,7 +52,8 @@
 }
 
 .room-right-side{
-  width: 25%;
+  width: 50%;
   display: flex;
   justify-content: end;
+  gap: 10%;
 }

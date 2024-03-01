@@ -1,8 +1,20 @@
 <div class="top-bar">
   <p>{{ username }}</p>
   <p-inputGroup>
-    <input type="text" pInputText placeholder="New Room" />
-    <button type="button" pButton icon="pi pi-plus"></button>
+    <input
+      type="text"
+      pInputText
+      placeholder="New Room"
+      [(ngModel)]="roomname"
+      id="roomname"
+      name="roomname"
+    />
+    <button
+      type="button"
+      pButton
+      icon="pi pi-plus"
+      (click)="createRoom()"
+    ></button>
   </p-inputGroup>
 </div>
 <p-divider align="center"> <b>Rooms</b> </p-divider>
@@ -10,16 +22,15 @@
   <div class="room" *ngFor="let room of rooms">
     <div class="room-left-side">
       <p>{{ room.name }}</p>
-      <p>-</p>
+    </div>
+    <div class="room-right-side">
       <div class="user-count">
         <i class="pi pi-users" style="font-size: 1.5rem"></i>
         <p>{{ room.userCount }}</p>
       </div>
-    </div>
-    <div class="room-right-side">
       <button
         pButton
-        (click)="onNavigateToRoom(room.id)"
+        (click)="joinRoom(room.id)"
         label="Join"
         icon="pi pi-arrow-right"
         iconPos="right"
