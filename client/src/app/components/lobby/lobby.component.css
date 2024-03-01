@@ -1,9 +1,9 @@
 :host {
-  width: 90%;
-  height: 90%;
-  border: 1px solid blueviolet;
-  padding: 0.25rem 0.5rem;
+  width: 100%;
+  height: 100%;
+  padding: 1rem 1.5rem;
   overflow-y: scroll;
+  border-radius: 6px;
 }
 
 /* TOP-BAR */
@@ -12,6 +12,18 @@
   justify-content: space-between;
   align-items: center;
   margin-block: 0.25rem;
+}
+.user-details {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.user-details i {
+  font-size: 1.25rem;
+}
+.user-details p {
+  font-size: 1.25rem;
+  margin: 0;
 }
 
 ::ng-deep .p-divider, ::ng-deep .p-divider::before {
@@ -27,6 +39,10 @@
 ::ng-deep .p-inputgroup {
   width: auto;
 }
+::ng-deep .p-button {
+  width: 2rem; 
+  height: 2rem; 
+}
 
 /* ROOMS */
 .room {
@@ -34,9 +50,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border: 0.5px solid transparent;
+  padding-inline: 0.5rem;
 }
 .room:hover {
-  border: 0.5px solid lightblue;
+  border: 0.5px solid #3B82F6;
+  border-radius: 6px;
 }
 
 .room-left-side {
@@ -55,5 +74,30 @@
   width: 50%;
   display: flex;
   justify-content: end;
+  align-items: center;
   gap: 10%;
+}
+
+.room-right-side ::ng-deep .p-button {
+  width: 6rem;
+  height: 2rem;
+  font-size: 0.85em;
+}
+
+/* media query */
+@media (max-width:811px)  {
+  :host {
+    width: 100%;
+    height: 100%;
+    padding: 0.25rem 0.5rem;
+    overflow-y: scroll;
+    border: 0;
+    border-radius: 0;
+  }
+  .top-bar {
+    margin-block: 1rem;
+  }
+  ::ng-deep .p-textinput {
+    width: 1rem;
+  }
 }

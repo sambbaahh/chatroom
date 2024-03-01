@@ -76,11 +76,13 @@ export class LobbyComponent {
     this.webSocketService.sendMessage(JSON.parse(JSON.stringify(joinRoom)));
     this.router.navigate(['chat', roomId]);
   }
+
   createRoom() {
     const newRoom: RoomCreation = {
       type: RequestEnum.NEW,
       roomName: this.roomname,
     };
     this.webSocketService.sendMessage(JSON.parse(JSON.stringify(newRoom)));
+    this.roomname = '';
   }
 }
