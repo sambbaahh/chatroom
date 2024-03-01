@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { WebsocketService } from '../../services/websocket.service';
-import { Observable, Subscription } from 'rxjs';
+import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { DividerModule } from 'primeng/divider';
+import { InputGroupModule } from 'primeng/inputgroup';
+import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 
 interface Room {
   id: number;
@@ -14,7 +16,13 @@ interface Room {
 @Component({
   selector: 'app-lobby',
   standalone: true,
-  imports: [ButtonModule, DividerModule],
+  imports: [
+    CommonModule,
+    ButtonModule,
+    DividerModule,
+    InputGroupModule,
+    InputGroupAddonModule,
+  ],
   templateUrl: './lobby.component.html',
   styleUrl: './lobby.component.css',
 })
@@ -40,7 +48,9 @@ export class LobbyComponent {
     });
   }
 
-  onNavigateToRoom() {
+  onNavigateToRoom(roomId: number) {
+    console.log(roomId);
+
     this.router.navigate(['chat/1']);
   }
 }

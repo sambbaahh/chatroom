@@ -6,9 +6,9 @@ import sendMessage from "./ws-functions/send-message.js";
 import leaveRoom from "./ws-functions/leave-room.js";
 import getRoomsArray from "./helpers/get-rooms-array.js";
 
-const NEW = "new-room";
+const NEW = "create-room";
 const JOIN = "join-room";
-const MESSAGE = "new-message";
+const MESSAGE = "send-message";
 const LEAVE = "leave-room";
 
 const wss = new WebSocketServer({ port: 3000 });
@@ -28,7 +28,7 @@ wss.on("connection", (ws) => {
 
     switch (data.type) {
       case NEW:
-        createRoom(data, ws, rooms, wss.clients);
+        createRoom(data, rooms, wss.clients);
         break;
       case JOIN:
         joinRoom(data, ws, rooms);
