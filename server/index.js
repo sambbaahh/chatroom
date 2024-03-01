@@ -46,11 +46,16 @@ wss.on("connection", (ws) => {
     }
   });
 
-  ws.on("error", (error) => {
+  ws.on("error", () => {
     console.log("Error happened");
-    console.log(error);
+    if (ws.currentRoomId) {
+      leaveRoom(ws, rooms);
+    }
   });
   ws.on("close", () => {
     console.log("Connection closed!");
+    if (ws.currentRoomId) {
+      leaveRoom(ws, rooms);
+    }
   });
 });

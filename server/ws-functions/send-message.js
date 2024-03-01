@@ -3,7 +3,7 @@ const sendMessage = (data, ws, rooms) => {
     const joinedRoom = rooms.get(Number(data.roomId));
     const newMessage = {
       message: data.message,
-      sender: ws.id,
+      username: data.username,
     };
     joinedRoom.messages.push(newMessage);
 
