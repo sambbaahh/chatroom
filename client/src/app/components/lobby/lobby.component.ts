@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { WebsocketService } from '../../services/websocket.service';
 import { Observable, Subscription } from 'rxjs';
 import { ButtonModule } from 'primeng/button';
+import { DividerModule } from 'primeng/divider';
 
 interface Room {
   id: number;
@@ -13,7 +14,7 @@ interface Room {
 @Component({
   selector: 'app-lobby',
   standalone: true,
-  imports: [ButtonModule],
+  imports: [ButtonModule, DividerModule],
   templateUrl: './lobby.component.html',
   styleUrl: './lobby.component.css',
 })

@@ -1,7 +1,27 @@
 <div class="top-bar">
-  <p> {{ username }}</p>
+  <p>{{ username }}</p>
+  <button pButton (click)="onNavigateToRoom()" label="New Room"></button>
 </div>
+<p-divider></p-divider>
 <div class="room-list">
-  <p>chat-lobby works!</p>
-  <button pButton (click)="onNavigateToRoom()"> Testi </button>
+  <div class="room">
+    <div class="room-left-side">
+      <p>RoomName</p>
+      <p>-</p>
+      <div class="user-count">
+        <i class="pi pi-users" style="font-size: 1.5rem"></i>
+        <p>2</p>
+      </div>
+    </div>
+    <div class="room-right-side">
+      <button
+        pButton
+        (click)="onNavigateToRoom()"
+        label="Join"
+        icon="pi pi-arrow-right"
+        iconPos="right"
+        size="large"
+      ></button>
+    </div>
+  </div>
 </div>
