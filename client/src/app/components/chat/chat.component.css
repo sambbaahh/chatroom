@@ -4,19 +4,57 @@
   display: flex;
   flex-direction: column;
 }
-.chat {
-  overflow-y: scroll;
+
+/* Room header */
+.room-details {
+  display: flex;
+  position: sticky;
   padding: 1rem;
+  top: 0;
+  z-index: 1;
+}
+.room-details h2 {
+  margin: 0;
 }
 
-::ng-deep p-inputgroup{
-  width: 90%;
+/* Message list */
+.messages {
+  padding-inline: 1rem;
+  overflow-y: auto;
 }
 
+.single-message-sended {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  width: fit-content;
+  max-width: 75%;
+  margin-left: auto;
+  padding-inline: 1rem;
+  background-color: antiquewhite;
+  border-radius: 6px;
+}
+
+.single-message-received {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  width: fit-content;
+  max-width: 75%;
+  margin-right: auto;
+  padding-inline: 1rem;
+  background-color: lightblue;
+  border-radius: 6px;
+}
+
+/* Message send */
 .send-message {
   display: flex;
   align-items: center;
   justify-content: center;
   margin-top: auto;
   padding: 1rem;
+}
+::ng-deep p-inputgroup {
+  width: 90%;
 }
