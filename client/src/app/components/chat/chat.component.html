@@ -2,7 +2,7 @@
   <h2>ChatName</h2>
 </div>
 <div class="messages">
-  <div class="single-message-sended">
+  <div *ngFor="let message of webSocketService.messages" class="single-message-sended">
     <p>Sended Hello!</p>
   </div>
   <div class="single-message-received">
@@ -11,7 +11,15 @@
 </div>
 <div class="send-message">
   <p-inputGroup>
-    <input type="text" pInputText placeholder="Send Message" minlength="1" />
-    <button type="button" pButton icon="pi pi-send"></button>
+    <input
+      type="text"
+      pInputText
+      placeholder="Send Message"
+      minlength="1"
+      [(ngModel)]="messageContent"
+      id="messageContent"
+      name="messageContent"
+    />
+    <button type="button" pButton icon="pi pi-send" (click)="sendMessage()"></button>
   </p-inputGroup>
 </div>

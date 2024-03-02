@@ -22,7 +22,7 @@
 </div>
 <p-divider align="center"> <b>Rooms</b> </p-divider>
 <div class="room-list">
-  <div class="room" *ngFor="let room of rooms">
+  <div class="room" *ngFor="let room of webSocketService.rooms">
     <div class="room-left-side">
       <p>{{ room.name }}</p>
     </div>

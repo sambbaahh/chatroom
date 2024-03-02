@@ -3,6 +3,7 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { WebsocketService } from '../../services/websocket.service';
 
 @Component({
   selector: 'landing-page',
@@ -14,10 +15,16 @@ import { Router } from '@angular/router';
 export class LandingPageComponent {
   username: string = '';
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    public webSocketService: WebsocketService
+  ) {}
 
   onSubmit(): void {
     localStorage.setItem('username', this.username);
+    this.webSocketService.username = this.username;
+    this.webSocketService.initializeWebSocket();
+
     this.router.navigate(['/lobby']);
   }
 }

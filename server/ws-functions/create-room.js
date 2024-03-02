@@ -20,10 +20,7 @@ const createRoom = (data, rooms, allUsers) => {
 
   if(allUsers){
     allUsers.forEach((user) => {
-      //user is not in the room at the moment, so we need to notify about the new room.
-      if (!user.currentRoomId) {
-        user.send(getRoomsArray(rooms))
-      }
+        user.send(JSON.stringify({rooms: getRoomsArray(rooms)}))
     });
   }
 };

@@ -1,5 +1,5 @@
 const getRoomsArray = (rooms) => {
-  return JSON.stringify(
+  return (
     Array.from(rooms, ([key, value]) => ({
       id: key,
       name: value.name,

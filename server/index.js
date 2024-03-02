@@ -35,7 +35,7 @@ wss.on("connection", (ws) => {
         joinRoom(data, ws, rooms);
         break;
       case MESSAGE:
-        sendMessage(data, ws, rooms);
+        sendMessage(data, rooms);
         break;
       case LEAVE:
         leaveRoom(ws, rooms);
