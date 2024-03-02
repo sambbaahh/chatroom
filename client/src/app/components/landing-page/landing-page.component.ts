@@ -23,8 +23,6 @@ export class LandingPageComponent {
   onSubmit(): void {
     localStorage.setItem('username', this.username);
     this.webSocketService.username = this.username;
-    this.webSocketService.initializeWebSocket();
-
     this.router.navigate(['/lobby']);
   }
 }

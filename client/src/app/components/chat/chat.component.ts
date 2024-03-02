@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { InputGroupModule } from 'primeng/inputgroup';
@@ -16,7 +16,13 @@ interface NewMessage extends Message {
 @Component({
   selector: 'app-chat',
   standalone: true,
-  imports: [InputTextModule, ButtonModule, InputGroupModule, FormsModule, CommonModule],
+  imports: [
+    InputTextModule,
+    ButtonModule,
+    InputGroupModule,
+    FormsModule,
+    CommonModule,
+  ],
   templateUrl: './chat.component.html',
   styleUrl: './chat.component.css',
 })
@@ -24,6 +30,7 @@ export class ChatComponent {
   public messages: Message[] = [];
   public messageContent: string = '';
   private roomId: number = -1;
+  @ViewChild('messages') messagesContainer: ElementRef | undefined;
 
   constructor(
     private router: Router,
@@ -31,12 +38,18 @@ export class ChatComponent {
     public webSocketService: WebsocketService
   ) {}
 
-  ngOnInit() {
-    this.route.paramMap.subscribe(params => {
+  ngOnInit(): void {
+    this.route.paramMap.subscribe((params) => {
       const id = params.get('id');
       this.roomId = Number(id);
-    })
+    });
   }
+
+  ngAfterViewChecked(): void {
+    this.messagesContainer!.nativeElement!.scrollTop =
+      this.messagesContainer?.nativeElement?.scrollHeight;
+  }
+
   sendMessage() {
     const message: NewMessage = {
       type: RequestEnum.MESSAGE,
@@ -47,6 +60,6 @@ export class ChatComponent {
       userId: this.webSocketService.userId,
     };
     this.webSocketService.sendMessage(JSON.parse(JSON.stringify(message)));
-    this.messageContent = ''
+    this.messageContent = '';
   }
 }

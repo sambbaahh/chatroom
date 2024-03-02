@@ -1,12 +1,16 @@
 <div class="room-details">
   <h2>ChatName</h2>
 </div>
-<div class="messages">
-  <div *ngFor="let message of webSocketService.messages" class="single-message-sended">
-    <p>Sended Hello!</p>
-  </div>
-  <div class="single-message-received">
-    <p>Received Hello!</p>
+<div class="messages" #messages>
+  <div
+    *ngFor="let message of webSocketService.messages"
+    [ngClass]="
+      message.userId === webSocketService.userId
+        ? 'single-message-sended'
+        : 'single-message-received'
+    "
+  >
+    <p>{{ message.content }}</p>
   </div>
 </div>
 <div class="send-message">
@@ -16,10 +20,16 @@
       pInputText
       placeholder="Send Message"
       minlength="1"
-      [(ngModel)]="messageContent"
       id="messageContent"
       name="messageContent"
+      [(ngModel)]="messageContent"
+      (keydown.enter)='sendMessage()'
     />
-    <button type="button" pButton icon="pi pi-send" (click)="sendMessage()"></button>
+    <button
+      type="button"
+      pButton
+      icon="pi pi-send"
+      (click)="sendMessage()"
+    ></button>
   </p-inputGroup>
 </div>

@@ -8,9 +8,10 @@
       type="text"
       pInputText
       placeholder="New Room"
-      [(ngModel)]="roomname"
       id="roomname"
       name="roomname"
+      [(ngModel)]="roomname"
+      (keydown.enter)='createRoom()'
     />
     <button
       type="button"

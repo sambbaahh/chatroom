@@ -46,10 +46,8 @@ export class WebsocketService {
             this.rooms = [...data.rooms];
           }
         } else if (data.messageHistory) {
-          console.log(data);
           this.messages = data.messageHistory;
         } else if (data.newMessage) {
-          console.log(data);
           this.messages = [...this._messages, data.newMessage];
         }
       },

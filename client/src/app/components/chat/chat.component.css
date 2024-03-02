@@ -30,8 +30,9 @@
   width: fit-content;
   max-width: 75%;
   margin-left: auto;
+  margin-block: 0.25rem;
   padding-inline: 1rem;
-  background-color: antiquewhite;
+  background-color: #C2C0C0;
   border-radius: 6px;
 }
 
@@ -42,8 +43,10 @@
   width: fit-content;
   max-width: 75%;
   margin-right: auto;
+  margin-block: 0.25rem;
   padding-inline: 1rem;
-  background-color: lightblue;
+  background-color: #78A4F9;
+  color: white;
   border-radius: 6px;
 }
 
