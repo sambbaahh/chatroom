@@ -21,7 +21,7 @@ wss.on("connection", (ws) => {
   console.log("New connection!");
   ws.id = uuidv4();
 
-  ws.send(getRoomsArray(rooms));
+  ws.send(JSON.stringify({ userId: ws.id, rooms: getRoomsArray(rooms) }));
 
   ws.on("message", function message(message) {
     const data = JSON.parse(message);

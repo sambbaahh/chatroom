@@ -8,7 +8,7 @@ import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { FormsModule } from '@angular/forms';
 
-enum RequestEnum {
+export enum RequestEnum {
   NEW = 'create-room',
   JOIN = 'join-room',
   MESSAGE = 'send-message',
@@ -45,21 +45,27 @@ interface RoomJoining {
   styleUrl: './lobby.component.css',
 })
 export class LobbyComponent {
-  username: string = '';
   roomname: string = '';
   rooms: Room[] = [];
 
   constructor(
     private router: Router,
-    private webSocketService: WebsocketService
+    public webSocketService: WebsocketService
   ) {
-    this.username = localStorage.getItem('username') as string;
+    this.webSocketService.username = localStorage.getItem('username') as string;
   }
 
   ngOnInit() {
     this.webSocketService.getMessages().subscribe({
-      next: (paramRooms: any) => {
-        this.rooms = [...paramRooms];
+      next: (data: any) => {        
+        if (!this.webSocketService.isLobbyInitialized) {
+          this.rooms = [...JSON.parse(data.rooms)];
+          this.webSocketService.userId = data.userId;
+          this.webSocketService.isLobbyInitialized = true;
+        } else {
+          console.log(data); 
+          this.rooms = [...data];
+        }
       },
       error: (err) => {
         console.error('WebSocket error:', err);
@@ -71,7 +77,7 @@ export class LobbyComponent {
     const joinRoom: RoomJoining = {
       type: RequestEnum.JOIN,
       roomId: roomId,
-      username: this.username,
+      username: this.webSocketService.username,
     };
     this.webSocketService.sendMessage(JSON.parse(JSON.stringify(joinRoom)));
     this.router.navigate(['chat', roomId]);
