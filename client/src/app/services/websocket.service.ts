@@ -28,6 +28,8 @@ export class WebsocketService {
 
   private _rooms: Room[] = [];
   private _messages: Message[] = [];
+  private _roomId: number | null = null;
+  private _isInRoom: boolean = false;
 
   constructor() {
     this.subject$ = webSocket(this.url);
@@ -38,7 +40,7 @@ export class WebsocketService {
     this.subject$.asObservable().subscribe({
       next: (data: any) => {
         if (data.rooms) {
-          if (!this.isLobbyInitialized) {            
+          if (!this.isLobbyInitialized) {
             this.rooms = [...data.rooms];
             this.userId = data.userId;
             this.isLobbyInitialized = true;
@@ -99,5 +101,21 @@ export class WebsocketService {
   }
   public set messages(value: Message[]) {
     this._messages = value;
+  }
+
+  @Input()
+  public get roomId(): number | null {
+    return this._roomId;
+  }
+  public set roomId(value: number | null) {
+    this._roomId = value;
+  }
+
+  @Input()
+  public get isInRoom(): boolean {
+    return this._isInRoom;
+  }
+  public set isInRoom(value: boolean) {
+    this._isInRoom = value;
   }
 }

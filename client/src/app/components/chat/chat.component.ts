@@ -8,6 +8,7 @@ import { WebsocketService } from '../../services/websocket.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Message } from '../../services/websocket.service';
+import { RoomJoining } from '../lobby/lobby.component';
 
 interface NewMessage extends Message {
   type: RequestEnum.MESSAGE;
@@ -29,7 +30,6 @@ interface NewMessage extends Message {
 export class ChatComponent {
   public messages: Message[] = [];
   public messageContent: string = '';
-  private roomId: number = -1;
   @ViewChild('messages') messagesContainer: ElementRef | undefined;
 
   constructor(
@@ -41,11 +41,21 @@ export class ChatComponent {
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       const id = params.get('id');
-      this.roomId = Number(id);
+      this.webSocketService.roomId = Number(id);
     });
+    //user has come from the web address, not the UI
+    if (!this.webSocketService.isInRoom) {
+      const joinRoom: RoomJoining = {
+        type: RequestEnum.JOIN,
+        roomId: this.webSocketService.roomId as number,
+        username: this.webSocketService.username,
+      };
+      this.webSocketService.sendMessage(JSON.parse(JSON.stringify(joinRoom)));
+    }
   }
 
   ngAfterViewChecked(): void {
+    //scroll to the bottom if scrollbar in messagelist
     this.messagesContainer!.nativeElement!.scrollTop =
       this.messagesContainer?.nativeElement?.scrollHeight;
   }
@@ -55,7 +65,7 @@ export class ChatComponent {
       type: RequestEnum.MESSAGE,
       content: this.messageContent,
       timestamp: new Date().toLocaleTimeString(),
-      roomId: this.roomId,
+      roomId: this.webSocketService.roomId as number,
       username: this.webSocketService.username,
       userId: this.webSocketService.userId,
     };

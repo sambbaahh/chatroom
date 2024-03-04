@@ -2,15 +2,17 @@
   <h2>ChatName</h2>
 </div>
 <div class="messages" #messages>
-  <div
-    *ngFor="let message of webSocketService.messages"
-    [ngClass]="
-      message.userId === webSocketService.userId
-        ? 'single-message-sended'
-        : 'single-message-received'
-    "
-  >
-    <p>{{ message.content }}</p>
+  <div *ngFor="let message of webSocketService.messages">
+    <p>{{ message.username }}</p>
+    <div
+      [ngClass]="
+        message.userId === webSocketService.userId
+          ? 'single-message-sended'
+          : 'single-message-received'
+      "
+    >
+      <p>{{ message.content }}</p>
+    </div>
   </div>
 </div>
 <div class="send-message">
@@ -23,7 +25,7 @@
       id="messageContent"
       name="messageContent"
       [(ngModel)]="messageContent"
-      (keydown.enter)='sendMessage()'
+      (keydown.enter)="sendMessage()"
     />
     <button
       type="button"

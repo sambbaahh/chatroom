@@ -16,11 +16,11 @@ export enum RequestEnum {
   LEAVE = 'leave-room',
 }
 
-interface RoomCreation {
+export interface RoomCreation {
   type: RequestEnum.NEW;
   roomName: string;
 }
-interface RoomJoining {
+export interface RoomJoining {
   type: RequestEnum.JOIN;
   roomId: number;
   username: string;
@@ -56,6 +56,7 @@ export class LobbyComponent {
     };
     this.webSocketService.sendMessage(JSON.parse(JSON.stringify(joinRoom)));
     this.router.navigate(['chat', roomId]);
+    this.webSocketService.isInRoom = true;
   }
 
   createRoom() {
