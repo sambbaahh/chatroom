@@ -2,16 +2,39 @@
   <h2>ChatName</h2>
 </div>
 <div class="messages" #messages>
-  <div *ngFor="let message of webSocketService.messages">
-    <p>{{ message.username }}</p>
+  <div *ngFor="let message of webSocketService.messages; let i = index">
+    <ng-container
+      *ngIf="
+        i === 0 || message.userId !== webSocketService.messages[i - 1].userId
+      "
+    >
+      <p class="message-sender">{{ message.username }}</p>
+    </ng-container>
+
     <div
       [ngClass]="
         message.userId === webSocketService.userId
-          ? 'single-message-sended'
-          : 'single-message-received'
+          ? 'message-sended-container'
+          : 'message-received-container'
       "
     >
-      <p>{{ message.content }}</p>
+      <div
+        [ngClass]="
+          message.userId === webSocketService.userId
+            ? 'message-sended-content'
+            : 'message-received-content'
+        "
+      >
+        <p>{{ message.content }}</p>
+      </div>
+      <ng-container
+        *ngIf="
+          i === webSocketService.messages.length - 1 ||
+          message.userId !== webSocketService.messages[i + 1].userId
+        "
+      >
+        <p class="message-timestamp">{{ message.timestamp }}</p>
+      </ng-container>
     </div>
   </div>
 </div>

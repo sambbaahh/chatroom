@@ -23,31 +23,43 @@
   overflow-y: auto;
 }
 
-.single-message-sended {
+.message-sended-container,
+.message-received-container {
   display: flex;
-  align-items: center;
-  justify-content: end;
-  width: fit-content;
-  max-width: 75%;
-  margin-left: auto;
-  margin-block: 0.25rem;
-  padding-inline: 1rem;
-  background-color: #C2C0C0;
-  border-radius: 6px;
+  flex-direction: column;
+  width: 100%;
 }
 
-.single-message-received {
-  display: flex;
-  align-items: center;
-  justify-content: start;
+.message-sended-container {
+  align-items: flex-end;
+}
+.message-received-container {
+  align-items: flex-start;
+}
+
+.message-sended-content,
+.message-received-content {
   width: fit-content;
+  word-wrap: break-word;
   max-width: 75%;
-  margin-right: auto;
   margin-block: 0.25rem;
   padding-inline: 1rem;
-  background-color: #78A4F9;
-  color: white;
   border-radius: 6px;
+}
+.message-sended-content {
+  background-color: #c2c0c0;
+  color: black;
+}
+
+.message-received-content {
+  background-color: #78a4f9;
+  color: white;
+}
+
+.message-timestamp,
+.message-sender {
+  font-size: small;
+  margin-block: 0.1rem;
 }
 
 /* Message send */
@@ -57,7 +69,4 @@
   justify-content: center;
   margin-top: auto;
   padding: 1rem;
-}
-::ng-deep p-inputgroup {
-  width: 90%;
 }
