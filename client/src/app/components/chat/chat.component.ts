@@ -64,7 +64,10 @@ export class ChatComponent {
     const message: NewMessage = {
       type: RequestEnum.MESSAGE,
       content: this.messageContent,
-      timestamp: new Date().toLocaleTimeString(),
+      timestamp: new Date().toLocaleTimeString('fi-FI', {
+        hour: '2-digit',
+        minute: '2-digit',
+      }),
       roomId: this.webSocketService.roomId as number,
       username: this.webSocketService.username,
       userId: this.webSocketService.userId,
