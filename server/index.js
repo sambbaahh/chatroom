@@ -22,7 +22,6 @@ const rooms = new Map();
 wss.on("connection", (ws) => {
   try {
     console.log("New connection!");
-    ws.userId = uuidv4();
 
     ws.send(JSON.stringify({ rooms: getRoomsArray(rooms) }));
 
@@ -38,13 +37,13 @@ wss.on("connection", (ws) => {
           createRoom(data, rooms, wss.clients);
           break;
         case JOIN:
-          joinRoom(data, ws, rooms);
+          joinRoom(data, ws, rooms, wss.clients);
           break;
         case MESSAGE:
           sendMessage(data, ws, rooms);
           break;
         case LEAVE:
-          leaveRoom(ws, rooms);
+          leaveRoom(ws, rooms, wss.clients);
           break;
         default:
           console.log("Case not found");

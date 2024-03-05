@@ -1,4 +1,4 @@
-import getRoomsArray from "../helpers/get-rooms-array.js";
+import notifyRoomsUpdate from "../helpers/notify-rooms-update.js";
 
 const createRoom = (data, rooms, allUsers) => {
   let newRoomId = 1;
@@ -18,11 +18,8 @@ const createRoom = (data, rooms, allUsers) => {
     });
   }
 
-  if(allUsers){
-    allUsers.forEach((user) => {
-        user.send(JSON.stringify({rooms: getRoomsArray(rooms)}))
-    });
-  }
+  //new room has been maden so we need to notify users
+  notifyRoomsUpdate(allUsers, rooms);
 };
 
 export default createRoom;

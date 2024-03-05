@@ -17,24 +17,30 @@ import { v4 as uuidv4 } from 'uuid';
 export class LandingPageComponent {
   public newUsername: string = '';
   public newUserId: string = uuidv4();
+  private storageUsername: string | null = localStorage.getItem('username');
+  private storageUserId: string | null = localStorage.getItem('userId');
 
   constructor(
     private router: Router,
     public webSocketService: WebsocketService
   ) {
-    const storageUsername = localStorage.getItem('username');
-    if (storageUsername) {
-      this.newUsername = storageUsername;
+    if (this.storageUsername) {
+      this.newUsername = this.storageUsername;
     }
   }
 
   onSubmit(): void {
-    const storageUsername = localStorage.getItem('username');
-    const storageUserId = localStorage.getItem('userId');
-
-    if (this.newUsername === storageUsername) {
-      this.webSocketService.username = storageUsername as string;
-      this.webSocketService.userId = storageUserId as string;
+    if (this.newUsername === this.storageUsername) {
+      const existingUser: NewUser = {
+        type: RequestEnum.NEW_USER,
+        username: this.storageUsername as string,
+        userId: this.storageUserId as string,
+      };
+      this.webSocketService.sendMessage(
+        JSON.parse(JSON.stringify(existingUser))
+      );
+      this.webSocketService.username = this.storageUsername as string;
+      this.webSocketService.userId = this.storageUserId as string;
     } else {
       const newUser: NewUser = {
         type: RequestEnum.NEW_USER,
@@ -43,6 +49,8 @@ export class LandingPageComponent {
       };
 
       this.webSocketService.sendMessage(JSON.parse(JSON.stringify(newUser)));
+      this.webSocketService.username = this.newUsername;
+      this.webSocketService.userId = this.newUserId;
       localStorage.setItem('username', this.newUsername);
       localStorage.setItem('userId', this.newUserId);
     }
