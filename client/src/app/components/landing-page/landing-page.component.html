@@ -2,6 +2,14 @@
 <h2>Welcome to the ChatRoom!</h2>
 <form ngNativeValidate (ngSubmit)="onSubmit()">
   <label for="username">Please enter your username:</label>
-  <input pInputText id="username" name="username" [(ngModel)]="username" type="text" required minlength="3" />
+  <input
+    pInputText
+    id="username"
+    name="username"
+    [(ngModel)]="newUsername"
+    type="text"
+    required
+    minlength="3"
+  />
   <button pButton label="Enter ChatRoom"></button>
 </form>

@@ -2,17 +2,16 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { InputGroupModule } from 'primeng/inputgroup';
-import { RequestEnum } from '../lobby/lobby.component';
 import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
 import { WebsocketService } from '../../services/websocket.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Message } from '../../services/websocket.service';
-import { RoomJoining } from '../lobby/lobby.component';
-
-interface NewMessage extends Message {
-  type: RequestEnum.MESSAGE;
-}
+import {
+  ReceivedMessage,
+  RoomJoining,
+  RequestEnum,
+  NewMessage,
+} from '../../interfaces';
 
 @Component({
   selector: 'app-chat',
@@ -28,7 +27,7 @@ interface NewMessage extends Message {
   styleUrl: './chat.component.css',
 })
 export class ChatComponent {
-  public messages: Message[] = [];
+  public messages: ReceivedMessage[] = [];
   public messageContent: string = '';
 
   @ViewChild('messages') messagesContainer: ElementRef | undefined;
@@ -82,8 +81,6 @@ export class ChatComponent {
         minute: '2-digit',
       }),
       roomId: this.webSocketService.roomId as number,
-      username: this.webSocketService.username,
-      userId: this.webSocketService.userId,
     };
     this.webSocketService.sendMessage(JSON.parse(JSON.stringify(message)));
     this.messageContent = '';

@@ -7,24 +7,7 @@ import { DividerModule } from 'primeng/divider';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { FormsModule } from '@angular/forms';
-import { Room } from '../../services/websocket.service';
-
-export enum RequestEnum {
-  NEW = 'create-room',
-  JOIN = 'join-room',
-  MESSAGE = 'send-message',
-  LEAVE = 'leave-room',
-}
-
-export interface RoomCreation {
-  type: RequestEnum.NEW;
-  roomName: string;
-}
-export interface RoomJoining {
-  type: RequestEnum.JOIN;
-  roomId: number;
-  username: string;
-}
+import { RoomJoining, RequestEnum, RoomCreation } from '../../interfaces';
 
 @Component({
   selector: 'app-lobby',
@@ -61,7 +44,7 @@ export class LobbyComponent {
 
   createRoom() {
     const newRoom: RoomCreation = {
-      type: RequestEnum.NEW,
+      type: RequestEnum.NEW_ROOM,
       roomName: this.roomname,
     };
     this.webSocketService.sendMessage(JSON.parse(JSON.stringify(newRoom)));

@@ -1,18 +1,17 @@
-const sendMessage = (data, rooms) => {
+const sendMessage = (data, ws, rooms) => {
   try {
     const joinedRoom = rooms.get(Number(data.roomId));
     const newMessage = {
-        content: data.content,
-        timestamp: data.timestamp,
-        username: data.username,
-        userId: data.userId,
+      content: data.content,
+      timestamp: data.timestamp,
+      username: ws.username,
+      userId: ws.userId,
     };
     joinedRoom.messages.push(newMessage);
 
     joinedRoom.users.forEach((user) =>
-      user.send(JSON.stringify({newMessage: newMessage}))
+      user.send(JSON.stringify({ newMessage: newMessage }))
     );
-
   } catch (error) {
     console.log(error);
   }

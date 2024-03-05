@@ -1,19 +1,6 @@
 import { Injectable, Input } from '@angular/core';
 import { WebSocketSubject, webSocket } from 'rxjs/webSocket';
-
-export interface Room {
-  id: number;
-  name: string;
-  userCount: number;
-}
-
-export interface Message {
-  content: string;
-  timestamp: string;
-  roomId: number;
-  userId: string;
-  username: string;
-}
+import { Room, ReceivedMessage } from '../interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -27,7 +14,7 @@ export class WebsocketService {
   private _isLobbyInitialized: boolean = false;
 
   private _rooms: Room[] = [];
-  private _messages: Message[] = [];
+  private _messages: ReceivedMessage[] = [];
   private _roomId: number | null = null;
   private _isInRoom: boolean = false;
 
@@ -102,10 +89,10 @@ export class WebsocketService {
   }
 
   @Input()
-  public get messages(): Message[] {
+  public get messages(): ReceivedMessage[] {
     return this._messages;
   }
-  public set messages(value: Message[]) {
+  public set messages(value: ReceivedMessage[]) {
     this._messages = value;
   }
 
