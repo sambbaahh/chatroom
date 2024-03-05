@@ -3,14 +3,6 @@
 </div>
 <div class="messages" #messages>
   <div *ngFor="let message of webSocketService.messages; let i = index">
-    <ng-container
-      *ngIf="
-        i === 0 || message.userId !== webSocketService.messages[i - 1].userId
-      "
-    >
-      <p class="message-sender">{{ message.username }}</p>
-    </ng-container>
-
     <div
       [ngClass]="
         message.userId === webSocketService.userId
@@ -18,6 +10,13 @@
           : 'message-received-container'
       "
     >
+      <ng-container
+        *ngIf="
+          i === 0 || message.userId !== webSocketService.messages[i - 1].userId
+        "
+      >
+        <p class="message-sender">{{ message.username }}</p>
+      </ng-container>
       <div
         [ngClass]="
           message.userId === webSocketService.userId

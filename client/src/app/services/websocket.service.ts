@@ -33,6 +33,12 @@ export class WebsocketService {
 
   constructor() {
     this.subject$ = webSocket(this.url);
+
+    const name = localStorage.getItem('username');
+    if (name) {
+      this._username = name;
+    }
+
     this.initializeWebSocket();
   }
 

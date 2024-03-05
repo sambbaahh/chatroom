@@ -3,7 +3,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { RequestEnum } from '../lobby/lobby.component';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
 import { WebsocketService } from '../../services/websocket.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -30,6 +30,7 @@ interface NewMessage extends Message {
 export class ChatComponent {
   public messages: Message[] = [];
   public messageContent: string = '';
+
   @ViewChild('messages') messagesContainer: ElementRef | undefined;
 
   constructor(
@@ -52,6 +53,18 @@ export class ChatComponent {
       };
       this.webSocketService.sendMessage(JSON.parse(JSON.stringify(joinRoom)));
     }
+
+    //if user press back button in browser, we need to send leave room message to the server
+    const routerSubscription = this.router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        if (event.navigationTrigger === 'popstate') {
+          this.webSocketService.sendMessage(
+            JSON.parse(JSON.stringify({ type: RequestEnum.LEAVE }))
+          );
+          routerSubscription.unsubscribe();
+        }
+      }
+    });
   }
 
   ngAfterViewChecked(): void {
