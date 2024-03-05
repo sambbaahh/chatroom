@@ -3,23 +3,21 @@
     <i class="pi pi-user"></i>
     <p>{{ webSocketService.username }}</p>
   </div>
-  <p-inputGroup>
-    <input
-      type="text"
-      pInputText
-      placeholder="New Room"
-      id="roomname"
-      name="roomname"
-      [(ngModel)]="roomname"
-      (keydown.enter)='createRoom()'
-    />
-    <button
-      type="button"
-      pButton
-      icon="pi pi-plus"
-      (click)="createRoom()"
-    ></button>
-  </p-inputGroup>
+  <form ngNativeValidate (ngSubmit)="createRoom()">
+    <p-inputGroup>
+      <input
+        type="text"
+        pInputText
+        placeholder="New Room"
+        id="roomname"
+        name="roomname"
+        [(ngModel)]="roomname"
+        required
+        minlength="2"
+      />
+      <button pButton icon="pi pi-plus"></button>
+    </p-inputGroup>
+  </form>
 </div>
 <p-divider align="center"> <b>Rooms</b> </p-divider>
 <div class="room-list">

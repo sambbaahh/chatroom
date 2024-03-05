@@ -38,22 +38,18 @@
   </div>
 </div>
 <div class="send-message">
-  <p-inputGroup>
-    <input
-      type="text"
-      pInputText
-      placeholder="Send Message"
-      minlength="1"
-      id="messageContent"
-      name="messageContent"
-      [(ngModel)]="messageContent"
-      (keydown.enter)="sendMessage()"
-    />
-    <button
-      type="button"
-      pButton
-      icon="pi pi-send"
-      (click)="sendMessage()"
-    ></button>
-  </p-inputGroup>
+  <form ngNativeValidate (ngSubmit)="sendMessage()">
+    <p-inputGroup>
+      <input
+        type="text"
+        pInputText
+        placeholder="Send Message"
+        id="messageContent"
+        name="messageContent"
+        [(ngModel)]="messageContent"
+        required
+      />
+      <button type="button" pButton icon="pi pi-send"></button>
+    </p-inputGroup>
+  </form>
 </div>

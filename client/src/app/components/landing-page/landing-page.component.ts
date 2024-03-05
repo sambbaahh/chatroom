@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { WebsocketService } from '../../services/websocket.service';
 import { NewUser, RequestEnum } from '../../interfaces';
@@ -10,7 +10,7 @@ import { v4 as uuidv4 } from 'uuid';
 @Component({
   selector: 'landing-page',
   standalone: true,
-  imports: [ReactiveFormsModule, FormsModule, ButtonModule, InputTextModule],
+  imports: [FormsModule, ButtonModule, InputTextModule],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.css',
 })

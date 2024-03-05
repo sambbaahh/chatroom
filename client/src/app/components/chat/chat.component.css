@@ -70,3 +70,6 @@
   margin-top: auto;
   padding: 1rem;
 }
+.send-message form {
+  width: 100%;
+}

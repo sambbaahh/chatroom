@@ -7,7 +7,7 @@ const sendMessage = (data, ws, rooms) => {
       username: ws.username,
       userId: ws.userId,
     };
-    console.log(newMessage);
+
     joinedRoom.messages.push(newMessage);
 
     joinedRoom.users.forEach((user) =>
