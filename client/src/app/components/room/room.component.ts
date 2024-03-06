@@ -39,36 +39,41 @@ export class RoomComponent {
   ) {}
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe((params) => {
-      const id = params.get('id');
-      const name = params.get('name');
+    const isValidUser: boolean = this.webSocketService.initializeUser();
+    if (!isValidUser) {
+      this.router.navigate(['']);
+    } else {
+      this.route.paramMap.subscribe((params) => {
+        const id = params.get('id');
+        const name = params.get('name');
 
-      this.webSocketService.roomId = Number(id);
-      this.webSocketService.roomName = name;
-    });
-    //user has come from the web address, not the UI
-    if (!this.webSocketService.isInRoom) {
-      const joinRoom: RoomJoining = {
-        type: RequestEnum.JOIN,
-        roomId: this.webSocketService.roomId as number,
-        username: this.webSocketService.username,
-      };
-      this.webSocketService.sendMessage(JSON.parse(JSON.stringify(joinRoom)));
-    }
-
-    //if user press back button in browser, we need to send leave room message to the server
-    const routerSubscription = this.router.events.subscribe((event) => {
-      if (event instanceof NavigationStart) {
-        if (event.navigationTrigger === 'popstate') {
-          this.webSocketService.sendMessage(
-            JSON.parse(JSON.stringify({ type: RequestEnum.LEAVE }))
-          );
-          this.webSocketService.roomId = null;
-          this.webSocketService.roomName = null;
-          routerSubscription.unsubscribe();
-        }
+        this.webSocketService.roomId = Number(id);
+        this.webSocketService.roomName = name;
+      });
+      //user has come from the web address, not the UI
+      if (!this.webSocketService.isInRoom) {
+        const joinRoom: RoomJoining = {
+          type: RequestEnum.JOIN,
+          roomId: this.webSocketService.roomId as number,
+          username: this.webSocketService.username,
+        };
+        this.webSocketService.sendMessage(JSON.parse(JSON.stringify(joinRoom)));
       }
-    });
+
+      //if user press back button in browser, we need to send leave room message to the server
+      const routerSubscription = this.router.events.subscribe((event) => {
+        if (event instanceof NavigationStart) {
+          if (event.navigationTrigger === 'popstate') {
+            this.webSocketService.sendMessage(
+              JSON.parse(JSON.stringify({ type: RequestEnum.LEAVE }))
+            );
+            this.webSocketService.roomId = null;
+            this.webSocketService.roomName = null;
+            routerSubscription.unsubscribe();
+          }
+        }
+      });
+    }
   }
 
   ngAfterViewChecked(): void {

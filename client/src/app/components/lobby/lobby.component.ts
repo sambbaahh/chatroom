@@ -31,6 +31,13 @@ export class LobbyComponent {
     public webSocketService: WebsocketService
   ) {}
 
+  ngOninit(): void {
+    const isValidUser: boolean = this.webSocketService.initializeUser();
+    if (!isValidUser) {
+      this.router.navigate(['']);
+    }
+  }
+
   joinRoom(roomId: number, roomName: string) {
     const joinRoom: RoomJoining = {
       type: RequestEnum.JOIN,

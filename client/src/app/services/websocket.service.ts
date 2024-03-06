@@ -46,17 +46,22 @@ export class WebsocketService {
     });
   }
 
-  public initializeUser() {
+  public initializeUser(): boolean {
     const storageUsername: string | null = localStorage.getItem('username');
     const storageUserId: string | null = localStorage.getItem('userId');
-    const existingUser: NewUser = {
-      type: RequestEnum.NEW_USER,
-      username: storageUsername as string,
-      userId: storageUserId as string,
-    };
-    this.sendMessage(JSON.parse(JSON.stringify(existingUser)));
-    this.username = storageUsername as string;
-    this.userId = storageUserId as string;
+    if (storageUsername && storageUserId) {
+      const existingUser: NewUser = {
+        type: RequestEnum.NEW_USER,
+        username: storageUsername as string,
+        userId: storageUserId as string,
+      };
+      this.sendMessage(JSON.parse(JSON.stringify(existingUser)));
+      this.username = storageUsername as string;
+      this.userId = storageUserId as string;
+      return true;
+    } else {
+      return false;
+    }
   }
 
   public sendMessage(message: string) {
