@@ -24,30 +24,30 @@ import { RoomJoining, RequestEnum, RoomCreation } from '../../interfaces';
   styleUrl: './lobby.component.css',
 })
 export class LobbyComponent {
-  roomname: string = '';
+  public newRoomName: string = '';
 
   constructor(
     private router: Router,
     public webSocketService: WebsocketService
   ) {}
 
-  joinRoom(roomId: number) {
+  joinRoom(roomId: number, roomName: string) {
     const joinRoom: RoomJoining = {
       type: RequestEnum.JOIN,
       roomId: roomId,
       username: this.webSocketService.username,
     };
     this.webSocketService.sendMessage(JSON.parse(JSON.stringify(joinRoom)));
-    this.router.navigate(['chat', roomId]);
+    this.router.navigate(['room', roomId, roomName]);
     this.webSocketService.isInRoom = true;
   }
 
   createRoom() {
     const newRoom: RoomCreation = {
       type: RequestEnum.NEW_ROOM,
-      roomName: this.roomname,
+      roomName: this.newRoomName,
     };
     this.webSocketService.sendMessage(JSON.parse(JSON.stringify(newRoom)));
-    this.roomname = '';
+    this.newRoomName = '';
   }
 }

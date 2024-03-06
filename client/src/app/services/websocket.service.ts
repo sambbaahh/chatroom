@@ -1,6 +1,6 @@
 import { Injectable, Input } from '@angular/core';
 import { WebSocketSubject, webSocket } from 'rxjs/webSocket';
-import { Room, ReceivedMessage } from '../interfaces';
+import { Room, ReceivedMessage, NewUser, RequestEnum } from '../interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -16,16 +16,11 @@ export class WebsocketService {
   private _rooms: Room[] = [];
   private _messages: ReceivedMessage[] = [];
   private _roomId: number | null = null;
+  private _roomName: string | null = null;
   private _isInRoom: boolean = false;
 
   constructor() {
     this.subject$ = webSocket(this.url);
-
-    const name = localStorage.getItem('username');
-    if (name) {
-      this._username = name;
-    }
-
     this.initializeWebSocket();
   }
 
@@ -35,7 +30,6 @@ export class WebsocketService {
         if (data.rooms) {
           if (!this.isLobbyInitialized) {
             this.rooms = [...data.rooms];
-            this.userId = data.userId;
             this.isLobbyInitialized = true;
           } else {
             this.rooms = [...data.rooms];
@@ -52,11 +46,23 @@ export class WebsocketService {
     });
   }
 
+  public initializeUser() {
+    const storageUsername: string | null = localStorage.getItem('username');
+    const storageUserId: string | null = localStorage.getItem('userId');
+    const existingUser: NewUser = {
+      type: RequestEnum.NEW_USER,
+      username: storageUsername as string,
+      userId: storageUserId as string,
+    };
+    this.sendMessage(JSON.parse(JSON.stringify(existingUser)));
+    this.username = storageUsername as string;
+    this.userId = storageUserId as string;
+  }
+
   public sendMessage(message: string) {
     this.subject$.next(message);
   }
 
-  @Input()
   public get username(): string {
     return this._username;
   }
@@ -64,7 +70,6 @@ export class WebsocketService {
     this._username = value;
   }
 
-  @Input()
   public get userId(): string {
     return this._userId;
   }
@@ -72,7 +77,6 @@ export class WebsocketService {
     this._userId = value;
   }
 
-  @Input()
   public get isLobbyInitialized(): boolean {
     return this._isLobbyInitialized;
   }
@@ -80,7 +84,6 @@ export class WebsocketService {
     this._isLobbyInitialized = value;
   }
 
-  @Input()
   public get rooms(): Room[] {
     return this._rooms;
   }
@@ -88,7 +91,6 @@ export class WebsocketService {
     this._rooms = value;
   }
 
-  @Input()
   public get messages(): ReceivedMessage[] {
     return this._messages;
   }
@@ -96,7 +98,6 @@ export class WebsocketService {
     this._messages = value;
   }
 
-  @Input()
   public get roomId(): number | null {
     return this._roomId;
   }
@@ -104,7 +105,13 @@ export class WebsocketService {
     this._roomId = value;
   }
 
-  @Input()
+  public get roomName(): string | null {
+    return this._roomName;
+  }
+  public set roomName(value: string | null) {
+    this._roomName = value;
+  }
+
   public get isInRoom(): boolean {
     return this._isInRoom;
   }

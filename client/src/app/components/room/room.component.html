@@ -1,5 +1,5 @@
 <div class="room-details">
-  <h2>ChatName</h2>
+  <h2>{{ webSocketService.roomName }}</h2>
 </div>
 <div class="messages" #messages>
   <div *ngFor="let message of webSocketService.messages; let i = index">

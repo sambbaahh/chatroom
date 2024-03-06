@@ -14,7 +14,7 @@ import {
 } from '../../interfaces';
 
 @Component({
-  selector: 'app-chat',
+  selector: 'app-room',
   standalone: true,
   imports: [
     InputTextModule,
@@ -23,10 +23,10 @@ import {
     FormsModule,
     CommonModule,
   ],
-  templateUrl: './chat.component.html',
-  styleUrl: './chat.component.css',
+  templateUrl: './room.component.html',
+  styleUrl: './room.component.css',
 })
-export class ChatComponent {
+export class RoomComponent {
   public messages: ReceivedMessage[] = [];
   public messageContent: string = '';
 
@@ -41,7 +41,10 @@ export class ChatComponent {
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       const id = params.get('id');
+      const name = params.get('name');
+
       this.webSocketService.roomId = Number(id);
+      this.webSocketService.roomName = name;
     });
     //user has come from the web address, not the UI
     if (!this.webSocketService.isInRoom) {
@@ -60,6 +63,8 @@ export class ChatComponent {
           this.webSocketService.sendMessage(
             JSON.parse(JSON.stringify({ type: RequestEnum.LEAVE }))
           );
+          this.webSocketService.roomId = null;
+          this.webSocketService.roomName = null;
           routerSubscription.unsubscribe();
         }
       }

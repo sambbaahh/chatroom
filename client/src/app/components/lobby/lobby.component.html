@@ -9,9 +9,9 @@
         type="text"
         pInputText
         placeholder="New Room"
-        id="roomname"
-        name="roomname"
-        [(ngModel)]="roomname"
+        id="newRoomName"
+        name="newRoomName"
+        [(ngModel)]="newRoomName"
         required
         minlength="2"
       />
@@ -32,7 +32,7 @@
       </div>
       <button
         pButton
-        (click)="joinRoom(room.id)"
+        (click)="joinRoom(room.id, room.name)"
         label="Join"
         icon="pi pi-arrow-right"
         iconPos="right"
