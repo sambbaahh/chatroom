@@ -50,7 +50,8 @@ export class RoomComponent {
         this.webSocketService.roomId = Number(id);
         this.webSocketService.roomName = name;
       });
-      //user has come from the web address, not the UI
+
+      //user has come from the web address, not from the UI
       if (!this.webSocketService.isInRoom) {
         const joinRoom: RoomJoining = {
           type: RequestEnum.JOIN,

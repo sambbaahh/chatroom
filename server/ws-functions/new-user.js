@@ -1,6 +1,10 @@
 const newUser = (data, ws) => {
-  ws.userId = data.userId;
-  ws.username = data.username;
+  try {
+    ws.userId = data.userId;
+    ws.username = data.username;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export default newUser;

@@ -73,3 +73,7 @@
 .send-message form {
   width: 100%;
 }
+/* Dont want to show red border */
+::ng-deep .ng-invalid {
+  border-color: unset;
+}

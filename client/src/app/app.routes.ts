@@ -11,12 +11,12 @@ export const routes: Routes = [
   },
   {
     path: 'lobby',
-    title: 'ChatRoom - Lobby',
+    title: 'Lobby',
     component: LobbyComponent,
   },
   {
     path: 'room/:id/:name',
-    title: 'ChatRoom - Room',
+    title: `Room`,
     component: RoomComponent,
   },
   {

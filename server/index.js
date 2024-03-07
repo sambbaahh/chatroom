@@ -64,6 +64,6 @@ wss.on("connection", (ws) => {
       }
     });
   } catch (error) {
-    console.log(error);
+    console.log("pöö" + error);
   }
 });
