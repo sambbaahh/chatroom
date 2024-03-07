@@ -74,7 +74,7 @@ With these steps, you have set up the server and client portions of the chatroom
 
 <!-- EXAMPLES -->
 ## Example with two user
-coming soon...
+[![Youtube video][Youtube-img]][Youtube-url]
 
 
 
@@ -124,3 +124,5 @@ Project Link: https://github.com/sambbaahh/chatroom
 [Node-url]: https://nodejs.org/en
 [Angular.io]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
 [Angular-url]: https://angular.io
+[Youtube-img]: https://github.com/sambbaahh/chatroom/assets/99816212/8e56acd5-cc78-46a3-96a1-20c342830937
+[Youtube-url]: https://www.youtube.com/watch?v=IX8TnTJ4f5o&t=1s
