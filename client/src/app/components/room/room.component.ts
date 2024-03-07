@@ -70,6 +70,8 @@ export class RoomComponent {
             );
             this.webSocketService.roomId = null;
             this.webSocketService.roomName = null;
+            this.webSocketService.messages = [];
+            this.webSocketService.isInRoom = false;
             routerSubscription.unsubscribe();
           }
         }
