@@ -12,21 +12,21 @@ router.post("/", express.json(), function (req, res, next) {
     310000,
     32,
     "sha256",
-    function (err, hashedPassword) {
+    async function (err, hashedPassword) {
       if (err) {
         return next(err);
       }
       console.log(hashedPassword.toString("base64"));
       db.query(
-        "INSERT INTO users (name, password, salt) VALUES ($1, $2, $3)",
-        [req.body.username, hashedPassword.toString("base64"), salt],
-        function (err) {
+        "INSERT INTO users(name, password, salt) VALUES ($1, $2, $3) RETURNING id",
+        [req.body.name, hashedPassword.toString("base64"), salt.toString("base64")],
+        function (err, queryData) {
           if (err) {
             return next(err);
           }
           var user = {
-            id: this.lastID,
-            username: req.body.username,
+            id: queryData.rows[0].id,
+            username: req.body.name,
           };
           req.login(user, function (err) {
             if (err) {
