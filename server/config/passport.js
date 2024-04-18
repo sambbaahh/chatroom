@@ -1,10 +1,11 @@
 import fs from 'fs';
 import path from 'path';
-import passport from 'passport-jwt';
+import passportJwt from 'passport-jwt';
 import * as db from './database.js';
+import { log } from 'console';
 
-const JwtStrategy = passport.Strategy;
-const ExtractJwt = passport.ExtractJwt;
+const JwtStrategy = passportJwt.Strategy;
+const ExtractJwt = passportJwt.ExtractJwt;
 const __dirname = import.meta.dirname;
 
 const pathToKey = path.join(__dirname, '..', 'id_rsa_pub.pem');
@@ -19,8 +20,6 @@ const options = {
 const configurePassport = (passport) => {
   passport.use(
     new JwtStrategy(options, (jwt_payload, done) => {
-      console.log(jwt_payload);
-
       db.query(
         'SELECT * FROM users WHERE id = $1',
         [jwt_payload.sub],
