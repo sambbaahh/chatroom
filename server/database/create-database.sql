@@ -15,10 +15,11 @@ CREATE TABLE IF NOT EXISTS public.rooms
 CREATE TABLE IF NOT EXISTS public.users
 (
     id serial NOT NULL,
-    name text NOT NULL,
-    password text NOT NULL,
+    username text NOT NULL,
+    hash text NOT NULL,
+    salt text NOT NULL,
     PRIMARY KEY (id),
-    CONSTRAINT name UNIQUE (name)
+    CONSTRAINT name UNIQUE (username)
 );
 
 CREATE TABLE IF NOT EXISTS public.messages
