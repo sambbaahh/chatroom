@@ -22,3 +22,8 @@ h2 {
 h4 {
   margin: 0.5rem;
 }
+.input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
