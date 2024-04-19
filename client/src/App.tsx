@@ -1,4 +1,4 @@
-import { Routes, Route, useNavigate, Outlet, Navigate } from 'react-router-dom';
+import { Routes, Route, Outlet, Navigate } from 'react-router-dom';
 
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -21,7 +21,7 @@ export default function App() {
 }
 
 function ProtectRoutes() {
-  const { token } = useAuth();
+  const { token } = useAuth() as { token: string };
 
   if (!token) {
     // user is not authenticated

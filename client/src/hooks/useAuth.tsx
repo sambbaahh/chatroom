@@ -2,35 +2,35 @@ import { createContext, useContext, useMemo, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLocalStorage } from './useLocalStorage';
 import loginService from '../services/login';
+import { User, Jwt } from '../interfaces/auth';
 
 const AuthContext = createContext();
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [token, setToken] = useLocalStorage('token', null);
-  const [expires, setExpires] = useLocalStorage('expires', null);
+  const [expiresIn, setExpiresIn] = useLocalStorage('expires', null);
 
   const navigate = useNavigate();
 
   useEffect(() => {}, []);
 
-  // call this function when you want to authenticate the user
-  const login = (username: string, password: string) => {
-    loginService()
-      .then((result) => {
+  const login = (userCredentials: User) => {
+    loginService(userCredentials)
+      .then((result: Jwt) => {
         setToken(result.token);
-        setExpires(result.expires);
+        setExpiresIn(result.expiresIn);
         navigate('/');
       })
-      .catch((err) => {
+      .catch((err: Error) => {
         console.log(err);
       });
   };
 
-  const register = (username: string, password: string) => {};
+  const register = (registrationData: User) => {};
 
   const logout = () => {
     setToken(null);
-    setExpires(null);
+    setExpiresIn(null);
     navigate('/login', { replace: true });
   };
 
@@ -40,7 +40,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       login,
       logout,
     }),
-    [user]
+    [token, expiresIn]
   );
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

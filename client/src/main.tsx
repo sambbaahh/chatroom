@@ -7,12 +7,15 @@ import { BrowserRouter } from 'react-router-dom';
 
 import './main.css';
 import App from './App.tsx';
+import { AuthProvider } from './hooks/useAuth.tsx';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <BrowserRouter>
       <MantineProvider>
-        <App />
+        <AuthProvider>
+          <App />
+        </AuthProvider>
       </MantineProvider>
     </BrowserRouter>
   </React.StrictMode>
