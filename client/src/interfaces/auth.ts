@@ -5,5 +5,5 @@ export interface User {
 
 export interface Jwt {
   token: string;
-  expiresIn: number;
+  expiresIn: string;
 }

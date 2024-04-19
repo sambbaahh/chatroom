@@ -8,9 +8,11 @@ import {
 } from '@mantine/core';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from '@mantine/form';
+import { useAuth } from '../hooks/useAuth';
 
 export default function LoginForm() {
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const form = useForm({
     mode: 'uncontrolled',
@@ -18,18 +20,15 @@ export default function LoginForm() {
       username: '',
       password: '',
     },
-
-    // validate: {
-    //   username: (value) =>
-    //     value.length < 2 ? 'Username can not be empty' : null,
-    //   password: (value) =>
-    //     value.length < 1 ? 'Password can not be empty' : null,
-    // },
   });
+
+  const handleSubmit = async (values: typeof form.values) => {
+    login(values);
+  };
 
   return (
     <Paper withBorder shadow="md" py={50} px={100} radius="md">
-      <form onSubmit={form.onSubmit(console.log)}>
+      <form onSubmit={form.onSubmit(handleSubmit)}>
         <TextInput
           label="Username"
           placeholder="Your username"
