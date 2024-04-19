@@ -1,21 +1,11 @@
-import {
-  TextInput,
-  PasswordInput,
-  Anchor,
-  Paper,
-  Title,
-  Text,
-  Container,
-  Button,
-  Box,
-  rem,
-} from '@mantine/core';
+import { Title, Container, Box, rem } from '@mantine/core';
 import { IconMessages } from '@tabler/icons-react';
+import LoginForm from '../components/LoginForm';
 
 export default function Login() {
   return (
     <Container
-      size={'50%'}
+      size={'sm'}
       style={{
         display: 'flex',
         flexDirection: 'column',
@@ -35,27 +25,10 @@ export default function Login() {
           stroke={1}
         />
         <Title ta="center" mb={10}>
-          Welcome back!
+          Welcome back to ChatRoom!
         </Title>
       </Box>
-      <Paper withBorder shadow="md" p={30} radius="md">
-        <TextInput label="Username" placeholder="Your username" required />
-        <PasswordInput
-          label="Password"
-          placeholder="Your password"
-          required
-          mt="md"
-        />
-        <Button fullWidth mt="xl">
-          Sign in
-        </Button>
-        <Text c="dimmed" size="sm" ta="center" mt={10}>
-          Do not have an account yet?{' '}
-          <Anchor size="sm" component="button">
-            Create account
-          </Anchor>
-        </Text>
-      </Paper>
+      <LoginForm />
     </Container>
   );
 }
