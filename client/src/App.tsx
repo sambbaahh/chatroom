@@ -3,7 +3,7 @@ import { Routes, Route, Outlet, Navigate } from 'react-router-dom';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import MainPage from './pages/MainPage';
-
+import Header from './components/Header';
 import { useAuth } from './hooks/useAuth';
 
 export default function App() {
@@ -26,5 +26,14 @@ function ProtectRoutes() {
     return <Navigate to="/login" />;
   }
 
-  return <Outlet />;
+  return <RenderRoute />;
+}
+
+function RenderRoute() {
+  return (
+    <div>
+      <Header />
+      <Outlet />
+    </div>
+  );
 }

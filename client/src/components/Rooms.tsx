@@ -1,4 +1,4 @@
-import { Box, Button, Card, Flex, Text } from '@mantine/core';
+import { Box, Button, Card, Divider, Flex, Text } from '@mantine/core';
 import { IconArrowRight } from '@tabler/icons-react';
 
 const rooms = [
@@ -76,27 +76,33 @@ const rooms = [
 
 export default function Rooms({ setHideRooms }) {
   return (
-    <Box style={{ height: '100vh', overflow: 'scroll', padding: 8 }}>
-      {rooms.map((room) => (
-        <Card key={room.id} style={{ marginBlock: 8 }} withBorder shadow="md">
-          <Flex
-            mih={50}
-            gap="md"
-            justify="space-between"
-            align="center"
-            direction="row"
-          >
-            <Text>{room.name}</Text>
-            <Button
-              rightSection={<IconArrowRight size={14} />}
-              // onClick={() => setHideRooms(true)}
+    <Box>
+      <Box style={{ height: '10vh', overflow: 'scroll', padding: 8 }}>
+        <Text> ChatRoom</Text>
+        <Divider></Divider>
+      </Box>
+      <Box style={{ height: '90vh', overflow: 'scroll', padding: 8 }}>
+        {rooms.map((room) => (
+          <Card key={room.id} style={{ marginBlock: 8 }} withBorder shadow="md">
+            <Flex
+              mih={50}
+              gap="md"
+              justify="space-between"
+              align="center"
+              direction="row"
             >
-              {' '}
-              Join{' '}
-            </Button>
-          </Flex>
-        </Card>
-      ))}
+              <Text>{room.name}</Text>
+              <Button
+                rightSection={<IconArrowRight size={14} />}
+                // onClick={() => setHideRooms(true)}
+              >
+                {' '}
+                Join{' '}
+              </Button>
+            </Flex>
+          </Card>
+        ))}
+      </Box>
     </Box>
   );
 }

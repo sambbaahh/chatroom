@@ -10,18 +10,11 @@ export default function Room() {
     <Container fluid px={0}>
       <Grid gutter={0}>
         {!hideRooms && (
-          <>
-            <Grid.Col span={5.75}>
-              <Rooms setHideRooms={setHideRooms} />
-            </Grid.Col>
-            <Grid.Col span={0.5}>
-              <Center style={{ height: '100%' }}>
-                <Divider orientation="vertical" size={'sm'}></Divider>
-              </Center>
-            </Grid.Col>
-          </>
+          <Grid.Col span={5}>
+            <Rooms setHideRooms={setHideRooms} />
+          </Grid.Col>
         )}
-        <Grid.Col span={hideRooms ? 12 : 5.75}>
+        <Grid.Col span={hideRooms ? 12 : 7}>
           <Chat />
         </Grid.Col>
       </Grid>
