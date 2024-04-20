@@ -2,8 +2,7 @@ import { Routes, Route, Outlet, Navigate } from 'react-router-dom';
 
 import Login from './pages/Login';
 import Register from './pages/Register';
-import Room from './pages/Room';
-import Lobby from './pages/Lobby';
+import MainPage from './pages/MainPage';
 
 import { useAuth } from './hooks/useAuth';
 
@@ -13,8 +12,7 @@ export default function App() {
       <Route index path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route element={<ProtectRoutes />}>
-        <Route path="/" element={<Lobby />} />
-        <Route path="/room/:id" element={<Room />} />
+        <Route path="/" element={<MainPage />} />
       </Route>
     </Routes>
   );
