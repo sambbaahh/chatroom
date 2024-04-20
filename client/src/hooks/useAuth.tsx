@@ -5,9 +5,20 @@ import axios from 'axios';
 
 import { useLocalStorage } from './useLocalStorage';
 import loginService from '../services/login';
+import registerService from '../services/register';
 import { User, Jwt } from '../interfaces/auth';
+import getUnixTimeStamp from '../utils/getUnixTimeStamp';
 
-const AuthContext = createContext();
+interface AuthContextInterface {
+  token: string | null;
+  login: (userCredentials: User) => Promise<Jwt>;
+  register: (registrationData: User) => Promise<Jwt>;
+  logout: () => void;
+}
+
+const AuthContext = createContext<AuthContextInterface>(
+  {} as AuthContextInterface
+);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [token, setToken] = useLocalStorage('token', null);
@@ -16,41 +27,50 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!expiresIn || dayjs().isBefore(expiresIn)) {
+    if (!expiresIn || !token || dayjs().isAfter(expiresIn)) {
       logout();
     }
   }, []);
 
   useEffect(() => {
+    //need to attach the token to http requests
+    //token includes "Bearer"
     if (token) {
-      axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
-      localStorage.setItem('token', token);
+      axios.defaults.headers.common['Authorization'] = token;
     } else {
       delete axios.defaults.headers.common['Authorization'];
-      localStorage.removeItem('token');
     }
   }, [token]);
 
-  const login = (userCredentials: User) => {
-    loginService(userCredentials)
-      .then((result: Jwt) => {
-        setToken(result.token);
-        setExpiresIn(
-          dayjs()
-            .add(Number(result.expiresIn.toString().charAt(0)), '7d')
-            .valueOf()
-        );
-        navigate('/');
-      })
-      .catch((err: Error) => {
-        console.log(err);
-        return err;
-      });
+  const login = async (userCredentials: User): Promise<Jwt> => {
+    try {
+      const result: Jwt = await loginService(userCredentials);
+      setToken(result.token);
+      setExpiresIn(getUnixTimeStamp(result.expiresIn));
+      navigate('/');
+      return result;
+    } catch (err) {
+      console.log('Error in useAuth');
+      console.log(err);
+      throw err;
+    }
   };
 
-  const register = (registrationData: User) => {};
+  const register = async (registrationData: User): Promise<Jwt> => {
+    try {
+      const result: Jwt = await registerService(registrationData);
+      setToken(result.token);
+      setExpiresIn(getUnixTimeStamp(result.expiresIn));
+      navigate('/');
+      return result;
+    } catch (err) {
+      console.log('Error in useAuth');
+      console.log(err);
+      throw err;
+    }
+  };
 
-  const logout = () => {
+  const logout = (): void => {
     setToken(null);
     setExpiresIn(null);
     navigate('/login', { replace: true });
@@ -63,7 +83,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       register,
       logout,
     }),
-    [token, expiresIn]
+    [token]
   );
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

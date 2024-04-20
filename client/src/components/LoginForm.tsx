@@ -23,7 +23,11 @@ export default function LoginForm() {
   });
 
   const handleSubmit = async (values: typeof form.values) => {
-    login(values);
+    try {
+      await login(values);
+    } catch (err) {
+      console.log('error in login form');
+    }
   };
 
   return (
