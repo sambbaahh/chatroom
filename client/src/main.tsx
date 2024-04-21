@@ -5,6 +5,7 @@ import '@mantine/core/styles.css';
 import { MantineProvider } from '@mantine/core';
 import { BrowserRouter } from 'react-router-dom';
 
+import './main.css';
 import App from './App.tsx';
 import { AuthProvider } from './hooks/useAuth.tsx';
 

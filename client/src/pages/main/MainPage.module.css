@@ -1,0 +1,8 @@
+.container {
+  height: 100%;
+}
+
+.column {
+  height: 100%;
+  overflow: scroll;
+}

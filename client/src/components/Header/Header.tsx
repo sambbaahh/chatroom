@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { UnstyledButton, Group, Text, Menu, Box } from '@mantine/core';
+import { UnstyledButton, Group, Text, Menu, Box, Divider } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import {
   IconChevronDown,
@@ -25,40 +25,43 @@ export default function Header() {
   const { logout } = useAuth();
 
   return (
-    <Box className={classes.container}>
-      <Box className={classes.logoContainer}>
-        <IconMessages className={classes.logoIcon} />
-        <Text>ChatRoom</Text>
+    <>
+      <Box className={classes.container}>
+        <Box className={classes.logoContainer}>
+          <IconMessages className={classes.logoIcon} />
+          <Text>ChatRoom</Text>
+        </Box>
+        <Menu
+          transitionProps={{ transition: 'pop-top-right' }}
+          onClose={() => setUserMenuOpened(false)}
+          onOpen={() => setUserMenuOpened(true)}
+          withinPortal
+        >
+          <Menu.Target>
+            <UnstyledButton>
+              <Group className={classes.menuGroup}>
+                <Text className={classes.menuUserText}>{user.name}</Text>
+                <IconChevronDown className={classes.menuDownIcon} />
+              </Group>
+            </UnstyledButton>
+          </Menu.Target>
+          <Menu.Dropdown>
+            <Menu.Item
+              leftSection={<IconUserCircle className={classes.dropdownIcon} />}
+              disabled
+            >
+              Profile
+            </Menu.Item>
+            <Menu.Item
+              leftSection={<IconLogout className={classes.dropdownIcon} />}
+              onClick={() => logout()}
+            >
+              Log out
+            </Menu.Item>
+          </Menu.Dropdown>
+        </Menu>
       </Box>
-      <Menu
-        transitionProps={{ transition: 'pop-top-right' }}
-        onClose={() => setUserMenuOpened(false)}
-        onOpen={() => setUserMenuOpened(true)}
-        withinPortal
-      >
-        <Menu.Target>
-          <UnstyledButton>
-            <Group className={classes.menuGroup}>
-              <Text className={classes.menuUserText}>{user.name}</Text>
-              <IconChevronDown className={classes.menuDownIcon} />
-            </Group>
-          </UnstyledButton>
-        </Menu.Target>
-        <Menu.Dropdown>
-          <Menu.Item
-            leftSection={<IconUserCircle className={classes.dropdownIcon} />}
-            disabled
-          >
-            Profile
-          </Menu.Item>
-          <Menu.Item
-            leftSection={<IconLogout className={classes.dropdownIcon} />}
-            onClick={() => logout()}
-          >
-            Log out
-          </Menu.Item>
-        </Menu.Dropdown>
-      </Menu>
-    </Box>
+      <Divider></Divider>
+    </>
   );
 }

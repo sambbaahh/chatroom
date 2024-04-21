@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   padding: var(--mantine-spacing-xs);
-  background-color: lightgrey;
+  height: 100%;
 }
 
 /* left side of the header: */

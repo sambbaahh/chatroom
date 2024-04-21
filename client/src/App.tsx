@@ -3,7 +3,7 @@ import { Routes, Route, Outlet, Navigate } from 'react-router-dom';
 import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
 import MainPage from './pages/main/MainPage';
-import Header from './components/Header/Header';
+import Header from './components/header/Header';
 import { useAuth } from './hooks/useAuth';
 import { Box, Container } from '@mantine/core';
 
@@ -33,10 +33,10 @@ function ProtectRoutes() {
 function RenderRoute() {
   return (
     <Container size="xl">
-      <Box style={{ height: '7.5vh' }}>
+      <Box style={{ height: '4rem' }}>
         <Header />
       </Box>
-      <Box style={{ height: '92.5vh' }}>
+      <Box style={{ height: 'calc(100vh - 4rem)' }}>
         <Outlet />
       </Box>
     </Container>

@@ -75,12 +75,10 @@ const rooms = [
 ];
 
 export default function Rooms({ setHideRooms }) {
+  const handleJoin = () => {};
+
   return (
     <Box style={{ overflow: 'scroll', padding: 8 }}>
-      {/* <Box style={{ height: '10vh', overflow: 'scroll', padding: 8 }}>
-        <Text> ChatRoom</Text>
-        <Divider></Divider>
-      </Box> */}
       <Box>
         {rooms.map((room) => (
           <Card key={room.id} style={{ marginBlock: 8 }} withBorder shadow="md">
@@ -94,7 +92,7 @@ export default function Rooms({ setHideRooms }) {
               <Text>{room.name}</Text>
               <Button
                 rightSection={<IconArrowRight size={14} />}
-                // onClick={() => setHideRooms(true)}
+                onClick={() => handleJoin()}
               >
                 {' '}
                 Join{' '}
