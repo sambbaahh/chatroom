@@ -5,6 +5,7 @@ import {
   Paper,
   Text,
   Button,
+  Container,
 } from '@mantine/core';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from '@mantine/form';
@@ -64,43 +65,45 @@ export default function RegisterForm() {
   };
 
   return (
-    <Paper withBorder className={classes.container}>
-      <form onSubmit={form.onSubmit(handleSubmit)}>
-        <TextInput
-          className={classes.input}
-          label="Username"
-          placeholder="Your username"
-          required
-          {...form.getInputProps('username')}
-        />
-        <PasswordInput
-          className={classes.input}
-          label="Password"
-          placeholder="Your password"
-          required
-          {...form.getInputProps('password')}
-        />
-        <PasswordInput
-          className={classes.input}
-          label="Confirm password"
-          placeholder="Retype your password"
-          required
-          {...form.getInputProps('passwordConfirmation')}
-        />
-        <Button className={classes.mainButton} fullWidth type="submit">
-          Create account
-        </Button>
-        <Text className={classes.secondaryText}>
-          Already registered?{' '}
-          <Anchor
-            className={classes.secondaryButton}
-            component="button"
-            onClick={() => navigate('/login')}
-          >
-            Log in
-          </Anchor>
-        </Text>
-      </form>
-    </Paper>
+    <Container className={classes.container}>
+      <Paper withBorder className={classes.paper}>
+        <form onSubmit={form.onSubmit(handleSubmit)}>
+          <TextInput
+            className={classes.input}
+            label="Username"
+            placeholder="Your username"
+            required
+            {...form.getInputProps('username')}
+          />
+          <PasswordInput
+            className={classes.input}
+            label="Password"
+            placeholder="Your password"
+            required
+            {...form.getInputProps('password')}
+          />
+          <PasswordInput
+            className={classes.input}
+            label="Confirm password"
+            placeholder="Retype your password"
+            required
+            {...form.getInputProps('passwordConfirmation')}
+          />
+          <Button className={classes.mainButton} fullWidth type="submit">
+            Create account
+          </Button>
+          <Text className={classes.secondaryText}>
+            Already registered?{' '}
+            <Anchor
+              className={classes.secondaryButton}
+              component="button"
+              onClick={() => navigate('/login')}
+            >
+              Log in
+            </Anchor>
+          </Text>
+        </form>
+      </Paper>
+    </Container>
   );
 }

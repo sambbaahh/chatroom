@@ -5,6 +5,7 @@ import {
   Paper,
   Text,
   Button,
+  Container,
 } from '@mantine/core';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from '@mantine/form';
@@ -33,36 +34,38 @@ export default function LoginForm() {
   };
 
   return (
-    <Paper withBorder className={classes.container}>
-      <form onSubmit={form.onSubmit(handleSubmit)}>
-        <TextInput
-          className={classes.input}
-          label="Username"
-          placeholder="Your username"
-          required
-          {...form.getInputProps('username')}
-        />
-        <PasswordInput
-          className={classes.input}
-          label="Password"
-          placeholder="Your password"
-          required
-          {...form.getInputProps('password')}
-        />
-        <Button className={classes.mainButton} fullWidth type="submit">
-          Log in
-        </Button>
-        <Text className={classes.secondaryText}>
-          Do not have an account yet?{' '}
-          <Anchor
-            className={classes.secondaryButton}
-            component="button"
-            onClick={() => navigate('/register')}
-          >
-            Create account
-          </Anchor>
-        </Text>
-      </form>
-    </Paper>
+    <Container className={classes.container}>
+      <Paper withBorder className={classes.paper}>
+        <form onSubmit={form.onSubmit(handleSubmit)}>
+          <TextInput
+            className={classes.input}
+            label="Username"
+            placeholder="Your username"
+            required
+            {...form.getInputProps('username')}
+          />
+          <PasswordInput
+            className={classes.input}
+            label="Password"
+            placeholder="Your password"
+            required
+            {...form.getInputProps('password')}
+          />
+          <Button className={classes.mainButton} fullWidth type="submit">
+            Log in
+          </Button>
+          <Text className={classes.secondaryText}>
+            Do not have an account yet?{' '}
+            <Anchor
+              className={classes.secondaryButton}
+              component="button"
+              onClick={() => navigate('/register')}
+            >
+              Create account
+            </Anchor>
+          </Text>
+        </form>
+      </Paper>
+    </Container>
   );
 }
