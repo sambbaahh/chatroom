@@ -8,8 +8,8 @@ import {
 } from '@mantine/core';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from '@mantine/form';
-import { useAuth } from '../hooks/useAuth';
-import { User } from '../interfaces/auth';
+import { useAuth } from '../../hooks/useAuth';
+import { User } from '../../interfaces/auth';
 
 export default function RegisterForm() {
   const navigate = useNavigate();

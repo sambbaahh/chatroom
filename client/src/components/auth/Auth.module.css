@@ -1,0 +1,23 @@
+.container {
+  padding-inline: 10rem;
+  padding-block: 2.5rem;
+  box-shadow: var(--mantine-shadow-md);
+  border-radius: var(--mantine-radius-md);
+}
+.input:not(:first-child) {
+  margin-top: var(--mantine-spacing-md);
+}
+.mainButton {
+  margin-top: var(--mantine-spacing-xl);
+}
+
+.secondaryText {
+  text-align: center;
+  margin-top: var(--mantine-spacing-xs);
+  color: var(--mantine-color-dimmed);
+  font-size: var(--mantine-font-size-xs);
+}
+
+.secondaryButton {
+  font-size: var(--mantine-font-size-xs);
+}

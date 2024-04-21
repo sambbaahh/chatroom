@@ -8,7 +8,9 @@ import {
 } from '@mantine/core';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from '@mantine/form';
-import { useAuth } from '../hooks/useAuth';
+import { useAuth } from '../../hooks/useAuth';
+
+import classes from './Auth.module.css';
 
 export default function LoginForm() {
   const navigate = useNavigate();
@@ -31,28 +33,29 @@ export default function LoginForm() {
   };
 
   return (
-    <Paper withBorder shadow="md" py={50} px={100} radius="md">
+    <Paper withBorder className={classes.container}>
       <form onSubmit={form.onSubmit(handleSubmit)}>
         <TextInput
+          className={classes.input}
           label="Username"
           placeholder="Your username"
           required
           {...form.getInputProps('username')}
         />
         <PasswordInput
+          className={classes.input}
           label="Password"
           placeholder="Your password"
           required
-          mt="md"
           {...form.getInputProps('password')}
         />
-        <Button fullWidth mt="xl" type="submit">
+        <Button className={classes.mainButton} fullWidth type="submit">
           Log in
         </Button>
-        <Text c="dimmed" size="sm" ta="center" mt={10}>
+        <Text className={classes.secondaryText}>
           Do not have an account yet?{' '}
           <Anchor
-            size="sm"
+            className={classes.secondaryButton}
             component="button"
             onClick={() => navigate('/register')}
           >

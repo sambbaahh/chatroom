@@ -76,7 +76,7 @@ const rooms = [
 
 export default function Rooms({ setHideRooms }) {
   return (
-    <Box style={{ overflow: 'scroll', padding: 8, height: '100vh' }}>
+    <Box style={{ overflow: 'scroll', padding: 8 }}>
       {/* <Box style={{ height: '10vh', overflow: 'scroll', padding: 8 }}>
         <Text> ChatRoom</Text>
         <Divider></Divider>
