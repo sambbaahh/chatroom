@@ -76,12 +76,12 @@ const rooms = [
 
 export default function Rooms({ setHideRooms }) {
   return (
-    <Box>
-      <Box style={{ height: '10vh', overflow: 'scroll', padding: 8 }}>
+    <Box style={{ overflow: 'scroll', padding: 8, height: '100vh' }}>
+      {/* <Box style={{ height: '10vh', overflow: 'scroll', padding: 8 }}>
         <Text> ChatRoom</Text>
         <Divider></Divider>
-      </Box>
-      <Box style={{ height: '90vh', overflow: 'scroll', padding: 8 }}>
+      </Box> */}
+      <Box>
         {rooms.map((room) => (
           <Card key={room.id} style={{ marginBlock: 8 }} withBorder shadow="md">
             <Flex

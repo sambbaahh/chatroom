@@ -5,6 +5,7 @@ import Register from './pages/Register';
 import MainPage from './pages/MainPage';
 import Header from './components/Header';
 import { useAuth } from './hooks/useAuth';
+import { Box, Container } from '@mantine/core';
 
 export default function App() {
   return (
@@ -31,9 +32,13 @@ function ProtectRoutes() {
 
 function RenderRoute() {
   return (
-    <div>
-      <Header />
-      <Outlet />
-    </div>
+    <Container size="xl">
+      <Box style={{ height: '7.5vh' }}>
+        <Header />
+      </Box>
+      <Box style={{ height: '92.5vh' }}>
+        <Outlet />
+      </Box>
+    </Container>
   );
 }

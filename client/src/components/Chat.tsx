@@ -7,7 +7,7 @@ export default function Chat() {
       justify={'center'}
       align={'center'}
       direction="column"
-      style={{ height: '100vh', overflow: 'scroll' }}
+      style={{ height: '100%', overflow: 'scroll' }}
     >
       <IconMessages
         style={{ width: rem(80), height: rem(80), margin: '0 auto' }}

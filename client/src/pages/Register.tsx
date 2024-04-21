@@ -10,6 +10,7 @@ export default function Register() {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
+        height: '100vh',
       }}
     >
       <Box
