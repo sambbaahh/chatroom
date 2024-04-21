@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--mantine-spacing-xs);
+  background-color: lightgrey;
+}
+
+/* left side of the header: */
+.logoContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logoIcon {
+  width: 2.5rem;
+  height: 2.5rem;
+  stroke-width: 1;
+}
+
+/* right side of the header: */
+.menuGroup {
+  gap: calc(var(--mantine-spacing-xs) - 5px);
+}
+.menuDownIcon {
+  width: 1rem;
+  height: 1rem;
+}
+.dropdownIcon {
+  width: 1.25rem;
+  height: 1.5rem;
+  stroke-width: 1.5;
+}

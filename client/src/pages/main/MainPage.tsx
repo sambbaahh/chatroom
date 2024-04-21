@@ -1,6 +1,6 @@
 import { Box, Center, Container, Divider, Grid } from '@mantine/core';
-import Rooms from '../../components/Rooms';
-import Chat from '../../components/Chat';
+import Rooms from '../../components/Rooms/Rooms';
+import Chat from '../../components/Chat/Chat';
 import { useState } from 'react';
 
 export default function MainPage() {

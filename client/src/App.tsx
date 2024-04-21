@@ -3,7 +3,7 @@ import { Routes, Route, Outlet, Navigate } from 'react-router-dom';
 import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
 import MainPage from './pages/main/MainPage';
-import Header from './components/Header';
+import Header from './components/Header/Header';
 import { useAuth } from './hooks/useAuth';
 import { Box, Container } from '@mantine/core';
 

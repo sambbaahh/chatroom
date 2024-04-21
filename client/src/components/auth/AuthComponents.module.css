@@ -15,9 +15,9 @@
   text-align: center;
   margin-top: var(--mantine-spacing-xs);
   color: var(--mantine-color-dimmed);
-  font-size: var(--mantine-font-size-xs);
+  font-size: var(--mantine-font-size-sm);
 }
 
 .secondaryButton {
-  font-size: var(--mantine-font-size-xs);
+  font-size: var(--mantine-font-size-sm);
 }
