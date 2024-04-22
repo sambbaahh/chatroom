@@ -2,18 +2,17 @@ import { Box, TextInput } from '@mantine/core';
 import { IconSend } from '@tabler/icons-react';
 import { getHotkeyHandler } from '@mantine/hooks';
 
+import classes from './MessageInput.module.css';
+
 export default function MessageInput() {
   return (
-    <Box style={{ marginTop: 'auto', marginBottom: '0.5rem' }}>
+    <Box className={classes.container}>
       <TextInput
-        radius="xl"
-        size="md"
+        classNames={{ input: classes.input }}
         placeholder="Send message..."
-        rightSectionWidth={42}
         rightSection={
           <IconSend
-            size={32}
-            radius="xl"
+            className={classes.iconButton}
             onClick={() => console.log('pöö')}
           ></IconSend>
         }

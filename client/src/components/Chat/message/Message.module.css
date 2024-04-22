@@ -1,0 +1,35 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+
+.iconWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 2rem;
+}
+
+.messageWrapperSended {
+  margin-left: auto;
+  align-items: end;
+  background-color: lightgray;
+  margin-block: 0.5rem;
+  border-radius: 1rem;
+  padding: 1rem;
+  width: fit-content;
+  max-width: 75%;
+}
+
+.messageWrapperReceived {
+  margin-left: 0px;
+  align-items: flex-start;
+  background-color: lightgray;
+  margin-block: 0.5rem;
+  border-radius: 1rem;
+  padding: 1rem;
+  width: fit-content;
+  max-width: 75%;
+}

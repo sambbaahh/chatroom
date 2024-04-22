@@ -1,75 +1,65 @@
-import {
-  Card,
-  Flex,
-  Text,
-  rem,
-  Box,
-  Container,
-  Button,
-  TextInput,
-  Avatar,
-} from '@mantine/core';
-import { getHotkeyHandler } from '@mantine/hooks';
-import { IconMessages, IconSend } from '@tabler/icons-react';
+import { Text, Box, Container, Button } from '@mantine/core';
+import { IconMessages } from '@tabler/icons-react';
 
 import classes from './Chat.module.css';
 import Message from './message/Message';
 import MessageInput from './message-input/MessageInput';
+import Subheader from '../subheader/Subheader';
 
 const messages = [
   {
     username: 'sami',
-    message: 'Ensimmäinen viesti!',
+    content: 'Ensimmäinen viesti!',
     timestamp: '2024-04-22T12:00:00Z',
   },
   {
     username: 'iida',
-    message: 'Toinen viesti.',
+    content: 'Toinen viesti.',
     timestamp: '2024-04-22T12:05:00Z',
   },
   {
     username: 'sami',
-    message: 'Ensimmäinen viesti!',
+    content: 'Ensimmäinen viesti!',
     timestamp: '2024-04-22T12:00:00Z',
   },
   {
     username: 'sami',
-    message: 'Ensimmäinen viesti!',
+    content: 'Ensimmäinen viesti!',
     timestamp: '2024-04-22T12:00:00Z',
   },
   {
     username: 'hiauu',
-    message: 'Kolmas viesti tässä.',
+    content: 'Kolmas viesti tässä.',
     timestamp: '2024-04-22T12:10:00Z',
   },
   {
     username: 'iida',
-    message: 'Toinen viesti.',
+    content: 'Toinen viesti.',
     timestamp: '2024-04-22T12:05:00Z',
   },
   {
     username: 'iida',
-    message: 'Toinen viesti.',
+    content: 'Toinen viesti.',
     timestamp: '2024-04-22T12:05:00Z',
   },
   {
     username: 'hiauu',
-    message: 'Kolmas viesti tässä.',
+    content: 'Kolmas viesti tässä.',
     timestamp: '2024-04-22T12:10:00Z',
   },
   {
     username: 'iida',
-    message: 'Toinen viesti.',
+    content: 'Toinen viesti.',
     timestamp: '2024-04-22T12:05:00Z',
   },
   {
     username: 'iida',
-    message: 'Toinen viesti.',
+    content: 'Toinen viesti.',
     timestamp: '2024-04-22T12:05:00Z',
   },
   {
     username: 'hiauu',
-    message: 'Kolmas viesti tässä.',
+    content: 'Kolmas viesti tässä.',
     timestamp: '2024-04-22T12:10:00Z',
   },
 ];
@@ -85,9 +75,6 @@ type Props = {
 //   alignItems: 'center',
 // }}
 // >
-// <Button> close </Button>
-// <Text> Huone </Text>
-// <Button> exit </Button>
 // </Box>
 
 export default function Chat({ roomName }: Props) {
@@ -104,14 +91,12 @@ export default function Chat({ roomName }: Props) {
 
   return (
     <Container className={classes.inRoomContainer}>
-      <Box
-        style={{
-          height: '100%',
-          overflow: 'scroll',
-          display: 'flex',
-          flexDirection: 'column',
-        }}
-      >
+      <Subheader>
+        <Button> close </Button>
+        <Text> Huone </Text>
+        <Button> exit </Button>
+      </Subheader>
+      <Box className={classes.messagesContainer}>
         {messages.map((message, index, allMessages) => (
           <Message
             message={message}

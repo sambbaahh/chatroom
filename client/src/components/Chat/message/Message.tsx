@@ -1,14 +1,4 @@
-import {
-  Card,
-  Flex,
-  Text,
-  rem,
-  Box,
-  Container,
-  Button,
-  TextInput,
-  Avatar,
-} from '@mantine/core';
+import { Text, Box, Avatar } from '@mantine/core';
 
 import classes from './Message.module.css';
 
@@ -22,23 +12,8 @@ export default function Message({ message, index, allMessages }: Props) {
   const me = 'sami';
 
   return (
-    <Box
-      style={{
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: '1rem',
-      }}
-    >
-      <Box
-        key={index}
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          alignItems: 'center',
-          width: '2rem',
-        }}
-      >
+    <Box className={classes.container}>
+      <Box className={classes.iconWrapper}>
         {message.username !== me &&
           index < allMessages.length &&
           allMessages[index - 1].username !== message.username && (
@@ -46,18 +21,14 @@ export default function Message({ message, index, allMessages }: Props) {
           )}
       </Box>
       <Box
-        style={{
-          marginLeft: message.username === me ? 'auto' : '0px',
-          alignItems: message.username === me ? 'end' : 'start',
-          backgroundColor: 'lightgray',
-          marginBlock: '0.5rem',
-          borderRadius: '1rem',
-          padding: '1rem',
-          width: 'fit-content',
-          maxWidth: '75%',
-        }}
+        className={
+          message.username === me
+            ? classes.messageWrapperSended
+            : classes.messageWrapperReceived
+        }
+        style={{}}
       >
-        <Text variant="h1">{message.message}</Text>
+        <Text variant="h1">{message.content}</Text>
       </Box>
     </Box>
   );
