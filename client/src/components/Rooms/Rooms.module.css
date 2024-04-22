@@ -1,0 +1,17 @@
+.container {
+  overflow: scroll;
+  padding: 8;
+}
+
+.card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: var(--mantine-shadow-md);
+  border-radius: var(--mantine-radius-md);
+}
+
+.card:not(:first-child) {
+  margin-top: var(--mantine-spacing-xs);
+}

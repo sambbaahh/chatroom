@@ -1,10 +1,15 @@
 import { Text, Box, Container, Button } from '@mantine/core';
-import { IconMessages } from '@tabler/icons-react';
+import {
+  IconMessages,
+  IconLayoutSidebarLeftCollapse,
+  IconX,
+} from '@tabler/icons-react';
 
 import classes from './Chat.module.css';
 import Message from './message/Message';
 import MessageInput from './message-input/MessageInput';
 import Subheader from '../subheader/Subheader';
+import { useState } from 'react';
 
 const messages = [
   {
@@ -68,33 +73,31 @@ type Props = {
   roomName: string;
 };
 
-// <Box
-// style={{
-//   display: 'flex',
-//   justifyContent: 'space-between',
-//   alignItems: 'center',
-// }}
-// >
-// </Box>
+export default function Chat({ handleCollapseRooms }) {
+  const [isUserInRoom, setisUserInRoom] = useState(true);
 
-export default function Chat({ roomName }: Props) {
-  const userInRoom = true;
+  const handleDisconnectChat = () => {
+    setisUserInRoom(!isUserInRoom);
+  };
 
-  if (!userInRoom) {
+  if (!isUserInRoom) {
     return (
-      <Container className={classes.notInRoomContainer}>
+      <Box className={classes.notInRoomContainer}>
         <IconMessages className={classes.notInRoomIcon} />
         <Text>Join room to chat with people!</Text>
-      </Container>
+      </Box>
     );
   }
 
   return (
-    <Container className={classes.inRoomContainer}>
+    <Box className={classes.inRoomContainer}>
       <Subheader>
-        <Button> close </Button>
+        <IconLayoutSidebarLeftCollapse
+          className={classes.iconButton}
+          onClick={handleCollapseRooms}
+        />
         <Text> Huone </Text>
-        <Button> exit </Button>
+        <IconX className={classes.iconButton} onClick={handleDisconnectChat} />
       </Subheader>
       <Box className={classes.messagesContainer}>
         {messages.map((message, index, allMessages) => (
@@ -107,6 +110,6 @@ export default function Chat({ roomName }: Props) {
         ))}
       </Box>
       <MessageInput />
-    </Container>
+    </Box>
   );
 }

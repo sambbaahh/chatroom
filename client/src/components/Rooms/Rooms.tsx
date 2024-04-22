@@ -1,5 +1,8 @@
-import { Box, Button, Card, Divider, Flex, Text } from '@mantine/core';
-import { IconArrowRight } from '@tabler/icons-react';
+import { ActionIcon, Box, Button, Card, Text } from '@mantine/core';
+import { IconArrowRight, IconPlus } from '@tabler/icons-react';
+
+import classes from './Rooms.module.css';
+import Subheader from '../subheader/Subheader';
 
 const rooms = [
   {
@@ -78,26 +81,24 @@ export default function Rooms({ setHideRooms }) {
   const handleJoin = () => {};
 
   return (
-    <Box style={{ overflow: 'scroll', padding: 8 }}>
+    <Box className={classes.container}>
+      <Subheader>
+        <Text>Available rooms</Text>
+        <ActionIcon>
+          <IconPlus />
+        </ActionIcon>
+      </Subheader>
       <Box>
         {rooms.map((room) => (
-          <Card key={room.id} style={{ marginBlock: 8 }} withBorder shadow="md">
-            <Flex
-              mih={50}
-              gap="md"
-              justify="space-between"
-              align="center"
-              direction="row"
+          <Card key={room.id} className={classes.card} withBorder>
+            <Text>{room.name}</Text>
+            <Button
+              rightSection={<IconArrowRight size={14} />}
+              onClick={() => handleJoin()}
             >
-              <Text>{room.name}</Text>
-              <Button
-                rightSection={<IconArrowRight size={14} />}
-                onClick={() => handleJoin()}
-              >
-                {' '}
-                Join{' '}
-              </Button>
-            </Flex>
+              {' '}
+              Join{' '}
+            </Button>
           </Card>
         ))}
       </Box>

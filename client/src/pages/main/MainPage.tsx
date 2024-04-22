@@ -8,6 +8,10 @@ import classes from './MainPage.module.css';
 export default function MainPage() {
   const [hideRooms, setHideRooms] = useState<boolean>(false);
 
+  const handleCollapseRooms = () => {
+    setHideRooms(!hideRooms);
+  };
+
   return (
     <Grid gutter={0} className={classes.container}>
       {!hideRooms && (
@@ -16,7 +20,7 @@ export default function MainPage() {
         </Grid.Col>
       )}
       <Grid.Col span={hideRooms ? 12 : 7} className={classes.column}>
-        <Chat />
+        <Chat handleCollapseRooms={handleCollapseRooms} />
       </Grid.Col>
     </Grid>
   );
