@@ -1,4 +1,4 @@
-import { Grid } from '@mantine/core';
+import { Box, Grid, Button, Text } from '@mantine/core';
 import Rooms from '../../components/rooms/Rooms';
 import Chat from '../../components/chat/Chat';
 import { useState } from 'react';
