@@ -1,6 +1,12 @@
 .container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.roomsContainer {
+  height: 100%;
   overflow: scroll;
-  padding: 8;
 }
 
 .card {

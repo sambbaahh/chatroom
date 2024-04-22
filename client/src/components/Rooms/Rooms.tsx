@@ -88,7 +88,7 @@ export default function Rooms({ setHideRooms }) {
           <IconPlus />
         </ActionIcon>
       </Subheader>
-      <Box>
+      <Box className={classes.roomsContainer}>
         {rooms.map((room) => (
           <Card key={room.id} className={classes.card} withBorder>
             <Text>{room.name}</Text>
