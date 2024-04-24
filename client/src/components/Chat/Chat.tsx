@@ -1,8 +1,9 @@
-import { Text, Box, Container, Button, ActionIcon } from '@mantine/core';
+import { Text, Box, ActionIcon } from '@mantine/core';
 import {
   IconMessages,
   IconLayoutSidebarLeftCollapse,
   IconX,
+  IconLayoutSidebarRightCollapse,
 } from '@tabler/icons-react';
 
 import classes from './Chat.module.css';
@@ -70,10 +71,11 @@ const messages = [
 ];
 
 type Props = {
-  roomName: string;
+  areRoomsHidden: boolean;
+  handleCollapseRooms: () => void;
 };
 
-export default function Chat({ handleCollapseRooms }) {
+export default function Chat({ areRoomsHidden, handleCollapseRooms }: Props) {
   const [isUserInRoom, setisUserInRoom] = useState(true);
 
   const handleDisconnectChat = () => {
@@ -93,7 +95,11 @@ export default function Chat({ handleCollapseRooms }) {
     <Box className={classes.inRoomContainer}>
       <Subheader>
         <ActionIcon onClick={handleCollapseRooms} variant="default">
-          <IconLayoutSidebarLeftCollapse className={classes.icon} />
+          {areRoomsHidden ? (
+            <IconLayoutSidebarRightCollapse className={classes.icon} />
+          ) : (
+            <IconLayoutSidebarLeftCollapse className={classes.icon} />
+          )}
         </ActionIcon>
         <Text> Huone </Text>
         <ActionIcon onClick={handleCollapseRooms} variant="default">

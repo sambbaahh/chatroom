@@ -1,7 +1,6 @@
 .container {
   display: flex;
   justify-content: space-between;
-  padding-block: var(--mantine-spacing-xs);
   height: 100%;
 }
 

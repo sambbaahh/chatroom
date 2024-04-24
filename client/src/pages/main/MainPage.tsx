@@ -6,26 +6,32 @@ import { useState } from 'react';
 import classes from './MainPage.module.css';
 
 export default function MainPage() {
-  const [hideRooms, setHideRooms] = useState<boolean>(false);
+  const [areRoomsHidden, setAreRoomsHidden] = useState<boolean>(false);
 
   const handleCollapseRooms = () => {
-    setHideRooms(!hideRooms);
+    setAreRoomsHidden(!areRoomsHidden);
   };
 
   return (
-    <Grid gutter={0} className={classes.container}>
-      {!hideRooms && (
+    <Grid
+      gutter={0}
+      classNames={{ root: classes.container, inner: classes.gridInner }}
+    >
+      {!areRoomsHidden && (
         <>
           <Grid.Col span={4.5} className={classes.column}>
-            <Rooms setHideRooms={setHideRooms} />
+            <Rooms />
           </Grid.Col>
           <Grid.Col span={0.4} className={classes.column}>
             <Box className={classes.dividerWrapper}></Box>
           </Grid.Col>
         </>
       )}
-      <Grid.Col span={hideRooms ? 12 : 7.1} className={classes.column}>
-        <Chat handleCollapseRooms={handleCollapseRooms} />
+      <Grid.Col span={areRoomsHidden ? 12 : 7.1} className={classes.column}>
+        <Chat
+          handleCollapseRooms={handleCollapseRooms}
+          areRoomsHidden={areRoomsHidden}
+        />
       </Grid.Col>
     </Grid>
   );

@@ -7,6 +7,8 @@ import Header from './components/header/Header';
 import { useAuth } from './hooks/useAuth';
 import { Box, Container } from '@mantine/core';
 
+import classes from './App.module.css';
+
 export default function App(): React.ReactElement {
   return (
     <Routes>
@@ -32,11 +34,11 @@ function ProtectRoutes() {
 
 function RenderRoute() {
   return (
-    <Container size="xl">
-      <Box style={{ height: '4rem' }}>
+    <Container size="xl" className={classes.container}>
+      <Box className={classes.headerWrapper}>
         <Header />
       </Box>
-      <Box style={{ height: 'calc(100vh - 4rem)' }}>
+      <Box className={classes.outletWrapper}>
         <Outlet />
       </Box>
     </Container>

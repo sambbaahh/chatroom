@@ -1,0 +1,10 @@
+.container {
+  padding-bottom: var(--mantine-spacing-xs);
+}
+
+.headerWrapper {
+  height: 3.5rem;
+}
+.outletWrapper {
+  height: calc(100vh - 4rem - var(--mantine-spacing-xs));
+}

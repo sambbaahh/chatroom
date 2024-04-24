@@ -1,8 +1,10 @@
-import { ActionIcon, Box, Button, Card, Text } from '@mantine/core';
+import { Box, Button, Card, Text } from '@mantine/core';
 import { IconArrowRight, IconPlus } from '@tabler/icons-react';
 
 import classes from './Rooms.module.css';
 import Subheader from '../subheader/Subheader';
+import NewRoom from '../new-room-modal/NewRoom';
+import { useState } from 'react';
 
 const rooms = [
   {
@@ -77,24 +79,38 @@ const rooms = [
   },
 ];
 
-export default function Rooms({ setHideRooms }) {
+export default function Rooms() {
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+
   const handleJoin = () => {};
+
+  const handleModalState = () => {
+    setIsModalOpen(!isModalOpen);
+  };
 
   return (
     <Box className={classes.container}>
+      <NewRoom open={isModalOpen} handleModalState={handleModalState} />
       <Subheader>
-        <Text>Available rooms:</Text>
-        <ActionIcon>
-          <IconPlus />
-        </ActionIcon>
+        <Text>Available Rooms:</Text>
+        <Button
+          rightSection={<IconPlus />}
+          variant="default"
+          size="xs"
+          onClick={handleModalState}
+        >
+          New Room
+        </Button>
       </Subheader>
       <Box className={classes.roomsContainer}>
         {rooms.map((room) => (
           <Card key={room.id} className={classes.card} withBorder>
             <Text>{room.name}</Text>
             <Button
-              rightSection={<IconArrowRight size={14} />}
+              rightSection={<IconArrowRight />}
               onClick={() => handleJoin()}
+              size="sm"
+              variant="light"
             >
               {' '}
               Join{' '}
