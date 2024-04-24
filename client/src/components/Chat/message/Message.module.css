@@ -19,26 +19,27 @@
 }
 
 .usernameText {
+  color: var(--mantine-color-gray-4);
   font-size: var(--mantine-font-size-sm);
-  font-weight: 500;
 }
 
 .messageWrapperSended {
   max-width: 75%;
   width: fit-content;
   margin-left: auto;
-  margin-bottom: 0.4rem;
+  margin-bottom: var(--mantine-spacing-xs);
   border-radius: var(--mantine-radius-xl);
   padding: var(--mantine-spacing-sm);
-  background-color: var(--mantine-color-blue-0);
+  color: var(--mantine-color-gray-2);
 }
 
 .messageWrapperReceived {
   max-width: 75%;
   width: fit-content;
   margin-left: calc(2rem + var(--mantine-spacing-sm));
-  margin-bottom: 0.4rem;
+  margin-bottom: var(--mantine-spacing-xs);
   padding: var(--mantine-spacing-sm);
   border-radius: var(--mantine-radius-xl);
-  background-color: var(--mantine-color-gray-0);
+  background-color: var(--mantine-color-blue-light);
+  color: var(--mantine-color-gray-2);
 }
