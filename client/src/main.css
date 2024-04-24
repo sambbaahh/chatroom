@@ -1,3 +1,6 @@
+body {
+  background-color: var(--mantine-color-gray-1);
+}
 .mantine-Grid-inner {
   height: inherit;
 }

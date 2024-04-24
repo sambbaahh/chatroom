@@ -83,7 +83,7 @@ export default function Rooms({ setHideRooms }) {
   return (
     <Box className={classes.container}>
       <Subheader>
-        <Text>Available rooms</Text>
+        <Text>Available rooms:</Text>
         <ActionIcon>
           <IconPlus />
         </ActionIcon>

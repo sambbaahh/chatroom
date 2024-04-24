@@ -27,7 +27,6 @@
   flex-direction: column;
 }
 
-.iconButton {
-  cursor: pointer;
+.icon {
   stroke-width: 1.5;
 }

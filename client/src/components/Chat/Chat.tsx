@@ -1,4 +1,4 @@
-import { Text, Box, Container, Button } from '@mantine/core';
+import { Text, Box, Container, Button, ActionIcon } from '@mantine/core';
 import {
   IconMessages,
   IconLayoutSidebarLeftCollapse,
@@ -92,12 +92,16 @@ export default function Chat({ handleCollapseRooms }) {
   return (
     <Box className={classes.inRoomContainer}>
       <Subheader>
-        <IconLayoutSidebarLeftCollapse
-          className={classes.iconButton}
-          onClick={handleCollapseRooms}
-        />
+        <ActionIcon onClick={handleCollapseRooms} variant="default">
+          <IconLayoutSidebarLeftCollapse className={classes.icon} />
+        </ActionIcon>
         <Text> Huone </Text>
-        <IconX className={classes.iconButton} onClick={handleDisconnectChat} />
+        <ActionIcon onClick={handleCollapseRooms} variant="default">
+          <IconX
+            className={classes.iconButton}
+            onClick={handleDisconnectChat}
+          />
+        </ActionIcon>
       </Subheader>
       <Box className={classes.messagesContainer}>
         {messages.map((message, index, allMessages) => (
