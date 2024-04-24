@@ -1,35 +1,44 @@
 .container {
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 1rem;
+  flex-direction: column;
 }
 
+.userInformationContainer {
+  display: flex;
+  align-items: center;
+  gap: var(--mantine-spacing-lg);
+  margin-top: var(--mantine-spacing-md);
+}
 .iconWrapper {
   display: flex;
   flex-direction: row;
   align-items: center;
   width: 2rem;
+  position: relative;
+  top: 15px;
+}
+
+.usernameText {
+  font-size: var(--mantine-font-size-sm);
+  font-weight: 500;
 }
 
 .messageWrapperSended {
-  margin-left: auto;
-  align-items: end;
-  background-color: lightgray;
-  margin-block: 0.5rem;
-  border-radius: 1rem;
-  padding: 1rem;
-  width: fit-content;
   max-width: 75%;
+  width: fit-content;
+  margin-left: auto;
+  margin-bottom: 0.4rem;
+  border-radius: var(--mantine-radius-xl);
+  padding: var(--mantine-spacing-sm);
+  background-color: var(--mantine-color-blue-0);
 }
 
 .messageWrapperReceived {
-  margin-left: 0px;
-  align-items: flex-start;
-  background-color: lightgray;
-  margin-block: 0.5rem;
-  border-radius: 1rem;
-  padding: 1rem;
-  width: fit-content;
   max-width: 75%;
+  width: fit-content;
+  margin-left: calc(2rem + var(--mantine-spacing-sm));
+  margin-bottom: 0.4rem;
+  padding: var(--mantine-spacing-sm);
+  border-radius: var(--mantine-radius-xl);
+  background-color: var(--mantine-color-gray-0);
 }

@@ -15,7 +15,8 @@ import { useState } from 'react';
 const messages = [
   {
     username: 'sami',
-    content: 'Ensimmäinen viesti!',
+    content:
+      'Ensimmäinen viesti! Ensimmäinen viesti! Ensimmäinen viesti! Ensimmäinen viesti! Ensimmäinen viesti!',
     timestamp: '2024-04-22T12:00:00Z',
   },
   {
@@ -40,7 +41,8 @@ const messages = [
   },
   {
     username: 'iida',
-    content: 'Toinen viesti.',
+    content:
+      'Toinen viesti. Ensimmäinen viesti! Ensimmäinen viesti! Ensimmäinen viesti! Ensimmäinen viesti!',
     timestamp: '2024-04-22T12:05:00Z',
   },
   {
@@ -102,11 +104,8 @@ export default function Chat({ areRoomsHidden, handleCollapseRooms }: Props) {
           )}
         </ActionIcon>
         <Text> Huone </Text>
-        <ActionIcon onClick={handleCollapseRooms} variant="default">
-          <IconX
-            className={classes.iconButton}
-            onClick={handleDisconnectChat}
-          />
+        <ActionIcon onClick={handleDisconnectChat} variant="default">
+          <IconX className={classes.iconButton} />
         </ActionIcon>
       </Subheader>
       <Box className={classes.messagesContainer}>

@@ -1,4 +1,4 @@
-import { Text, Box, Avatar } from '@mantine/core';
+import { Text, Box, Avatar, Card } from '@mantine/core';
 
 import classes from './Message.module.css';
 
@@ -11,16 +11,29 @@ interface Props {
 export default function Message({ message, index, allMessages }: Props) {
   const me = 'sami';
 
+  const showIconAndName = (): boolean =>
+    message.username !== me &&
+    (index === 0 || allMessages[index - 1].username !== message.username);
+
+  const showMarginOnSendedMessage = (): boolean =>
+    message.username === me &&
+    (index === 0 || allMessages[index - 1].username !== message.username);
+
   return (
     <Box className={classes.container}>
-      <Box className={classes.iconWrapper}>
-        {message.username !== me &&
-          index < allMessages.length &&
-          allMessages[index - 1].username !== message.username && (
+      {showIconAndName() && (
+        <Box className={classes.userInformationContainer}>
+          <Box className={classes.iconWrapper}>
             <Avatar>{message.username.charAt(0)}</Avatar>
-          )}
-      </Box>
-      <Box
+          </Box>
+          <Text className={classes.usernameText}>{message.username}</Text>{' '}
+        </Box>
+      )}
+      {showMarginOnSendedMessage() && (
+        <Box className={classes.userInformationContainer}></Box>
+      )}
+      <Card
+        withBorder
         className={
           message.username === me
             ? classes.messageWrapperSended
@@ -28,8 +41,8 @@ export default function Message({ message, index, allMessages }: Props) {
         }
         style={{}}
       >
-        <Text variant="h1">{message.content}</Text>
-      </Box>
+        <Text>{message.content}</Text>
+      </Card>
     </Box>
   );
 }
