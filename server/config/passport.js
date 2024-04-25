@@ -2,7 +2,6 @@ import fs from 'fs';
 import path from 'path';
 import passportJwt from 'passport-jwt';
 import * as db from './database.js';
-import { log } from 'console';
 
 const JwtStrategy = passportJwt.Strategy;
 const ExtractJwt = passportJwt.ExtractJwt;
