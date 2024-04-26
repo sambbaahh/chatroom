@@ -1,5 +1,6 @@
 import createRoom from './create-room.js';
 import joinRoom from './join-room.js';
+import leaveRoom from './leave-room.js';
 import sendMessage from './send-message.js';
 
 const handleSocketEvent = (socket) => {
@@ -10,14 +11,14 @@ const handleSocketEvent = (socket) => {
     async (roomName) => await createRoom(socket, roomName)
   );
 
-  socket.on('leave-room', () => {});
+  socket.on('leave-room', async () => await leaveRoom(socket));
 
   socket.on(
     'send-message',
     async (content) => await sendMessage(socket, content)
   );
 
-  socket.on('disconnect', () => {});
+  socket.on('disconnect', async () => await leaveRoom(socket));
 };
 
 export default handleSocketEvent;

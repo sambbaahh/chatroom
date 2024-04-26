@@ -22,7 +22,7 @@ app.use('/api', authRouter);
 
 const io = new Server(httpServer);
 io.on('connection', (socket) => {
-  socket.request.userId = 1;
+  socket.request.userId = 2;
   handleSocketEvent(socket);
 });
 
