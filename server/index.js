@@ -2,6 +2,7 @@ import 'dotenv/config';
 import express from 'express';
 import configurePassport from './config/passport.js';
 import passport from 'passport';
+import { createServer } from 'http';
 import { Server } from 'socket.io';
 
 import authRouter from './routes/auth.js';
@@ -12,21 +13,19 @@ const PORT = process.env.PORT || 3000;
 const app = express();
 app.use(express.json());
 
-const io = new Server(3001, {
-  // options
-});
+const httpServer = createServer(app);
 
 configurePassport(passport);
 app.use(passport.initialize());
 
 app.use('/api', authRouter);
 
-io.on(
-  'connection',
-  // passport.authenticate('jwt', { session: false }),
-  (socket) => handleSocketEvent(socket)
-);
+const io = new Server(httpServer);
+io.on('connection', (socket) => {
+  socket.request.userId = 1;
+  handleSocketEvent(socket);
+});
 
-app.listen(PORT, () => {
+httpServer.listen(PORT, () => {
   console.log('Listening port ' + PORT);
 });

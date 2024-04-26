@@ -1,0 +1,13 @@
+import * as db from '../config/database.js';
+import joinRoom from './join-room.js';
+
+const createRoom = async (socket, roomName) => {
+  const createdRoom = await db.query(
+    'INSERT INTO rooms (name, creator_id) VALUES ($1, $2) RETURNING *',
+    [roomName, socket.request.userId]
+  );
+  socket.emit('room-created', createdRoom.rows[0]);
+  joinRoom(socket, createdRoom.rows[0].id);
+};
+
+export default createRoom;

@@ -1,8 +1,23 @@
+import createRoom from './create-room.js';
+import joinRoom from './join-room.js';
+import sendMessage from './send-message.js';
+
 const handleSocketEvent = (socket) => {
-  socket.on('test', () => {
-    console.log('pö');
-    socket.emit('vuhvuh');
-  });
+  socket.on('join-room', async (message) => await joinRoom(socket, message));
+
+  socket.on(
+    'create-room',
+    async (roomName) => await createRoom(socket, roomName)
+  );
+
+  socket.on('leave-room', () => {});
+
+  socket.on(
+    'send-message',
+    async (content) => await sendMessage(socket, content)
+  );
+
+  socket.on('disconnect', () => {});
 };
 
 export default handleSocketEvent;
