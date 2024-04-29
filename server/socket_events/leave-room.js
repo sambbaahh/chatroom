@@ -1,6 +1,6 @@
 import * as db from '../config/database.js';
 
-const leaveRoom = async (socket) => {
+const leaveRoom = async (socket, io) => {
   socket.leave(socket.roomId);
 
   const modifiedRoom = await db.query(
@@ -8,7 +8,7 @@ const leaveRoom = async (socket) => {
     [socket.userId, socket.roomId]
   );
 
-  socket.broadcast.emit('room-modified', modifiedRoom.rows[0]);
+  io.emit('room-modified', modifiedRoom.rows[0]);
 };
 
 export default leaveRoom;

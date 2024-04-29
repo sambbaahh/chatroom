@@ -58,17 +58,23 @@ export function useSocket() {
   }, [socket]);
 
   const joinRoom = (roomId: number) => {
+    if (isUserInRoom) {
+      leaveRoom();
+    }
     socket?.emit('join-room', roomId);
     setIsUserInRoom(true);
   };
 
   const createRoom = (roomName: string) => {
+    if (isUserInRoom) {
+      leaveRoom();
+    }
     socket?.emit('create-room', roomName);
     setIsUserInRoom(true); // user is automatically joined to the room they created
   };
 
-  const leaveRoom = (roomId: number) => {
-    socket?.emit('leave-room', roomId);
+  const leaveRoom = () => {
+    socket?.emit('leave-room');
     setMessages([]);
     setIsUserInRoom(false);
   };

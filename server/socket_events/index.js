@@ -4,7 +4,7 @@ import leaveRoom from './leave-room.js';
 import sendMessage from './send-message.js';
 import onConnection from './on-connection.js';
 
-const handleSocketEvent = (socket) => {
+const handleSocketEvent = (socket, io) => {
   onConnection(socket);
 
   socket.userId = socket.request.user.rows[0].id;
@@ -14,17 +14,16 @@ const handleSocketEvent = (socket) => {
 
   socket.on(
     'create-room',
-    async (roomName) => await createRoom(socket, roomName)
+    async (roomName) => await createRoom(socket, io, roomName)
   );
-
-  socket.on('leave-room', async () => await leaveRoom(socket));
 
   socket.on(
     'send-message',
     async (content) => await sendMessage(socket, content)
   );
 
-  socket.on('disconnect', async () => await leaveRoom(socket));
+  socket.on('leave-room', async () => await leaveRoom(socket, io));
+  socket.on('disconnect', async () => await leaveRoom(socket, io));
 };
 
 export default handleSocketEvent;

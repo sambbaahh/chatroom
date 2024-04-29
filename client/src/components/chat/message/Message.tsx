@@ -9,7 +9,7 @@ interface Props {
 }
 
 export default function Message({ message, index, allMessages }: Props) {
-  const me = 'sami';
+  const me = 'ME';
 
   const showIconAndName = (): boolean =>
     message.username !== me &&

@@ -37,7 +37,7 @@ io.engine.use((req, res, next) => {
 
 io.on('connection', (socket) => {
   console.log(socket.id);
-  handleSocketEvent(socket);
+  handleSocketEvent(socket, io);
 });
 
 httpServer.listen(PORT, () => {

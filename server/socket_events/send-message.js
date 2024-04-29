@@ -5,6 +5,10 @@ const sendMessage = async (socket, content) => {
     username: socket.username,
     content,
   });
+  socket.emit('receive-message', {
+    username: 'ME',
+    content,
+  });
 
   await db.query(
     'INSERT INTO messages (sender_id, room_id, content) VALUES ($1, $2, $3)',
