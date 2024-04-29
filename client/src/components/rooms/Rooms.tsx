@@ -5,11 +5,12 @@ import classes from './Rooms.module.css';
 import Subheader from '../subheader/Subheader';
 import NewRoom from '../new-room-modal/NewRoom';
 import { useState } from 'react';
+import { Room } from '../../interfaces';
 
 interface Props {
-  rooms: any[];
-  createRoom: (name: string) => Promise<void>;
-  joinRoom: (roomId: number) => Promise<void>;
+  rooms: Room[];
+  createRoom: (name: string) => void;
+  joinRoom: (roomId: number) => void;
 }
 
 export default function Rooms({ rooms, createRoom, joinRoom }: Props) {

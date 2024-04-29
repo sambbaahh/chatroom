@@ -5,7 +5,11 @@ import { getHotkeyHandler } from '@mantine/hooks';
 
 import classes from './MessageInput.module.css';
 
-export default function MessageInput({ handleSendMessage }) {
+interface Props {
+  handleSendMessage: (content: string) => void;
+}
+
+export default function MessageInput({ handleSendMessage }: Props) {
   const [content, setContent] = useState('');
 
   return (
@@ -17,11 +21,20 @@ export default function MessageInput({ handleSendMessage }) {
         rightSection={
           <IconSend
             className={classes.iconButton}
-            onClick={() => handleSendMessage(content)}
+            onClick={() => {
+              handleSendMessage(content);
+              setContent('');
+            }}
           ></IconSend>
         }
         onKeyDown={getHotkeyHandler([
-          ['Enter', () => handleSendMessage(content)],
+          [
+            'Enter',
+            () => {
+              handleSendMessage(content);
+              setContent('');
+            },
+          ],
         ])}
       />
     </Box>

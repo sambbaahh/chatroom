@@ -1,11 +1,12 @@
 import { Text, Box, Avatar, Card } from '@mantine/core';
 
 import classes from './Message.module.css';
+import { Message as MessageInterface } from '../../../interfaces';
 
 interface Props {
-  message: object;
+  message: MessageInterface;
   index: number;
-  allMessages: Array<object>;
+  allMessages: MessageInterface[];
 }
 
 export default function Message({ message, index, allMessages }: Props) {

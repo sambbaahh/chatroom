@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Jwt, User } from '../interfaces/auth';
+import { Jwt, User } from '../interfaces';
 
 export default async function register(registrationData: User): Promise<Jwt> {
   try {

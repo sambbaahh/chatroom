@@ -10,18 +10,21 @@ import classes from './Chat.module.css';
 import Message from './message/Message';
 import MessageInput from './message-input/MessageInput';
 import Subheader from '../subheader/Subheader';
-import { useState } from 'react';
+import { Message as MessageInterface } from '../../interfaces';
 
 type Props = {
   areRoomsHidden: boolean;
   handleCollapseRooms: () => void;
+  messages: MessageInterface[];
+  isUserInRoom: boolean;
+  leaveRoom: () => void;
+  sendMessage: (content: string) => void;
 };
 
 export default function Chat({
   areRoomsHidden,
   handleCollapseRooms,
   messages,
-  rooms,
   isUserInRoom,
   leaveRoom,
   sendMessage,

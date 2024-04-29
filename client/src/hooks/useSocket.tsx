@@ -2,13 +2,14 @@ import { useEffect, useState } from 'react';
 import { Socket, io } from 'socket.io-client';
 
 import { useLocalStorage } from './useLocalStorage';
+import { Message, Room } from '../interfaces';
 
 export function useSocket() {
   const [socket, setSocket] = useState<Socket | null>(null);
   const [token] = useLocalStorage('token', null);
 
-  const [rooms, setRooms] = useState([]);
-  const [messages, setMessages] = useState([]);
+  const [rooms, setRooms] = useState<Room[]>([]);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [isUserInRoom, setIsUserInRoom] = useState(false);
 
   useEffect(() => {

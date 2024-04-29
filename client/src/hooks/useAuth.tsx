@@ -6,7 +6,7 @@ import axios from 'axios';
 import { useLocalStorage } from './useLocalStorage';
 import loginService from '../services/login';
 import registerService from '../services/register';
-import { User, Jwt } from '../interfaces/auth';
+import { User, Jwt } from '../interfaces';
 import getUnixTimeStamp from '../utils/getUnixTimeStamp';
 
 interface AuthContextInterface {

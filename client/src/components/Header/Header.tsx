@@ -1,6 +1,4 @@
-import { useState } from 'react';
 import { UnstyledButton, Group, Text, Menu, Box, Divider } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
 import {
   IconChevronDown,
   IconMessages,
@@ -19,9 +17,6 @@ const user = {
 };
 
 export default function Header() {
-  const [opened, { toggle }] = useDisclosure(false);
-  const [userMenuOpened, setUserMenuOpened] = useState(false);
-
   const { logout } = useAuth();
 
   return (
@@ -31,12 +26,7 @@ export default function Header() {
           <IconMessages className={classes.logoIcon} />
           <Text>ChatRoom</Text>
         </Box>
-        <Menu
-          transitionProps={{ transition: 'pop-top-right' }}
-          onClose={() => setUserMenuOpened(false)}
-          onOpen={() => setUserMenuOpened(true)}
-          withinPortal
-        >
+        <Menu transitionProps={{ transition: 'pop-top-right' }} withinPortal>
           <Menu.Target>
             <UnstyledButton>
               <Group className={classes.menuGroup}>

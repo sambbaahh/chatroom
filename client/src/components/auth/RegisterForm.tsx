@@ -10,7 +10,7 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { useForm } from '@mantine/form';
 import { useAuth } from '../../hooks/useAuth';
-import { User } from '../../interfaces/auth';
+import { User } from '../../interfaces';
 
 import classes from './AuthComponents.module.css';
 
