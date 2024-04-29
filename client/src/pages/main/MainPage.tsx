@@ -1,12 +1,15 @@
-import { Box, Grid, Button, Text, Divider } from '@mantine/core';
+import { Box, Grid } from '@mantine/core';
 import Rooms from '../../components/rooms/Rooms';
 import Chat from '../../components/chat/Chat';
 import { useState } from 'react';
 
 import classes from './MainPage.module.css';
+import { useSocket } from '../../hooks/useSocket';
 
 export default function MainPage() {
   const [areRoomsHidden, setAreRoomsHidden] = useState<boolean>(false);
+  const { messages, rooms, joinRoom, createRoom, leaveRoom, sendMessage } =
+    useSocket();
 
   const handleCollapseRooms = () => {
     setAreRoomsHidden(!areRoomsHidden);
@@ -20,7 +23,7 @@ export default function MainPage() {
       {!areRoomsHidden && (
         <>
           <Grid.Col span={4.5} className={classes.column}>
-            <Rooms />
+            <Rooms rooms={rooms} />
           </Grid.Col>
           <Grid.Col span={0.4} className={classes.column}>
             <Box className={classes.dividerWrapper}></Box>
@@ -31,6 +34,10 @@ export default function MainPage() {
         <Chat
           handleCollapseRooms={handleCollapseRooms}
           areRoomsHidden={areRoomsHidden}
+          messages={messages}
+          joinRoom={joinRoom}
+          leaveRoom={leaveRoom}
+          sendMessage={sendMessage}
         />
       </Grid.Col>
     </Grid>

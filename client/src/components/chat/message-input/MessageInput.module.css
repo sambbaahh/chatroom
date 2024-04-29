@@ -1,0 +1,10 @@
+.container {
+  margin-top: auto;
+}
+.input {
+  border-radius: var(--mantine-radius-xl);
+  padding: var(--mantine-radius-lg);
+}
+.iconButton {
+  cursor: pointer;
+}

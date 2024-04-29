@@ -8,7 +8,7 @@
 
 .column {
   height: 100%;
-  overflow: scroll;
+  overflow: auto;
 }
 
 .dividerWrapper {

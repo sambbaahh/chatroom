@@ -6,7 +6,7 @@ const joinRoom = async (socket, roomId) => {
     roomId,
   ]);
 
-  socket.emit('receive-message', messages.rows);
+  socket.emit('receive-messages-on-join', messages.rows);
 
   await db.query(
     'UPDATE rooms SET users = array_append(users, $1) WHERE id = $2',

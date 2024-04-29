@@ -2,8 +2,11 @@ import createRoom from './create-room.js';
 import joinRoom from './join-room.js';
 import leaveRoom from './leave-room.js';
 import sendMessage from './send-message.js';
+import onConnection from './on-connection.js';
 
 const handleSocketEvent = (socket) => {
+  onConnection(socket);
+
   socket.on('join-room', async (message) => await joinRoom(socket, message));
 
   socket.on(
