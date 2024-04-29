@@ -36,8 +36,7 @@ io.engine.use((req, res, next) => {
 });
 
 io.on('connection', (socket) => {
-  const user = socket.request.user;
-  console.log(user);
+  console.log(socket.id);
   handleSocketEvent(socket);
 });
 

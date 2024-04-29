@@ -6,18 +6,35 @@ import Subheader from '../subheader/Subheader';
 import NewRoom from '../new-room-modal/NewRoom';
 import { useState } from 'react';
 
-export default function Rooms({ rooms }) {
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+interface Props {
+  rooms: any[];
+  createRoom: (name: string) => Promise<void>;
+  joinRoom: (roomId: number) => Promise<void>;
+}
 
-  const handleJoin = () => {};
+export default function Rooms({ rooms, createRoom, joinRoom }: Props) {
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const handleModalState = () => {
     setIsModalOpen(!isModalOpen);
   };
 
+  const handleJoinRoom = (roomId: number) => {
+    joinRoom(roomId);
+  };
+
+  const handleCreateRoom = (name: string) => {
+    createRoom(name);
+    handleModalState();
+  };
+
   return (
     <Box className={classes.container}>
-      <NewRoom open={isModalOpen} handleModalState={handleModalState} />
+      <NewRoom
+        open={isModalOpen}
+        handleModalState={handleModalState}
+        handleCreateRoom={handleCreateRoom}
+      />
       <Subheader>
         <Text>Available Rooms:</Text>
         <Button
@@ -35,7 +52,7 @@ export default function Rooms({ rooms }) {
             <Text>{room.name}</Text>
             <Button
               rightSection={<IconArrowRight />}
-              onClick={() => handleJoin()}
+              onClick={() => handleJoinRoom(room.id)}
               size="sm"
               variant="light"
             >

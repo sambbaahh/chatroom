@@ -8,8 +8,15 @@ import { useSocket } from '../../hooks/useSocket';
 
 export default function MainPage() {
   const [areRoomsHidden, setAreRoomsHidden] = useState<boolean>(false);
-  const { messages, rooms, joinRoom, createRoom, leaveRoom, sendMessage } =
-    useSocket();
+  const {
+    messages,
+    rooms,
+    isUserInRoom,
+    joinRoom,
+    createRoom,
+    leaveRoom,
+    sendMessage,
+  } = useSocket();
 
   const handleCollapseRooms = () => {
     setAreRoomsHidden(!areRoomsHidden);
@@ -23,7 +30,7 @@ export default function MainPage() {
       {!areRoomsHidden && (
         <>
           <Grid.Col span={4.5} className={classes.column}>
-            <Rooms rooms={rooms} />
+            <Rooms rooms={rooms} createRoom={createRoom} joinRoom={joinRoom} />
           </Grid.Col>
           <Grid.Col span={0.4} className={classes.column}>
             <Box className={classes.dividerWrapper}></Box>
@@ -35,7 +42,7 @@ export default function MainPage() {
           handleCollapseRooms={handleCollapseRooms}
           areRoomsHidden={areRoomsHidden}
           messages={messages}
-          joinRoom={joinRoom}
+          isUserInRoom={isUserInRoom}
           leaveRoom={leaveRoom}
           sendMessage={sendMessage}
         />

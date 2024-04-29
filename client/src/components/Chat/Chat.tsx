@@ -22,14 +22,16 @@ export default function Chat({
   handleCollapseRooms,
   messages,
   rooms,
-  joinRoom,
+  isUserInRoom,
   leaveRoom,
   sendMessage,
 }: Props) {
-  const [isUserInRoom, setisUserInRoom] = useState(true);
+  const handleSendMessage = (content: string) => {
+    sendMessage(content);
+  };
 
   const handleDisconnectChat = () => {
-    setisUserInRoom(!isUserInRoom);
+    leaveRoom();
   };
 
   if (!isUserInRoom) {
@@ -66,7 +68,7 @@ export default function Chat({
           />
         ))}
       </Box>
-      <MessageInput />
+      <MessageInput handleSendMessage={handleSendMessage} />
     </Box>
   );
 }

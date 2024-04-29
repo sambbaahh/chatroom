@@ -7,6 +7,9 @@ import onConnection from './on-connection.js';
 const handleSocketEvent = (socket) => {
   onConnection(socket);
 
+  socket.userId = socket.request.user.rows[0].id;
+  socket.username = socket.request.user.rows[0].username;
+
   socket.on('join-room', async (message) => await joinRoom(socket, message));
 
   socket.on(

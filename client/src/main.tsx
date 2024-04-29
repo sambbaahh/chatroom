@@ -1,4 +1,3 @@
-import React from 'react';
 import ReactDOM from 'react-dom/client';
 
 import '@mantine/core/styles.css';
@@ -9,13 +8,11 @@ import App from './App.tsx';
 import { AuthProvider } from './hooks/useAuth.tsx';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <AuthProvider>
-        <MantineProvider defaultColorScheme="auto">
-          <App />
-        </MantineProvider>
-      </AuthProvider>
-    </BrowserRouter>
-  </React.StrictMode>
+  <BrowserRouter>
+    <AuthProvider>
+      <MantineProvider defaultColorScheme="auto">
+        <App />
+      </MantineProvider>
+    </AuthProvider>
+  </BrowserRouter>
 );
