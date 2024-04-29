@@ -8,6 +8,7 @@ import { useSocket } from '../../hooks/useSocket';
 
 export default function MainPage() {
   const [areRoomsHidden, setAreRoomsHidden] = useState<boolean>(false);
+  const [roomName, setRoomName] = useState<string>('');
   const {
     messages,
     rooms,
@@ -30,7 +31,12 @@ export default function MainPage() {
       {!areRoomsHidden && (
         <>
           <Grid.Col span={4.5} className={classes.column}>
-            <Rooms rooms={rooms} createRoom={createRoom} joinRoom={joinRoom} />
+            <Rooms
+              rooms={rooms}
+              setRoomName={setRoomName}
+              createRoom={createRoom}
+              joinRoom={joinRoom}
+            />
           </Grid.Col>
           <Grid.Col span={0.4} className={classes.column}>
             <Box className={classes.dividerWrapper}></Box>
@@ -41,6 +47,7 @@ export default function MainPage() {
         <Chat
           handleCollapseRooms={handleCollapseRooms}
           areRoomsHidden={areRoomsHidden}
+          roomName={roomName}
           messages={messages}
           isUserInRoom={isUserInRoom}
           leaveRoom={leaveRoom}

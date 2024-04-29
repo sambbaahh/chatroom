@@ -9,23 +9,31 @@ import { Room } from '../../interfaces';
 
 interface Props {
   rooms: Room[];
+  setRoomName: (name: string) => void;
   createRoom: (name: string) => void;
   joinRoom: (roomId: number) => void;
 }
 
-export default function Rooms({ rooms, createRoom, joinRoom }: Props) {
+export default function Rooms({
+  rooms,
+  setRoomName,
+  createRoom,
+  joinRoom,
+}: Props) {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const handleModalState = () => {
     setIsModalOpen(!isModalOpen);
   };
 
-  const handleJoinRoom = (roomId: number) => {
+  const handleJoinRoom = (roomId: number, roomName: string) => {
     joinRoom(roomId);
+    setRoomName(roomName);
   };
 
   const handleCreateRoom = (name: string) => {
     createRoom(name);
+    setRoomName(name);
     handleModalState();
   };
 
@@ -53,7 +61,7 @@ export default function Rooms({ rooms, createRoom, joinRoom }: Props) {
             <Text>{room.name}</Text>
             <Button
               rightSection={<IconArrowRight />}
-              onClick={() => handleJoinRoom(room.id)}
+              onClick={() => handleJoinRoom(room.id, room.name)}
               size="sm"
               variant="light"
             >

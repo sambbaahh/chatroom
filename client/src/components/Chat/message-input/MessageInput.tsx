@@ -17,6 +17,7 @@ export default function MessageInput({ handleSendMessage }: Props) {
       <TextInput
         classNames={{ input: classes.input }}
         placeholder="Send message..."
+        value={content}
         onChange={(event) => setContent(event.currentTarget.value)}
         rightSection={
           <IconSend

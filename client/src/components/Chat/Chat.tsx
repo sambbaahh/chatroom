@@ -15,6 +15,7 @@ import { Message as MessageInterface } from '../../interfaces';
 type Props = {
   areRoomsHidden: boolean;
   handleCollapseRooms: () => void;
+  roomName: string;
   messages: MessageInterface[];
   isUserInRoom: boolean;
   leaveRoom: () => void;
@@ -24,6 +25,7 @@ type Props = {
 export default function Chat({
   areRoomsHidden,
   handleCollapseRooms,
+  roomName,
   messages,
   isUserInRoom,
   leaveRoom,
@@ -56,7 +58,7 @@ export default function Chat({
             <IconLayoutSidebarLeftCollapse className={classes.icon} />
           )}
         </ActionIcon>
-        <Text> Huone </Text>
+        <Text> {roomName} </Text>
         <ActionIcon onClick={handleDisconnectChat} variant="default">
           <IconX className={classes.iconButton} />
         </ActionIcon>
