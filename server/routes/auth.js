@@ -6,10 +6,10 @@ import * as db from '../config/database.js';
 const router = express.Router();
 
 router.get(
-  '/test-jwt',
+  '/verify-user',
   passport.authenticate('jwt', { session: false }),
   (req, res, next) => {
-    res.status(200).send('it works, congratulations!');
+    res.status(200).json({ username: req.user.rows[0].username });
   }
 );
 

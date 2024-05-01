@@ -14,7 +14,7 @@ const joinRoom = async (socket, roomId) => {
 
     await db.query(
       'UPDATE rooms SET users = array_append(users, $1) WHERE id = $2',
-      [socket.userId, roomId]
+      [socket.username, roomId]
     );
 
     socket.roomId = roomId;

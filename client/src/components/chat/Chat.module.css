@@ -25,6 +25,7 @@
   overflow: auto;
   display: flex;
   flex-direction: column;
+  padding-inline: var(--mantine-spacing-xs);
 }
 
 .icon {

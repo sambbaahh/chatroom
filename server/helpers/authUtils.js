@@ -52,11 +52,11 @@ export const genPassword = (password) => {
 export const issueJWT = (user) => {
   const id = user.id;
 
-  const expiresIn = '7d';
+  const expiresIn = '5h';
 
   const payload = {
     sub: id,
-    iat: Date.now(),
+    iat: Math.floor(Date.now() / 1000),
   };
 
   const signedToken = jsonwebtoken.sign(payload, PRIV_KEY, {

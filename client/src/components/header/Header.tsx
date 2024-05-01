@@ -9,15 +9,8 @@ import { useAuth } from '../../hooks/useAuth';
 
 import classes from './Header.module.css';
 
-const user = {
-  name: 'samii',
-  email: 'janspoon@fighter.dev',
-  image:
-    'https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-5.png',
-};
-
 export default function Header() {
-  const { logout } = useAuth();
+  const { username, logout } = useAuth();
 
   return (
     <>
@@ -30,7 +23,7 @@ export default function Header() {
           <Menu.Target>
             <UnstyledButton>
               <Group className={classes.menuGroup}>
-                <Text className={classes.menuUserText}>{user.name}</Text>
+                <Text className={classes.menuUserText}>{username}</Text>
                 <IconChevronDown className={classes.menuDownIcon} />
               </Group>
             </UnstyledButton>
