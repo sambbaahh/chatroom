@@ -1,4 +1,4 @@
-import { Text, Box, ActionIcon } from '@mantine/core';
+import { Text, Box, ActionIcon, ScrollArea } from '@mantine/core';
 import {
   IconMessages,
   IconLayoutSidebarLeftCollapse,
@@ -11,6 +11,7 @@ import Message from './message/Message';
 import MessageInput from './message-input/MessageInput';
 import Subheader from '../subheader/Subheader';
 import { Message as MessageInterface } from '../../interfaces';
+import { useEffect, useRef } from 'react';
 
 type Props = {
   areRoomsHidden: boolean;
@@ -31,6 +32,12 @@ export default function Chat({
   leaveRoom,
   sendMessage,
 }: Props) {
+  const chatRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    chatRef.current?.scrollIntoView();
+  }, [messages]);
+
   const handleSendMessage = (content: string) => {
     sendMessage(content);
   };
@@ -63,16 +70,24 @@ export default function Chat({
           <IconX className={classes.iconButton} />
         </ActionIcon>
       </Subheader>
-      <Box className={classes.messagesContainer}>
-        {messages.map((message, index, allMessages) => (
-          <Message
-            message={message}
-            allMessages={allMessages}
-            index={index}
-            key={index}
-          />
-        ))}
-      </Box>
+      <ScrollArea
+        type="hover"
+        offsetScrollbars
+        scrollbarSize={2}
+        scrollHideDelay={0}
+      >
+        <Box className={classes.messagesContainer}>
+          {messages.map((message, index, allMessages) => (
+            <Message
+              chatRef={chatRef}
+              message={message}
+              allMessages={allMessages}
+              index={index}
+              key={index}
+            />
+          ))}
+        </Box>
+      </ScrollArea>
       <MessageInput handleSendMessage={handleSendMessage} />
     </Box>
   );

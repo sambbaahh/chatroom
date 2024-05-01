@@ -7,6 +7,7 @@
 .roomsContainer {
   height: 100%;
   overflow: auto;
+  padding-inline: var(--mantine-spacing-xs);
 }
 
 .card {

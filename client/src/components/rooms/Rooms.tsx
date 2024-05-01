@@ -1,4 +1,4 @@
-import { Box, Button, Card, Text } from '@mantine/core';
+import { Box, Button, Card, ScrollArea, Text } from '@mantine/core';
 import { IconArrowRight, IconPlus } from '@tabler/icons-react';
 
 import classes from './Rooms.module.css';
@@ -55,22 +55,24 @@ export default function Rooms({
           New Room
         </Button>
       </Subheader>
-      <Box className={classes.roomsContainer}>
-        {rooms.map((room) => (
-          <Card key={room.id} className={classes.card} withBorder>
-            <Text>{room.name}</Text>
-            <Button
-              rightSection={<IconArrowRight />}
-              onClick={() => handleJoinRoom(room.id, room.name)}
-              size="sm"
-              variant="light"
-            >
-              {' '}
-              Join{' '}
-            </Button>
-          </Card>
-        ))}
-      </Box>
+      <ScrollArea type="hover" scrollbarSize={2} scrollHideDelay={0}>
+        <Box className={classes.roomsContainer}>
+          {rooms.map((room) => (
+            <Card key={room.id} className={classes.card} withBorder>
+              <Text>{room.name}</Text>
+              <Button
+                rightSection={<IconArrowRight />}
+                onClick={() => handleJoinRoom(room.id, room.name)}
+                size="sm"
+                variant="light"
+              >
+                {' '}
+                Join{' '}
+              </Button>
+            </Card>
+          ))}
+        </Box>
+      </ScrollArea>
     </Box>
   );
 }

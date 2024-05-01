@@ -7,9 +7,15 @@ interface Props {
   message: MessageInterface;
   index: number;
   allMessages: MessageInterface[];
+  chatRef: React.RefObject<HTMLDivElement>;
 }
 
-export default function Message({ message, index, allMessages }: Props) {
+export default function Message({
+  chatRef,
+  message,
+  index,
+  allMessages,
+}: Props) {
   const me = 'ME';
 
   const showIconAndName = (): boolean =>
@@ -21,7 +27,7 @@ export default function Message({ message, index, allMessages }: Props) {
     (index === 0 || allMessages[index - 1].username !== message.username);
 
   return (
-    <Box className={classes.container}>
+    <Box className={classes.container} ref={chatRef}>
       {showIconAndName() && (
         <Box className={classes.userInformationContainer}>
           <Box className={classes.iconWrapper}>
