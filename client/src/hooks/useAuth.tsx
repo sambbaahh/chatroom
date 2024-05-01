@@ -1,4 +1,4 @@
-import { createContext, useContext, useMemo, useEffect } from 'react';
+import { createContext, useContext, useMemo, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import dayjs from 'dayjs';
 import axios from 'axios';
@@ -25,7 +25,7 @@ const AuthContext = createContext<AuthContextInterface>(
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [token, setToken] = useLocalStorage('token', null);
   const [expiresIn, setExpiresIn] = useLocalStorage('expiresIn', null);
-  const [username, setUsername] = useLocalStorage('', null);
+  const [username, setUsername] = useState<string>('');
 
   const navigate = useNavigate();
 
@@ -84,6 +84,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const logout = (): void => {
     setToken(null);
     setExpiresIn(null);
+    setUsername('');
     navigate('/login', { replace: true });
   };
 
@@ -95,7 +96,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       register,
       logout,
     }),
-    [token]
+    [token, username]
   );
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

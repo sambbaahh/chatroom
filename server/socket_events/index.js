@@ -10,7 +10,7 @@ const handleSocketEvent = (socket, io) => {
   socket.userId = socket.request.user.rows[0].id;
   socket.username = socket.request.user.rows[0].username;
 
-  socket.on('join-room', (message) => joinRoom(socket, message));
+  socket.on('join-room', (message) => joinRoom(socket, io, message));
 
   socket.on('create-room', (roomName) => createRoom(socket, io, roomName));
 

@@ -21,6 +21,8 @@ CREATE TABLE IF NOT EXISTS public.users
     CONSTRAINT name UNIQUE (username)
 );
 
+INSERT INTO public.users (username, hash, salt) VALUES ('ADMIN', 'hash', 'salt');
+
 CREATE TABLE IF NOT EXISTS public.messages
 (
     id serial NOT NULL,

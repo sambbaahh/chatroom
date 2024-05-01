@@ -1,18 +1,20 @@
 import { useEffect, useState } from 'react';
 import { Socket, io } from 'socket.io-client';
 
-import { useLocalStorage } from './useLocalStorage';
 import { Message, Room } from '../interfaces';
+import { useAuth } from './useAuth';
 
 export function useSocket() {
   const [socket, setSocket] = useState<Socket | null>(null);
-  const [token] = useLocalStorage('token', null);
+  const { token, isLogged } = useAuth();
 
   const [rooms, setRooms] = useState<Room[]>([]);
   const [messages, setMessages] = useState<Message[]>([]);
   const [isUserInRoom, setIsUserInRoom] = useState(false);
 
   useEffect(() => {
+    if (!token) return;
+
     const newSocket = io('http://localhost:3000', {
       extraHeaders: {
         Authorization: token,
@@ -24,6 +26,12 @@ export function useSocket() {
     return () => {
       newSocket.disconnect();
     };
+  }, [token]);
+
+  useEffect(() => {
+    if (!token) {
+      socket?.disconnect();
+    }
   }, [token]);
 
   useEffect(() => {
@@ -84,6 +92,10 @@ export function useSocket() {
     socket?.emit('send-message', message);
   };
 
+  const disconnect = () => {
+    socket?.disconnect();
+  };
+
   return {
     messages,
     rooms,
@@ -92,5 +104,6 @@ export function useSocket() {
     createRoom,
     leaveRoom,
     sendMessage,
+    disconnect,
   };
 }
