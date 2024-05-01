@@ -6,7 +6,7 @@ import { useAuth } from './useAuth';
 
 export function useSocket() {
   const [socket, setSocket] = useState<Socket | null>(null);
-  const { token, isLogged } = useAuth();
+  const { token } = useAuth();
 
   const [rooms, setRooms] = useState<Room[]>([]);
   const [messages, setMessages] = useState<Message[]>([]);
