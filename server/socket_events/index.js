@@ -10,20 +10,14 @@ const handleSocketEvent = (socket, io) => {
   socket.userId = socket.request.user.rows[0].id;
   socket.username = socket.request.user.rows[0].username;
 
-  socket.on('join-room', async (message) => await joinRoom(socket, message));
+  socket.on('join-room', (message) => joinRoom(socket, message));
 
-  socket.on(
-    'create-room',
-    async (roomName) => await createRoom(socket, io, roomName)
-  );
+  socket.on('create-room', (roomName) => createRoom(socket, io, roomName));
 
-  socket.on(
-    'send-message',
-    async (content) => await sendMessage(socket, content)
-  );
+  socket.on('send-message', (content) => sendMessage(socket, content));
 
-  socket.on('leave-room', async () => await leaveRoom(socket, io));
-  socket.on('disconnect', async () => await leaveRoom(socket, io));
+  socket.on('leave-room', () => leaveRoom(socket, io));
+  socket.on('disconnect', () => leaveRoom(socket, io));
 };
 
 export default handleSocketEvent;
