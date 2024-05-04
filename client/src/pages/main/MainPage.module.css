@@ -9,6 +9,7 @@
 .column {
   height: 100%;
   overflow: auto;
+  padding-bottom: var(--mantine-spacing-xs);
 }
 
 .dividerWrapper {

@@ -16,14 +16,25 @@ export default function Message({
   index,
   allMessages,
 }: Props) {
-  const me = 'ME';
+  const me: string = 'ME';
+  const admin: string = 'ADMIN';
+
+  const getClassname = (): string => {
+    switch (message.username) {
+      case me:
+        return classes.messageWrapperSended;
+      case admin:
+        return classes.messageWrapperAdmin;
+      default:
+        return classes.messageWrapperReceived;
+    }
+  };
+
+  const notAdminOrMe = (): boolean =>
+    message.username !== me && message.username !== admin;
 
   const showIconAndName = (): boolean =>
-    message.username !== me &&
-    (index === 0 || allMessages[index - 1].username !== message.username);
-
-  const showMarginOnSendedMessage = (): boolean =>
-    message.username === me &&
+    notAdminOrMe() &&
     (index === 0 || allMessages[index - 1].username !== message.username);
 
   return (
@@ -36,18 +47,7 @@ export default function Message({
           <Text className={classes.usernameText}>{message.username}</Text>{' '}
         </Box>
       )}
-      {showMarginOnSendedMessage() && (
-        <Box className={classes.userInformationContainer}></Box>
-      )}
-      <Card
-        withBorder
-        className={
-          message.username === me
-            ? classes.messageWrapperSended
-            : classes.messageWrapperReceived
-        }
-        style={{}}
-      >
+      <Card withBorder={message.username !== admin} className={getClassname()}>
         <Text>{message.content}</Text>
       </Card>
     </Box>

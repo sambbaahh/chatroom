@@ -43,3 +43,11 @@
   background-color: var(--mantine-color-blue-light);
   color: var(--mantine-color-gray-2);
 }
+
+.messageWrapperAdmin {
+  width: 100%;
+  text-align: center;
+  background-color: inherit;
+  padding: var(--mantine-spacing-sm);
+  color: var(--mantine-color-gray-2);
+}

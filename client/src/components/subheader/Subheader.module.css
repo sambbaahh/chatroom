@@ -5,4 +5,5 @@
   align-items: center;
   height: 3.5rem;
   padding-block: var(--mantine-spacing-md);
+  padding-inline: var(--mantine-spacing-xs);
 }

@@ -72,7 +72,7 @@ export default function MainPage() {
               joinRoom={joinRoom}
             />
           </Grid.Col>
-          <Grid.Col span={0.4} className={classes.column}>
+          <Grid.Col span={0.4}>
             <Box className={classes.dividerWrapper}>
               <Divider orientation="vertical"></Divider>
             </Box>
