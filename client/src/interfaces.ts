@@ -11,6 +11,7 @@ export interface Jwt {
 export interface Room {
   id: number;
   name: string;
+  users: string[];
 }
 
 export interface Message {

@@ -22,3 +22,24 @@
 .card:not(:first-child) {
   margin-top: var(--mantine-spacing-xs);
 }
+
+.cardLeftSideContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--mantine-spacing-md);
+}
+
+.userCountContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.2rem;
+}
+.userCountText {
+  font-size: var(--mantine-font-size-md);
+}
+.userCountIcon {
+  width: 22px;
+  height: 22px;
+}

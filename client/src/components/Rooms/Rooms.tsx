@@ -1,5 +1,5 @@
 import { Box, Button, Card, ScrollArea, Text } from '@mantine/core';
-import { IconArrowRight, IconPlus } from '@tabler/icons-react';
+import { IconArrowRight, IconPlus, IconUsers } from '@tabler/icons-react';
 
 import classes from './Rooms.module.css';
 import Subheader from '../subheader/Subheader';
@@ -60,15 +60,23 @@ export default function Rooms({
           {rooms.map((room) => (
             <Card key={room.id} className={classes.card} withBorder>
               <Text>{room.name}</Text>
-              <Button
-                rightSection={<IconArrowRight />}
-                onClick={() => handleJoinRoom(room.id, room.name)}
-                size="sm"
-                variant="light"
-              >
-                {' '}
-                Join{' '}
-              </Button>
+              <Box className={classes.cardLeftSideContainer}>
+                <Box className={classes.userCountContainer}>
+                  <Text className={classes.userCountText}>
+                    {room.users.length}
+                  </Text>
+                  <IconUsers className={classes.userCountIcon} />
+                </Box>
+                <Button
+                  rightSection={<IconArrowRight />}
+                  onClick={() => handleJoinRoom(room.id, room.name)}
+                  size="sm"
+                  variant="light"
+                >
+                  {' '}
+                  Join{' '}
+                </Button>
+              </Box>
             </Card>
           ))}
         </Box>

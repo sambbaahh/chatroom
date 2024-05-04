@@ -8,6 +8,10 @@ export default defineConfig({
     proxy: {
       // string shorthand: http://localhost:5173/api -> http://localhost:3000/api
       '/api': 'http://localhost:3000',
+      '/socket.io': {
+        target: 'ws://localhost:3000',
+        ws: true,
+      },
     },
   },
 });

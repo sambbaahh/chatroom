@@ -18,10 +18,11 @@ const joinRoom = async (socket, io, roomId) => {
 
     socket.emit('receive-messages-on-join', messages.rows);
 
-    await db.query(
-      'UPDATE rooms SET users = array_append(users, $1) WHERE id = $2',
+    const modifiedRoom = await db.query(
+      'UPDATE rooms SET users = array_append(users, $1) WHERE id = $2 RETURNING *',
       [socket.username, roomId]
     );
+    io.emit('room-modified', modifiedRoom.rows[0]);
 
     const joinMessage = `${socket.username} has joined the room`;
 

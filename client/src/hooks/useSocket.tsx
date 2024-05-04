@@ -15,7 +15,7 @@ export function useSocket() {
   useEffect(() => {
     if (!token) return;
 
-    const newSocket = io('http://localhost:3000', {
+    const newSocket = io({
       extraHeaders: {
         Authorization: token,
       },
@@ -47,6 +47,12 @@ export function useSocket() {
       setRooms((prevRooms) => [...prevRooms, room]);
     });
 
+    socket.on('room-modified', (room) => {
+      console.log('room-modified');
+      const updatedRooms = rooms.map((r) => (r.id === room.id ? room : r));
+      setRooms(updatedRooms);
+    });
+
     socket.on('receive-messages-on-join', (messagesData) => {
       console.log('receive-messages-on-join');
       setMessages(messagesData);
@@ -61,10 +67,11 @@ export function useSocket() {
       // Clean up event listeners when component unmounts
       socket.off('receive-rooms-on-join');
       socket.off('room-created');
+      socket.off('room-modified');
       socket.off('receive-messages-on-join');
       socket.off('receive-message');
     };
-  }, [socket]);
+  }, [socket, rooms]);
 
   const joinRoom = (roomId: number) => {
     socket?.emit('join-room', roomId);
