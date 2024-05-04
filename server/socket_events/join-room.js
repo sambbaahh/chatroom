@@ -1,7 +1,12 @@
 import * as db from '../config/database.js';
+import leaveRoom from './leave-room.js';
 
 const joinRoom = async (socket, io, roomId) => {
   try {
+    if (socket.roomId) {
+      await leaveRoom(socket, io);
+    }
+
     socket.join(roomId);
     socket.roomId = roomId;
 

@@ -8,7 +8,7 @@ const createRoom = async (socket, io, roomName) => {
       [roomName, socket.userId]
     );
     io.emit('room-created', createdRoom.rows[0]);
-    await joinRoom(socket, createdRoom.rows[0].id);
+    await joinRoom(socket, io, createdRoom.rows[0].id);
   } catch (err) {
     console.log(err);
   }

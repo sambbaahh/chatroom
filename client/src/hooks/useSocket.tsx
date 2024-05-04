@@ -67,9 +67,6 @@ export function useSocket() {
   }, [socket]);
 
   const joinRoom = (roomId: number) => {
-    if (isUserInRoom) {
-      leaveRoom();
-    }
     socket?.emit('join-room', roomId);
     setIsUserInRoom(true);
   };

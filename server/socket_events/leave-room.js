@@ -2,6 +2,8 @@ import * as db from '../config/database.js';
 
 const leaveRoom = async (socket, io) => {
   try {
+    if (!socket.roomId) return;
+
     socket.leave(socket.roomId);
 
     const modifiedRoom = await db.query(
