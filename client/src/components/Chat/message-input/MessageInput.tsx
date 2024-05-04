@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import { Box, TextInput } from '@mantine/core';
+import { useEffect, useRef } from 'react';
+import { ActionIcon, Box, TextInput } from '@mantine/core';
 import { IconSend } from '@tabler/icons-react';
-import { getHotkeyHandler } from '@mantine/hooks';
+import { useForm } from '@mantine/form';
 
 import classes from './MessageInput.module.css';
 
@@ -10,34 +10,40 @@ interface Props {
 }
 
 export default function MessageInput({ handleSendMessage }: Props) {
-  const [content, setContent] = useState('');
+  const inputRef = useRef<HTMLInputElement>(null);
+  const form = useForm({
+    mode: 'uncontrolled',
+    initialValues: { content: '' },
+    validate: {
+      content: (value) => value.length < 1,
+    },
+  });
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, [form]);
 
   return (
     <Box className={classes.container}>
-      <TextInput
-        classNames={{ input: classes.input }}
-        placeholder="Send message..."
-        value={content}
-        onChange={(event) => setContent(event.currentTarget.value)}
-        rightSection={
-          <IconSend
-            className={classes.iconButton}
-            onClick={() => {
-              handleSendMessage(content);
-              setContent('');
-            }}
-          ></IconSend>
-        }
-        onKeyDown={getHotkeyHandler([
-          [
-            'Enter',
-            () => {
-              handleSendMessage(content);
-              setContent('');
-            },
-          ],
-        ])}
-      />
+      <form
+        className={classes.form}
+        onSubmit={form.onSubmit(async ({ content }) => {
+          handleSendMessage(content);
+          form.setValues({ content: '' });
+        })}
+      >
+        <TextInput
+          ref={inputRef}
+          classNames={{ input: classes.input }}
+          placeholder="Send message..."
+          {...form.getInputProps('content')}
+          rightSection={
+            <ActionIcon type="submit" className={classes.iconButton}>
+              <IconSend></IconSend>
+            </ActionIcon>
+          }
+        />
+      </form>
     </Box>
   );
 }

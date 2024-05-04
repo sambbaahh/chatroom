@@ -6,5 +6,8 @@
   padding: var(--mantine-radius-lg);
 }
 .iconButton {
-  cursor: pointer;
+  margin-right: var(--mantine-spacing-xs);
+}
+.form {
+  width: 100%;
 }

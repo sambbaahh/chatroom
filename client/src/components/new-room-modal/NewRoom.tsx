@@ -1,7 +1,7 @@
-import { useState } from 'react';
 import { Modal, Button, TextInput, Box } from '@mantine/core';
 
 import classes from './NewRoom.module.css';
+import { useForm } from '@mantine/form';
 
 interface Props {
   open: boolean;
@@ -14,8 +14,20 @@ export default function NewRoom({
   handleModalState,
   handleCreateRoom,
 }: Props) {
-  //setup form later if more inputs are needed
-  const [name, setName] = useState<string>('');
+  const form = useForm({
+    mode: 'uncontrolled',
+    initialValues: { name: '' },
+    validate: {
+      name: (value) => {
+        if (value.length < 3) {
+          return 'Name must be at least 3 characters long';
+        }
+        if (value.length > 20) {
+          return 'Name must be less than 15 characters long';
+        }
+      },
+    },
+  });
 
   return (
     <Modal
@@ -24,21 +36,18 @@ export default function NewRoom({
       title="Create New Room"
       centered
     >
-      <TextInput
-        label="Name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
-      <Box className={classes.buttonContainer}>
-        <Button
-          size="xs"
-          variant="light"
-          onClick={() => handleCreateRoom(name)}
-        >
-          {' '}
-          Create{' '}
-        </Button>
-      </Box>
+      <form
+        className={classes.form}
+        onSubmit={form.onSubmit(({ name }) => handleCreateRoom(name))}
+      >
+        <TextInput label="Name" {...form.getInputProps('name')} />
+        <Box className={classes.buttonContainer}>
+          <Button size="xs" variant="light" type="submit">
+            {' '}
+            Create{' '}
+          </Button>
+        </Box>
+      </form>
     </Modal>
   );
 }
