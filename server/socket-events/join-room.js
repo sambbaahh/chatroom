@@ -3,6 +3,8 @@ import leaveRoom from './leave-room.js';
 
 const joinRoom = async (socket, io, roomId) => {
   try {
+    if (socket.roomId === roomId) return;
+
     if (socket.roomId) {
       await leaveRoom(socket, io);
     }
