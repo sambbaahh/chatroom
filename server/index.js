@@ -7,7 +7,7 @@ import { Server } from 'socket.io';
 import cors from 'cors';
 
 import authRouter from './routes/auth.js';
-import handleSocketEvent from './socket_events/index.js';
+import handleSocketEvent from './socket-events/index.js';
 
 const PORT = process.env.PORT || 3000;
 
