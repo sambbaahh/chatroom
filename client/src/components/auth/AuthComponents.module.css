@@ -35,7 +35,7 @@ form {
   font-size: var(--mantine-font-size-sm);
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 768px) {
   .container {
     width: 100%;
     padding: 0;

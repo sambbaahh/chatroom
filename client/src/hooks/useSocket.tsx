@@ -38,29 +38,30 @@ export function useSocket() {
     if (!socket) return;
 
     socket.on('receive-rooms-on-join', (roomsData) => {
-      console.log('receive-rooms-on-join');
       setRooms(roomsData);
     });
 
     socket.on('room-created', (room) => {
-      console.log('room-created');
       setRooms((prevRooms) => [...prevRooms, room]);
     });
 
     socket.on('room-modified', (room) => {
-      console.log('room-modified');
       const updatedRooms = rooms.map((r) => (r.id === room.id ? room : r));
-      setRooms(updatedRooms);
+      setRooms(() => [...updatedRooms]);
     });
 
     socket.on('receive-messages-on-join', (messagesData) => {
-      console.log('receive-messages-on-join');
       setMessages(messagesData);
     });
 
     socket.on('receive-message', (message) => {
-      console.log('receive-message');
       setMessages((prevMessages) => [...prevMessages, message]);
+    });
+
+    socket.on('disconnect', () => {
+      setIsUserInRoom(false);
+      setMessages([]);
+      setRooms([]);
     });
 
     return () => {
@@ -70,6 +71,7 @@ export function useSocket() {
       socket.off('room-modified');
       socket.off('receive-messages-on-join');
       socket.off('receive-message');
+      socket.off('disconnect');
     };
   }, [socket, rooms]);
 
