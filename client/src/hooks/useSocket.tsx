@@ -46,8 +46,9 @@ export function useSocket() {
     });
 
     socket.on('room-modified', (room) => {
-      const updatedRooms = rooms.map((r) => (r.id === room.id ? room : r));
-      setRooms(() => [...updatedRooms]);
+      setRooms((prevRooms) =>
+        prevRooms.map((r) => (r.id === room.id ? room : r))
+      );
     });
 
     socket.on('receive-messages-on-join', (messagesData) => {
