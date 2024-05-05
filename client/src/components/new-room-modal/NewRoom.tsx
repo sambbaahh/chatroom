@@ -38,7 +38,10 @@ export default function NewRoom({
     >
       <form
         className={classes.form}
-        onSubmit={form.onSubmit(({ name }) => handleCreateRoom(name))}
+        onSubmit={form.onSubmit(({ name }) => {
+          handleCreateRoom(name);
+          form.reset();
+        })}
       >
         <TextInput label="Name" {...form.getInputProps('name')} />
         <Box className={classes.buttonContainer}>
