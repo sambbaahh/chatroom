@@ -8,6 +8,9 @@ import cors from 'cors';
 
 import authRouter from './routes/auth.js';
 import handleSocketEvent from './socket-events/index.js';
+import { setupDatabase } from './config/database.js';
+
+setupDatabase();
 
 const PORT = process.env.PORT || 3000;
 
