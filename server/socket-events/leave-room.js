@@ -4,7 +4,7 @@ const leaveRoom = async (socket, io) => {
   try {
     if (!socket.roomId) return;
 
-    socket.leave(socket.roomId);
+    socket.emit('room-left');
 
     const modifiedRoom = await db.query(
       'UPDATE rooms SET users = array_remove(users, $1) WHERE id = $2 RETURNING *',
@@ -13,7 +13,7 @@ const leaveRoom = async (socket, io) => {
     io.emit('room-modified', modifiedRoom.rows[0]);
 
     const leaveMessage = `${socket.username} has left the room`;
-    io.to(socket.roomId).emit('receive-message', {
+    io.to(socket.roomId).emit('message-received', {
       username: 'ADMIN',
       content: leaveMessage,
     });
@@ -21,6 +21,9 @@ const leaveRoom = async (socket, io) => {
       'INSERT INTO messages (sender_id, room_id, content) VALUES ($1, $2, $3)',
       [1, socket.roomId, leaveMessage] //'admin' user has id of 1
     );
+
+    socket.leave(socket.roomId);
+    socket.roomId = undefined;
   } catch (err) {
     console.log(err);
   }

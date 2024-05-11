@@ -9,11 +9,10 @@ import { useScreenDetector } from '../../hooks/useScreenDetector';
 
 export default function MainPage() {
   const [areRoomsHidden, setAreRoomsHidden] = useState<boolean>(false);
-  const [roomName, setRoomName] = useState<string>('');
   const {
     messages,
     rooms,
-    isUserInRoom,
+    currentRoom,
     joinRoom,
     createRoom,
     leaveRoom,
@@ -31,25 +30,20 @@ export default function MainPage() {
         gutter={0}
         classNames={{ root: classes.container, inner: classes.gridInner }}
       >
-        {!isUserInRoom ? (
+        {!currentRoom ? (
           <Grid.Col span={12} className={classes.column}>
-            <Rooms
-              rooms={rooms}
-              setRoomName={setRoomName}
-              createRoom={createRoom}
-              joinRoom={joinRoom}
-            />
+            <Rooms rooms={rooms} createRoom={createRoom} joinRoom={joinRoom} />
           </Grid.Col>
         ) : (
           <Grid.Col span={12} className={classes.column}>
             <Chat
               handleCollapseRooms={handleCollapseRooms}
               areRoomsHidden={areRoomsHidden}
-              roomName={roomName}
+              currentRoom={currentRoom}
               messages={messages}
-              isUserInRoom={isUserInRoom}
               leaveRoom={leaveRoom}
               sendMessage={sendMessage}
+              isMobileWidth={isMobile}
             />
           </Grid.Col>
         )}
@@ -65,12 +59,7 @@ export default function MainPage() {
       {!areRoomsHidden && (
         <>
           <Grid.Col span={4.5} className={classes.column}>
-            <Rooms
-              rooms={rooms}
-              setRoomName={setRoomName}
-              createRoom={createRoom}
-              joinRoom={joinRoom}
-            />
+            <Rooms rooms={rooms} createRoom={createRoom} joinRoom={joinRoom} />
           </Grid.Col>
           <Grid.Col span={0.4}>
             <Box className={classes.dividerWrapper}>
@@ -83,11 +72,11 @@ export default function MainPage() {
         <Chat
           handleCollapseRooms={handleCollapseRooms}
           areRoomsHidden={areRoomsHidden}
-          roomName={roomName}
+          currentRoom={currentRoom}
           messages={messages}
-          isUserInRoom={isUserInRoom}
           leaveRoom={leaveRoom}
           sendMessage={sendMessage}
+          isMobileWidth={isMobile}
         />
       </Grid.Col>
     </Grid>

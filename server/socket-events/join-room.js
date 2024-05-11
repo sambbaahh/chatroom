@@ -12,13 +12,15 @@ const joinRoom = async (socket, io, roomId) => {
     socket.join(roomId);
     socket.roomId = roomId;
 
+    socket.emit('room-joined', roomId);
+
     const messages = await db.query(
       "SELECT content, sended_at, CASE WHEN username = $1 THEN 'ME' ELSE username END FROM messages" +
         ' INNER JOIN users ON messages.sender_id = users.id WHERE room_id = $2 ORDER BY sended_at ASC',
       [socket.username, roomId]
     );
 
-    socket.emit('receive-messages-on-join', messages.rows);
+    socket.emit('messages-received-on-join', messages.rows);
 
     const modifiedRoom = await db.query(
       'UPDATE rooms SET users = array_append(users, $1) WHERE id = $2 RETURNING *',
@@ -28,7 +30,7 @@ const joinRoom = async (socket, io, roomId) => {
 
     const joinMessage = `${socket.username} has joined the room`;
 
-    io.to(socket.roomId).emit('receive-message', {
+    io.to(socket.roomId).emit('message-received', {
       username: 'ADMIN',
       content: joinMessage,
     });

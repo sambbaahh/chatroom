@@ -31,3 +31,27 @@
 .icon {
   stroke-width: 1.5;
 }
+
+.chatTitleGroup {
+  gap: var(--mantine-spacing-sm);
+}
+
+.smallIcon {
+  height: 16px;
+  width: 20px;
+}
+
+.userCountContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.userDropdown {
+  min-width: 12rem;
+}
+.menuItem {
+  display: flex;
+  flex-direction: row;
+  pointer-events: none;
+}

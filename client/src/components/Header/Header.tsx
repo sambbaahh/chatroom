@@ -19,7 +19,7 @@ export default function Header() {
           <IconMessages className={classes.logoIcon} />
           <Text>ChatRoom</Text>
         </Box>
-        <Menu transitionProps={{ transition: 'pop-top-right' }} withinPortal>
+        <Menu position="bottom-end" withinPortal withArrow>
           <Menu.Target>
             <UnstyledButton>
               <Group className={classes.menuGroup}>

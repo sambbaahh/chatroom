@@ -2,12 +2,12 @@ import * as db from '../config/database.js';
 
 const sendMessage = async (socket, content) => {
   try {
-    socket.to(socket.roomId).emit('receive-message', {
+    socket.to(socket.roomId).emit('message-received', {
       username: socket.username,
       content,
     });
 
-    socket.emit('receive-message', {
+    socket.emit('message-received', {
       username: 'ME',
       content,
     });
