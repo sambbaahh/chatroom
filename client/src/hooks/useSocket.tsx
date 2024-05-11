@@ -97,16 +97,11 @@ export function useSocket() {
   };
 
   const createRoom = (roomName: string) => {
-    if (currentRoom) {
-      leaveRoom();
-    }
     socket?.emit('create-room', roomName);
   };
 
   const leaveRoom = () => {
     socket?.emit('leave-room');
-    setMessages([]);
-    setCurrentRoom(undefined);
   };
 
   const sendMessage = (message: string) => {
