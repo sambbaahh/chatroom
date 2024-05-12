@@ -59,6 +59,7 @@ export default function LoginForm() {
             <Anchor
               className={classes.secondaryButton}
               component="button"
+              type="button"
               onClick={() => navigate('/register')}
             >
               Create account
