@@ -20,6 +20,7 @@ In this personal project of mine, it's important to acknowledge that there may b
 - [![Socket.io][Socket.io-io]][Socket.io-url]
 - [![Express.js][Express.js-io]][Express.js-url]
 
+
 <!-- GETTING STARTED -->
 
 ## Getting Started
@@ -47,11 +48,20 @@ Before you can get started, you should have [Node.js][Node.js-url] and [PostgreS
    ```sh
    npm install
    ```
-5. Generate public and private keypair for authentication
+5. Create .env file
+   ```sh
+   PGUSER="YOUR_POSTGRESQL_USER"
+   PGPASSWORD="YOUR_POSTGRESQL_PASSWORD"
+   PGHOST="YOUR_POSTGRESQL_HOST_NAME"
+   PGPORT=YOUR_POSTGRESQL_PORT
+   PGDATABASE="YOUR_POSTGRESQL_DATABASE"
+   ADMINPASSWORD="PASSWORD_FOR_ADMIN_USER"
+   ```
+7. Generate public and private keypair for authentication
    ```sh
    node generateKeyPair.js
    ```
-6. Start in development mode (nodemon)
+8. Start in development mode (nodemon)
 
    ```sh
    npm run dev
@@ -69,16 +79,16 @@ Before you can get started, you should have [Node.js][Node.js-url] and [PostgreS
 
 #### Client Installation:
 
-6. Open a new terminal window/tab
-7. Navigate to the project's client directory
+8. Open a new terminal window/tab
+9. Navigate to the project's client directory
    ```sh
    cd client
    ```
-8. Install project dependencies
+10. Install project dependencies
    ```sh
    npm install
    ```
-9. Start the development server
+11. Start the development server
    ```sh
    npm run dev
    ```
@@ -142,5 +152,5 @@ Project Link: https://github.com/sambbaahh/chatroom
 [Socket.io-io]: https://img.shields.io/badge/Socket.io-010101?&style=for-the-badge&logo=Socket.io&logoColor=white
 [Express.js-url]: https://expressjs.com/
 [Express.js-io]: https://img.shields.io/badge/Express.js-404D59?style=for-the-badge
-[Youtube-img]: update
-[Youtube-url]: update
+[Youtube-img]: https://github.com/sambbaahh/chatroom/assets/99816212/843c8eb2-123c-4bb0-a001-19d2995d717a
+[Youtube-url]: https://youtu.be/d4yun_H47BE?si=VdTB6f606taDXdzx
