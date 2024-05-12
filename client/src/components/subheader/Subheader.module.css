@@ -1,0 +1,9 @@
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 3.5rem;
+  padding-block: var(--mantine-spacing-md);
+  padding-inline: var(--mantine-spacing-xs);
+}

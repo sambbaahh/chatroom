@@ -1,0 +1,24 @@
+.container {
+  height: 100%;
+}
+
+.gridInner {
+  height: inherit;
+}
+
+.column {
+  height: 100%;
+  overflow: auto;
+  padding-bottom: var(--mantine-spacing-xs);
+}
+
+.dividerWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 100%;
+}
+
+.divider {
+  height: 100%;
+}

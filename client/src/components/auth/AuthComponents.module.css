@@ -1,0 +1,50 @@
+.container {
+  width: 80%;
+}
+
+.paper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-inline: var(--mantine-spacing-xl);
+  padding-block: var(--mantine-spacing-xl);
+  box-shadow: var(--mantine-shadow-md);
+  border-radius: var(--mantine-radius-md);
+}
+
+form {
+  width: 80%;
+}
+
+.input:not(:first-child) {
+  margin-top: var(--mantine-spacing-md);
+}
+
+.mainButton {
+  margin-top: var(--mantine-spacing-xl);
+}
+
+.secondaryText {
+  text-align: center;
+  margin-top: var(--mantine-spacing-xs);
+  color: var(--mantine-color-dimmed);
+  font-size: var(--mantine-font-size-sm);
+}
+
+.secondaryButton {
+  font-size: var(--mantine-font-size-sm);
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+    width: 100%;
+    padding: 0;
+  }
+  .paper {
+    padding-inline: var(--mantine-spacing-md);
+    padding-block: var(--mantine-spacing-md);
+  }
+  form {
+    width: 100%;
+  }
+}

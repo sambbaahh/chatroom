@@ -1,0 +1,9 @@
+.buttonContainer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: var(--mantine-spacing-md);
+  gap: var(--mantine-spacing-xs);
+}
+.form {
+  width: 100%;
+}

@@ -1,0 +1,14 @@
+.container {
+  margin-top: auto;
+}
+.input {
+  border-radius: var(--mantine-radius-xl);
+  padding: var(--mantine-radius-lg);
+}
+.iconButton {
+  margin-right: var(--mantine-spacing-xs);
+  background-color: var(--mantine-color-blue-light);
+}
+.form {
+  width: 100%;
+}
