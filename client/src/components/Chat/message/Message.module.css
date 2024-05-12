@@ -6,8 +6,8 @@
 .userInformationContainer {
   display: flex;
   align-items: center;
-  gap: var(--mantine-spacing-md);
-  margin-top: var(--mantine-spacing-md);
+  gap: var(--mantine-spacing-sm);
+  margin-top: calc(var(--mantine-spacing-xs) / 2);
 }
 .iconWrapper {
   display: flex;
@@ -26,24 +26,26 @@
   max-width: 75%;
   width: fit-content;
   margin-left: auto;
-  margin-bottom: var(--mantine-spacing-xs);
+  margin-block: calc(var(--mantine-spacing-xs) / 2);
   border-radius: var(--mantine-radius-xl);
   padding: var(--mantine-spacing-sm);
+  word-break: break-all;
 }
 
 .messageWrapperReceived {
   max-width: 75%;
   width: fit-content;
-  margin-left: calc(1.7rem + var(--mantine-spacing-sm));
-  margin-bottom: var(--mantine-spacing-xs);
+  margin-left: calc(1.8rem + var(--mantine-spacing-sm));
+  margin-bottom: calc(var(--mantine-spacing-xs) / 2);
   padding: var(--mantine-spacing-sm);
   border-radius: var(--mantine-radius-xl);
   background-color: var(--mantine-color-blue-light);
+  word-break: break-all;
 }
 
 .messageWrapperAdmin {
   width: 100%;
   text-align: center;
   background-color: inherit;
-  padding: var(--mantine-spacing-sm);
+  padding: var(--mantine-spacing-xs);
 }

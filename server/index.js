@@ -34,10 +34,7 @@ const io = new Server(httpServer, {
 
 configureSocketIo(io, passport);
 
-io.on('connection', (socket) => {
-  console.log(socket.id);
-  handleSocketEvent(socket, io);
-});
+io.on('connection', (socket) => handleSocketEvent(socket, io));
 
 app.use('/assets', express.static(path.join(__dirname, './dist/assets')));
 app.get('*', function (req, res) {

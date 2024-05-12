@@ -50,7 +50,7 @@ export const setupDatabase = async () => {
       [adminName, adminPassword.hash, adminPassword.salt]
     );
 
-    console.log(`created database ${process.env.PGDATABASE}.`);
+    console.log(`Created database: ${process.env.PGDATABASE}.`);
   } else {
     console.log(`Database ${process.env.PGDATABASE} already exists.`);
   }

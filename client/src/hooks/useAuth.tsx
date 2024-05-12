@@ -61,7 +61,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       navigate('/');
       return result;
     } catch (err) {
-      console.log('Error in useAuth');
       console.log(err);
       throw err;
     }
@@ -75,7 +74,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       navigate('/');
       return result;
     } catch (err) {
-      console.log('Error in useAuth');
       console.log(err);
       throw err;
     }
