@@ -31,15 +31,6 @@ export default function RegisterForm() {
         value.length < 4
           ? 'Username must be at least three characters long'
           : null,
-      password: (value, { passwordConfirmation }) => {
-        if (value.length < 6) {
-          return 'Password must be at least six characters long';
-        } else if (value !== passwordConfirmation) {
-          return 'Passwords do not match';
-        } else {
-          return null;
-        }
-      },
       passwordConfirmation: (value, { password }) => {
         if (password.length < 6) {
           return 'Password must be at least six characters long';
