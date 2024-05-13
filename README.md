@@ -135,7 +135,7 @@ Project Link: https://github.com/sambbaahh/chatroom
 
 ## Acknowledgments
 
-[Mantine - Amazing UI library for React](https://mantine.dev/)
+[Mantine - Amazing UI Component Library for React](https://mantine.dev/)
 
 [JWT + Passport.js + Node.js Tutorial](https://www.youtube.com/watch?v=Ne0tLHm1juE&list=PLYQSCk-qyTW2ewJ05f_GKHtTIzjynDgjK&index=10)
 
