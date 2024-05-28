@@ -94,7 +94,7 @@ Before you can get started, you should have [Node.js][Node.js-url] and [PostgreS
    ```
    After following the installation steps, open your web browser and go to http://localhost:5173 to view the React project. _Additionally, there is possibility to create a build of the React code and deploy it alongside the backend on the server._
 
-With these steps, you have set up the server and client portions of the ChatRoom application. The server should be running on one terminal window/tab, and the client should be running on another.
+With these steps, you have set up the server and client parts of the ChatRoom application. The server should be running on one terminal window/tab, and the client should be running on another.
 
 <!-- EXAMPLES -->
 
