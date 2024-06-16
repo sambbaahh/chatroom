@@ -40,15 +40,15 @@ Before you can get started, you should have [Node.js][Node.js-url] and [PostgreS
 
 #### Server Installation:
 
-3. Navigate to the project's server directory
+1. Navigate to the project's server directory
    ```sh
    cd server
    ```
-4. Install project dependencies
+2. Install project dependencies
    ```sh
    npm install
    ```
-5. Create .env file
+3. Create .env file
    ```sh
    PGUSER="YOUR_POSTGRESQL_USER"
    PGPASSWORD="YOUR_POSTGRESQL_PASSWORD"
@@ -57,11 +57,11 @@ Before you can get started, you should have [Node.js][Node.js-url] and [PostgreS
    PGDATABASE="YOUR_POSTGRESQL_DATABASE"
    ADMINPASSWORD="PASSWORD_FOR_ADMIN_USER"
    ```
-7. Generate public and private keypair for authentication
+4. Generate public and private keypair for authentication
    ```sh
    node generateKeyPair.js
    ```
-8. Start in development mode (nodemon)
+5. Start in development mode (nodemon)
 
    ```sh
    npm run dev
@@ -79,16 +79,16 @@ Before you can get started, you should have [Node.js][Node.js-url] and [PostgreS
 
 #### Client Installation:
 
-8. Open a new terminal window/tab
-9. Navigate to the project's client directory
+1. Open a new terminal window/tab
+2. Navigate to the project's client directory
    ```sh
    cd client
    ```
-10. Install project dependencies
+3. Install project dependencies
    ```sh
    npm install
    ```
-11. Start the development server
+4. Start the development server
    ```sh
    npm run dev
    ```
