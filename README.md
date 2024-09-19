@@ -183,6 +183,6 @@ Project Link: https://github.com/sambbaahh/chatroom
   https://img.shields.io/badge/Express.js-404D59?style=for-the-badge
 [Youtube-img]:
   https://github.com/sambbaahh/chatroom/assets/99816212/843c8eb2-123c-4bb0-a001-19d2995d717a
-
-[Youtube-img2]: [Youtube-url]: https://youtu.be/d4yun_H47BE?si=VdTB6f606taDXdzx
+[Youtube-img2]: https://github.com/user-attachments/assets/ed8c31f1-8980-4f91-987e-87c792d3de0d
+[Youtube-url]: https://youtu.be/d4yun_H47BE?si=VdTB6f606taDXdzx
 [Youtube-url2]: https://youtu.be/s-u0NEPJ8Aw?si=VOsJebjkzPgbBIW_
