@@ -88,14 +88,16 @@ Before you can get started, you should have [Node.js][Node.js-url] and
 #### Client Installation:
 
 8. Open a new terminal window/tab
-9. Navigate to the project's client directory
+9. Navigate to the project's client directory 
    ```sh
    cd client
    ```
+
 1. Install project dependencies
    ```sh
    npm install
    ```
+   
 1. Start the development server
    ```sh
    npm run dev
