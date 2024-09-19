@@ -92,17 +92,14 @@ Before you can get started, you should have [Node.js][Node.js-url] and
    ```sh
    cd client
    ```
-10. Install project dependencies
-
-```sh
-npm install
-```
-
-11. Start the development server
-
-```sh
-npm run dev
-```
+1. Install project dependencies
+   ```sh
+   npm install
+   ```
+1. Start the development server
+   ```sh
+   npm run dev
+   ```
 
 After following the installation steps, open your web browser and go to
 http://localhost:5173 to view the React project. _Additionally, there is
