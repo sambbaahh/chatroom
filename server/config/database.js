@@ -63,7 +63,6 @@ CREATE TABLE IF NOT EXISTS public.rooms
 (
     id serial NOT NULL,
     name text NOT NULL,
-    users text[] DEFAULT '{}'::text[],
     creator_id serial NOT NULL,
     PRIMARY KEY (id)
 );
@@ -88,6 +87,13 @@ CREATE TABLE IF NOT EXISTS public.messages
     PRIMARY KEY (id)
 );
 
+CREATE TABLE IF NOT EXISTS public.room_users
+(
+    room_id INTEGER NOT NULL,
+    user_id INTEGER NOT NULL,
+    PRIMARY KEY (room_id, user_id)
+);
+
 ALTER TABLE IF EXISTS public.rooms
     ADD FOREIGN KEY (creator_id)
     REFERENCES public.users (id) MATCH SIMPLE
@@ -110,6 +116,18 @@ ALTER TABLE IF EXISTS public.messages
     ON UPDATE NO ACTION
     ON DELETE NO ACTION
     NOT VALID;
+
+ALTER TABLE IF EXISTS public.room_users
+    ADD FOREIGN KEY (room_id)
+    REFERENCES public.rooms(id) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION;
+
+ALTER TABLE IF EXISTS public.room_users
+    ADD FOREIGN KEY (user_id)
+    REFERENCES public.users(id) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION;
 
 END;
 `;

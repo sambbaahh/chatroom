@@ -1,6 +1,6 @@
 import { Text, Box, Avatar, Card } from '@mantine/core';
 
-import classes from './Message.module.css';
+import classes from './message.module.css';
 import { Message as MessageInterface } from '../../../interfaces';
 
 interface Props {

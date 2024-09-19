@@ -1,9 +1,9 @@
 import { Box, Button, Card, ScrollArea, Text } from '@mantine/core';
 import { IconArrowRight, IconPlus, IconUsers } from '@tabler/icons-react';
 
-import classes from './Rooms.module.css';
-import Subheader from '../subheader/Subheader';
-import NewRoom from '../new-room-modal/NewRoom';
+import classes from './rooms.module.css';
+import Subheader from '../subheader/subheader';
+import NewRoom from '../new-room-modal/new-room';
 import { useState } from 'react';
 import { Room } from '../../interfaces';
 

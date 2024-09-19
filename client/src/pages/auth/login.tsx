@@ -1,8 +1,8 @@
 import { Title, Container, Box } from '@mantine/core';
 import { IconMessages } from '@tabler/icons-react';
-import LoginForm from '../../components/auth/LoginForm';
+import LoginForm from '../../components/auth/login-form';
 
-import classes from './Auth.module.css';
+import classes from './auth.module.css';
 
 export default function Login() {
   return (

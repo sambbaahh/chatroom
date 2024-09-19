@@ -3,7 +3,7 @@ import { ActionIcon, Box, TextInput } from '@mantine/core';
 import { IconSend } from '@tabler/icons-react';
 import { useForm } from '@mantine/form';
 
-import classes from './MessageInput.module.css';
+import classes from './message-input.module.css';
 
 interface Props {
   handleSendMessage: (content: string) => void;

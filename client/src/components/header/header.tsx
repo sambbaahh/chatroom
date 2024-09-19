@@ -5,9 +5,9 @@ import {
   IconLogout,
   IconUserCircle,
 } from '@tabler/icons-react';
-import { useAuth } from '../../hooks/useAuth';
+import { useAuth } from '../../hooks/use-auth';
 
-import classes from './Header.module.css';
+import classes from './header.module.css';
 
 export default function Header() {
   const { username, logout } = useAuth();

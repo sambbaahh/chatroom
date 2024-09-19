@@ -3,12 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import dayjs from 'dayjs';
 import axios from 'axios';
 
-import { useLocalStorage } from './useLocalStorage';
+import { useLocalStorage } from './use-localstorage';
 import loginService from '../services/login';
 import registerService from '../services/register';
 import verifyUserService from '../services/verify-user';
 import { User, Jwt } from '../interfaces';
-import getUnixTimeStamp from '../utils/getUnixTimeStamp';
+import getUnixTimeStamp from '../utils/get-unix-time-stamp';
 
 interface AuthContextInterface {
   token: string | null;

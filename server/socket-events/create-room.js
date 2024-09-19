@@ -7,7 +7,7 @@ const createRoom = async (socket, io, roomName) => {
       'INSERT INTO rooms (name, creator_id) VALUES ($1, $2) RETURNING *',
       [roomName, socket.userId]
     );
-    io.emit('room-created', createdRoom.rows[0]);
+    io.emit('room-created', { ...createdRoom.rows[0], users: [] });
     await joinRoom(socket, io, createdRoom.rows[0].id);
   } catch (err) {
     console.log(err);

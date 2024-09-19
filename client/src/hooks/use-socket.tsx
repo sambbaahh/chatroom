@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Socket, io } from 'socket.io-client';
 
 import { Message, Room } from '../interfaces';
-import { useAuth } from './useAuth';
+import { useAuth } from './use-auth';
 
 export function useSocket() {
   const [socket, setSocket] = useState<Socket | null>(null);
@@ -32,7 +32,7 @@ export function useSocket() {
     if (!token) {
       socket?.disconnect();
     }
-  }, [token]);
+  }, [token, socket]);
 
   useEffect(() => {
     if (!socket) return;
@@ -45,7 +45,7 @@ export function useSocket() {
       setRooms((prevRooms) => [...prevRooms, room]);
     });
 
-    socket.on('room-modified', (room) => {
+    socket.on('room-updated', (room) => {
       setRooms((prevRooms) =>
         prevRooms.map((r) => (r.id === room.id ? room : r))
       );
@@ -56,8 +56,8 @@ export function useSocket() {
       );
     });
 
-    socket.on('room-joined', (roomId) => {
-      setCurrentRoom(rooms.find((room) => room.id === roomId));
+    socket.on('room-joined', (room) => {
+      setCurrentRoom(room);
     });
 
     socket.on('room-left', () => {
@@ -83,7 +83,7 @@ export function useSocket() {
       // Clean up event listeners when component unmounts
       socket.off('receive-rooms-on-join');
       socket.off('room-created');
-      socket.off('room-modified');
+      socket.off('room-updated');
       socket.off('room-joined');
       socket.off('room-left');
       socket.off('messages-received-on-join');

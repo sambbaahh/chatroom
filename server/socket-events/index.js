@@ -5,7 +5,7 @@ import sendMessage from './send-message.js';
 import onConnection from './on-connection.js';
 
 const handleSocketEvent = (socket, io) => {
-  onConnection(socket);
+  onConnection(socket, io);
 
   socket.userId = socket.request.user.rows[0].id;
   socket.username = socket.request.user.rows[0].username;

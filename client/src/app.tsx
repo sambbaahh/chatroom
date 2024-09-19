@@ -1,13 +1,13 @@
 import { Routes, Route, Outlet, Navigate } from 'react-router-dom';
 
-import Login from './pages/auth/Login';
-import Register from './pages/auth/Register';
-import MainPage from './pages/main/MainPage';
-import Header from './components/header/Header';
-import { useAuth } from './hooks/useAuth';
+import Login from './pages/auth/login';
+import Register from './pages/auth/register';
+import MainPage from './pages/main/main-page';
+import Header from './components/header/header';
+import { useAuth } from './hooks/use-auth';
 import { Box, Container } from '@mantine/core';
 
-import classes from './App.module.css';
+import classes from './app.module.css';
 
 export default function App(): React.ReactElement {
   return (
