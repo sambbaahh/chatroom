@@ -16,10 +16,10 @@ import {
   IconUsers,
 } from '@tabler/icons-react';
 
-import classes from './Chat.module.css';
-import Message from './message/Message';
-import MessageInput from './message-input/MessageInput';
-import Subheader from '../subheader/Subheader';
+import classes from './chat.module.css';
+import Message from './message/message';
+import MessageInput from './message-input/message-input';
+import Subheader from '../subheader/subheader';
 import { Message as MessageInterface, Room } from '../../interfaces';
 import { useEffect, useRef } from 'react';
 

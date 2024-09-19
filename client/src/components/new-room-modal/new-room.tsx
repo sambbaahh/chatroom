@@ -1,6 +1,6 @@
 import { Modal, Button, TextInput, Box } from '@mantine/core';
 
-import classes from './NewRoom.module.css';
+import classes from './new-room.module.css';
 import { useForm } from '@mantine/form';
 
 interface Props {

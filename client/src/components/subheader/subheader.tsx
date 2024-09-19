@@ -1,6 +1,6 @@
 import { Box } from '@mantine/core';
 
-import classes from './Subheader.module.css';
+import classes from './subheader.module.css';
 
 interface Props {
   children: React.ReactNode;

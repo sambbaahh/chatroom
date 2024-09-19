@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Socket, io } from 'socket.io-client';
 
 import { Message, Room } from '../interfaces';
-import { useAuth } from './useAuth';
+import { useAuth } from './use-auth';
 
 export function useSocket() {
   const [socket, setSocket] = useState<Socket | null>(null);

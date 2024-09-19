@@ -1,11 +1,11 @@
 import { Box, Divider, Grid } from '@mantine/core';
-import Rooms from '../../components/rooms/Rooms';
-import Chat from '../../components/chat/Chat';
+import Rooms from '../../components/rooms/rooms';
+import Chat from '../../components/chat/chat';
 import { useState } from 'react';
 
-import classes from './MainPage.module.css';
-import { useSocket } from '../../hooks/useSocket';
-import { useScreenDetector } from '../../hooks/useScreenDetector';
+import classes from './main-page.module.css';
+import { useSocket } from '../../hooks/use-socket';
+import { useScreenDetector } from '../../hooks/use-screen-detector';
 
 export default function MainPage() {
   const [areRoomsHidden, setAreRoomsHidden] = useState<boolean>(false);

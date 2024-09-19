@@ -1,8 +1,8 @@
 import { Title, Container, Box } from '@mantine/core';
 import { IconUsersPlus } from '@tabler/icons-react';
-import RegisterForm from '../../components/auth/RegisterForm';
+import RegisterForm from '../../components/auth/register-form';
 
-import classes from './Auth.module.css';
+import classes from './auth.module.css';
 
 export default function Register() {
   return (
