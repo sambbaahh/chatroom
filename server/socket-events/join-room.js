@@ -5,6 +5,7 @@ const joinRoom = async (socket, io, roomId) => {
   try {
     if (socket.roomId === roomId) return;
 
+    //already in room so user has to disconnect first
     if (socket.roomId) {
       await leaveRoom(socket, io);
     }
@@ -12,7 +13,11 @@ const joinRoom = async (socket, io, roomId) => {
     socket.join(roomId);
     socket.roomId = roomId;
 
-    socket.emit('room-joined', roomId);
+    const room = await db.query('SELECT * FROM rooms WHERE rooms.id = $1', [
+      roomId,
+    ]);
+
+    socket.emit('room-joined', room.rows[0]);
 
     const messages = await db.query(
       "SELECT content, sended_at, CASE WHEN username = $1 THEN 'ME' ELSE username END FROM messages" +

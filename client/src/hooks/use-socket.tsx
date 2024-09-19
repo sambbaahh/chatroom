@@ -32,7 +32,7 @@ export function useSocket() {
     if (!token) {
       socket?.disconnect();
     }
-  }, [token]);
+  }, [token, socket]);
 
   useEffect(() => {
     if (!socket) return;
@@ -56,8 +56,8 @@ export function useSocket() {
       );
     });
 
-    socket.on('room-joined', (roomId) => {
-      setCurrentRoom(rooms.find((room) => room.id === roomId));
+    socket.on('room-joined', (room) => {
+      setCurrentRoom(room);
     });
 
     socket.on('room-left', () => {
