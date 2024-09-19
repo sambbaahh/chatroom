@@ -47,15 +47,15 @@ Before you can get started, you should have [Node.js][Node.js-url] and
 
 #### Server Installation:
 
-3. Navigate to the project's server directory
+1. Navigate to the project's server directory
    ```sh
    cd server
    ```
-4. Install project dependencies
+2. Install project dependencies
    ```sh
    npm install
    ```
-5. Create .env file
+3. Create .env file
    ```sh
    PGUSER="YOUR_POSTGRESQL_USER"
    PGPASSWORD="YOUR_POSTGRESQL_PASSWORD"
@@ -64,11 +64,11 @@ Before you can get started, you should have [Node.js][Node.js-url] and
    PGDATABASE="YOUR_POSTGRESQL_DATABASE"
    ADMINPASSWORD="PASSWORD_FOR_ADMIN_USER"
    ```
-6. Generate public and private keypair for authentication
+4. Generate public and private keypair for authentication
    ```sh
    node generateKeyPair.js
    ```
-7. Start in development mode (nodemon)
+5. Start in development mode (nodemon)
 
    ```sh
    npm run dev
@@ -87,18 +87,18 @@ Before you can get started, you should have [Node.js][Node.js-url] and
 
 #### Client Installation:
 
-8. Open a new terminal window/tab
-9. Navigate to the project's client directory 
+1. Open a new terminal window/tab
+2. Navigate to the project's client directory
+
    ```sh
    cd client
    ```
 
-1. Install project dependencies
+3. Install project dependencies
    ```sh
    npm install
    ```
-   
-1. Start the development server
+4. Start the development server
    ```sh
    npm run dev
    ```
@@ -108,7 +108,7 @@ http://localhost:5173 to view the React project. _Additionally, there is
 possibility to create a build of the React code and deploy it alongside the
 backend on the server._
 
-With these steps, you have set up the server and client portions of the ChatRoom
+With these steps, you have set up the server and client parts of the ChatRoom
 application. The server should be running on one terminal window/tab, and the
 client should be running on another.
 
@@ -158,7 +158,7 @@ Project Link: https://github.com/sambbaahh/chatroom
 
 ## Acknowledgments
 
-[Mantine - Amazing UI library for React](https://mantine.dev/)
+[Mantine - Amazing UI Component Library for React](https://mantine.dev/)
 
 [JWT + Passport.js + Node.js Tutorial](https://www.youtube.com/watch?v=Ne0tLHm1juE&list=PLYQSCk-qyTW2ewJ05f_GKHtTIzjynDgjK&index=10)
 
@@ -182,6 +182,7 @@ Project Link: https://github.com/sambbaahh/chatroom
   https://img.shields.io/badge/Express.js-404D59?style=for-the-badge
 [Youtube-img]:
   https://github.com/sambbaahh/chatroom/assets/99816212/843c8eb2-123c-4bb0-a001-19d2995d717a
-[Youtube-img2]: https://github.com/user-attachments/assets/ed8c31f1-8980-4f91-987e-87c792d3de0d
+[Youtube-img2]:
+  https://github.com/user-attachments/assets/ed8c31f1-8980-4f91-987e-87c792d3de0d
 [Youtube-url]: https://youtu.be/d4yun_H47BE?si=VdTB6f606taDXdzx
 [Youtube-url2]: https://youtu.be/s-u0NEPJ8Aw?si=VOsJebjkzPgbBIW_
