@@ -45,7 +45,7 @@ export function useSocket() {
       setRooms((prevRooms) => [...prevRooms, room]);
     });
 
-    socket.on('room-modified', (room) => {
+    socket.on('room-updated', (room) => {
       setRooms((prevRooms) =>
         prevRooms.map((r) => (r.id === room.id ? room : r))
       );
@@ -83,7 +83,7 @@ export function useSocket() {
       // Clean up event listeners when component unmounts
       socket.off('receive-rooms-on-join');
       socket.off('room-created');
-      socket.off('room-modified');
+      socket.off('room-updated');
       socket.off('room-joined');
       socket.off('room-left');
       socket.off('messages-received-on-join');
